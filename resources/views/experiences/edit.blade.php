@@ -15,6 +15,7 @@
                 <a class="btn btn-xs btn-primary" href="{{ route('postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
                 <a class="btn btn-xs btn-primary" href="{{ route('formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
                 <a class="btn btn-xs btn-primary" href="{{ route('experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span>Experience &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
             </center>
           </div>
 
@@ -123,7 +124,7 @@
                         <br />
                       <div class="form-group"> <center>
                         <a class="btn btn-xs btn-danger" href="{{ route('main') }}">RETOURNER</a>
-                    <button type="submit"  class="btn btn-success">AJOUTER</button>
+                    <button type="submit"  class="btn btn-success">VALIDER</button>
                   </center>
                   </div>
                 </form>

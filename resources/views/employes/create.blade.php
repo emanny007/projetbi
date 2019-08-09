@@ -303,7 +303,7 @@
                        <center>
 
                       <a class="btn btn-xs btn-danger" href="{{ route('main') }}">RETOURNER</a>
-                      <button type="submit"  class="btn btn-success">AJOUTER </button>
+                      <button type="submit"  class="btn btn-success">VALIDER </button>
 
                 </center>
                 </div>

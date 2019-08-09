@@ -29,14 +29,7 @@ class EmployeController extends Controller
     {
 
       $employes=Employe::all();
-      /*$employes=DB::table('employes')
-                ->whereExists(function($query){
-                    $query->select(DB::raw(1))
-                          ->from('contrats')
-                          ->whereRaw('contrats.employe_id=employes.id');
-              })->get();
-              */
-
+  
          return view('employes.index', compact('employes'));
          /* la fonction compact équivaut à array('employes' => $employes) */
 
@@ -73,7 +66,7 @@ class EmployeController extends Controller
          'numero_sss' => 'bail|required',
          'nom' => 'required|max:100|alpha',
          'prenom' => 'required',
-         'password' => 'required|min:5',
+         //'password' => 'min:5',
          'date_naissance' => 'required|date',
          'email' => 'bail|required|email',
          'mail_perso' => 'bail|required|email',
@@ -100,13 +93,13 @@ class EmployeController extends Controller
         $employe = new Employe([
           'matricule' => $request->get('matricule'),
           'numero_sss' => $request->get('numero_sss'),
-          'nom' => $request->get('nom'),
-          'prenom' => $request->get('prenom'),
+          'nom' =>  strtoupper($request->get('nom')),
+          'prenom' =>  strtoupper($request->get('prenom')),
           'password' => Hash::make($request->input('password')),
-          'email' => $request->get('email'),
+          'email' => strtolower($request->get('email')),
           'role' => $request->get('role'),
           'date_naissance' => $request->get('date_naissance'),
-          'mail_perso' => $request->get('mail_perso'),
+          'mail_perso' => strtolower($request->get('mail_perso')),
           'tel_pro' => $request->get('tel_pro'),
           'tel_perso' => $request->get('tel_perso'),
           'contact_urgent' => $request->get('contact_urgent'),
@@ -116,6 +109,7 @@ class EmployeController extends Controller
           'pays' => $request->get('pays'),
           'situation_matrimoniale' => $request->get('situation_matrimoniale'),
           'nbre_enfant' => $request->get('nbre_enfant'),
+          'nationnalite' => $request->get('nationnalite'),
           'origine' => $request->get('origine'),
           'categorie' => $request->get('categorie'),
           'secteur' => $request->get('secteur'),
@@ -196,9 +190,8 @@ class EmployeController extends Controller
                'numero_sss' => 'bail|required',
                'nom' => 'required|max:255|alpha',
                'prenom' => 'required',
-               'password' => 'required|min:5',
+               //'password' => 'min:5',
                'email' => 'bail|required|email',
-               'role' => 'required',
                'date_naissance' => 'required|date',
                'mail_perso' => 'bail|required|email',
                'tel_pro' => 'required|numeric',
@@ -220,19 +213,19 @@ class EmployeController extends Controller
                 //$employe->update($request->all());
                 $employe->matricule = $request->get('matricule');
                 $employe->numero_sss = $request->get('numero_sss');
-                $employe->nom = $request->get('nom');
-                $employe->prenom = $request->get('prenom');
+                $employe->nom = strtoupper($request->get('nom'));
+                $employe->prenom = strtoupper($request->get('prenom'));
                 $employe->password = Hash::make($request->input('password'));
-                $employe->email = $request->get('email');
+                $employe->email = strtolower($request->get('email'));
                 $employe->role = $request->get('role');
                 $employe->date_naissance = $request->get('date_naissance');
-                $employe->mail_perso = $request->get('mail_perso');
+                $employe->mail_perso = strtolower($request->get('mail_perso'));
                 $employe->tel_pro = $request->get('tel_pro');
                 $employe->tel_perso = $request->get('tel_perso');
                 $employe->contact_urgent = $request->get('contact_urgent');
                 $employe->entite = $request->get('entite');
                 $employe->sexe = $request->get('sexe');
-                $employe->photo = $request->get('photo');
+                //$employe->photo = $request->get('photo');
                 $employe->civilite = $request->get('civilite');
                 $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
                 $employe->nbre_enfant = $request->get('nbre_enfant');
@@ -272,7 +265,7 @@ class EmployeController extends Controller
 
                 */
              //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-            return redirect()->back()->with('status','L employé avait bien été modifié');
+            return redirect()->back()->with('status','L employé a bien été modifié');
 
     }
 

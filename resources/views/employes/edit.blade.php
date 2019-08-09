@@ -5,7 +5,7 @@
   <div class="uker">
       <div class="section__content section__content--p30">
           <div class="container-fluid"><br />
-
+            <div class="col-sm-6 col-lg-12">
             <center>
               <a class="btn btn-xs btn-primary" href="{{ route('main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
               <a class="btn btn-xs btn-primary" href="{{ route('show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
@@ -60,8 +60,6 @@
                       @endif
                     </div>
                   </div>
-
-
                       <div class="row">
                       <div class="col-3 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>

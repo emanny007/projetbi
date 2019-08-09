@@ -68,7 +68,7 @@
                   <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
                       <div class="au-card-inner">
                         <center>
-                          <h3 class="title-2 m-b-30">Repartition des staffs par sexe</h3>
+                          <h3 class="title-2 m-b-30">Repartition des staffs par genre</h3>
                           {!! $chart->render() !!}
                         </center>
                       </div>

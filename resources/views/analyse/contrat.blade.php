@@ -28,6 +28,15 @@
                   </div>
                 </div>
 
+              <div class="col-md-12">
+                  <div class="top-campaign">
+                      <div class="au-card-inner">
+                          <h3 class="title-2 m-b-40">Volume total de contrats par entité</h3>
+                          {!! $data->render() !!}
+                      </div>
+                  </div>
+                </div>
+
                 <div class="col-md-6">
                   <div class="top-campaign">
                       <div class="au-card-inner">
@@ -37,6 +46,7 @@
                         </center>
                       </div>
                   </div>
+
                 </div>
 
                 <div class="col-md-6">
@@ -47,7 +57,6 @@
                       </div>
                   </div>
                 </div>
-
 
 
 

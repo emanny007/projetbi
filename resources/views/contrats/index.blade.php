@@ -7,13 +7,11 @@
         <div class="container-fluid">
           <div class="row m-t-30">
             <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header">
+
 
                       <center><strong class="card-title pl-2">GESTION DES CONTRATS DES STAFFS</strong></center>
-                  </div>
-                </div>
-              <br />
+
+              <br />  <br />
 
                                     @if(session()->get('success'))
                                     <div class="alert alert-success">
@@ -29,7 +27,7 @@
 
                                           <!-- DATA TABLE-->
                                           <div class="table-responsive table m-b-40">
-                                              <table id="table_id" class="display" data-order='[[ 1, "desc" ]]' data-page-length='50' style="width:100%">
+                                              <table class="table table-borderless table-striped table-earning" id="#example" class="display" data-order='[[ 1, "desc" ]]' data-page-length='50' style="width:100%">
                                                   <thead>
                                                       <tr>
                                                         <th>ID</th>
