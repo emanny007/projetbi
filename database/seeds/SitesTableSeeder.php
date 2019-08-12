@@ -16,42 +16,50 @@ class SitesTableSeeder extends Seeder
       [
           'pays' => NULL,
           'entite' => 'CTI',
-          'nationnalite' => NULL
+          'nationnalite' => NULL,
+          'lien' => 'groupecofina.jpg',
       ],
       [
         'pays' => 'GABON',
         'entite' => 'CSG',
-        'nationnalite' => 'GABONAISE'
+        'nationnalite' => 'GABONAISE',
+        'lien' => 'gabon.jpg',
       ],
       [
         'pays' => 'GUINEE',
         'entite' => 'COFINA GN',
-        'nationnalite' => 'GUINEENNE'
+        'nationnalite' => 'GUINEENNE',
+        'lien' => 'guinee.png',
       ],
       [
         'pays' => 'MALI',
         'entite' => 'COFINA ML',
-        'nationnalite' => 'MALIENNE'
+        'nationnalite' => 'MALIENNE',
+        'lien' => 'mali.png',
       ],
       [
         'pays' => 'CONGO',
         'entite' => 'COFINA CG',
-        'nationnalite' => 'CONGOLAISE'
+        'nationnalite' => 'CONGOLAISE',
+        'lien' => 'congo.png',
       ],
       [
         'pays' => 'BURKINA FASO',
         'entite' => 'COFINA BF',
-        'nationnalite' => 'BURKINABE'
+        'nationnalite' => 'BURKINABE',
+        'lien' => 'burkina.png',
       ],
       [
         'pays' => 'COTE D IVOIRE',
         'entite' => 'CAC',
-        'nationnalite' => 'IVOIRIENNEE'
+        'nationnalite' => 'IVOIRIENNEE',
+        'lien' => 'ci.png',
       ],
       [
         'pays' => 'SENEGAL',
         'entite' => 'COFINA SN',
-        'nationnalite' => 'SENEGALAISE'
+        'nationnalite' => 'SENEGALAISE',
+        'lien' => 'senegal.jpg',
       ],
 
   ]);

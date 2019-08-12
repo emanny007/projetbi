@@ -20,19 +20,14 @@ class CompteController extends Controller
             ->elementLabel('COFINA')
 
             ->labels(['SN', 'CI', 'CG', 'GN', 'ML','GA','BF'])
-
+            //->labels(['CI'])
             ->colors(['#DA1124', '#985689'])
 
-            ->values([30,10,20])
+            ->values([500,300,75,100,100,100,100,30])
 
-            ->dimensions(1000,500)
+            ->dimensions(500,500)
 
-            ->responsive(false);
-
-  //  $nb_empl=DB::select("SELECT count(*) FROM employes");
-    //$nb_empl=json_encode($nb_empl);
-    //dump($nb_empl);
-   //$employes=Employe::orderby('id','desc')->paginate(10);
+            ->responsive(true);
 
 
    $choisir_entite = $request->input('choisir_entite');
@@ -42,6 +37,7 @@ if(!empty($choisir_entite)){
       $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
       $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
       $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
+      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION'");
       $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
 
  }else{
@@ -49,6 +45,7 @@ if(!empty($choisir_entite)){
       $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
       $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
       $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
+      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION'");
       $employes=Employe::orderby('id','desc')->paginate(20);
 
  }
@@ -62,6 +59,7 @@ if(!empty($choisir_entite)){
        'nb_cdi' => $nb_cdi,
        'nb_cdd' => $nb_cdd,
        'nb_stage' => $nb_stage,
+       'nb_prestation' => $nb_prestation,
      ]);
   }
 
@@ -113,7 +111,8 @@ if(!empty($choisir_entite)){
     $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
     $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
     $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
-    $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 10");
+    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION'");
+    $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
 
 }else{
     $nb_empl=DB::select("SELECT * FROM employes");
@@ -121,11 +120,12 @@ if(!empty($choisir_entite)){
     $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
     $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
     $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
+    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION'");
 }
   $sites=Site::all();
   flash("Vous êtes la bienvenue!!")->success();
      return view('/cote-d-ivoire/accueil',['sites' => $sites,'employes' => $employes,'geo' => $geo,'nb_empl' => $nb_empl,'nb_cdi' => $nb_cdi,'nb_cdd' => $nb_cdd,
-     'nb_stage' => $nb_stage,
+     'nb_stage' => $nb_stage,'nb_prestation' => $nb_prestation,
    ]);
 }
 

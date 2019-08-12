@@ -10,7 +10,7 @@
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-header">
-                       <strong>Ajouter un employe</strong>
+                       <center><strong>NOUVEL EMPLOYE</strong></center>
                       </div>
                       <div class="card-body card-block">
                       <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('store') }}">
@@ -34,14 +34,14 @@
                     <div class="row">
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">NOM</label>
-                        <input type="text" id="inputIsValid" name="nom" value="{{ old('nom') }}"class="is-valid form-control-success form-control">
+                        <input type="text" id="inputIsValid" name="nom" value="{{ old('nom') }}"class="is-valid form-control-success form-control"  required>
                       </div>
                       @if($errors->has('nom'))
                       <p> {{ $errors->first('nom') }} </p>
                       @endif
                       <div class="col-6 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">PRENOM</label>
-                         <input type="text" id="inputIsValid" name="prenom" value="{{ old('prenom') }}" class="is-valid form-control-success form-control">
+                         <input type="text" id="inputIsValid" name="prenom" value="{{ old('prenom') }}" class="is-valid form-control-success form-control" required>
                       </div>
                       @if($errors->has('prenom'))
                       <p> {{ $errors->first('prenom') }} </p>
@@ -50,33 +50,17 @@
                       <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">EMAIL PROFESSIONNEL</label>
-                          <input type="email" id="inputIsValid" name="email" value="{{ old('email') }}" class="is-valid form-control-success form-control">
+                          <input type="email" id="inputIsValid" name="email" value="{{ old('email') }}" class="is-valid form-control-success form-control"  required>
                         </div>
                         @if($errors->has('email'))
                         <p> {{ $errors->first('email') }} </p>
                         @endif
-                      <div class="col-6 has-success form-group">
+                      <!--div class="col-6 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>
-                         <input type="password" id="inputIsValid" name="password" value="{{ old('password') }}" class="is-valid form-control-success form-control">
-                      </div>
-                      @if($errors->has('password'))
-                      <p> {{ $errors->first('password') }} </p>
-                      @endif
-                    </div>
-                      <div class="row">
-                      <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">ROLE</label>
-                          <select name="role" id="selectLg" class="is-valid form-control-success form-control">
-                            <option></option>
-                            @foreach($groupes as $groupe)
-                            <option value="{{$groupe->nom_groupe}}">{{$groupe->nom_groupe}}</option>
-                            @endforeach
-                          </select>
-                      </div>
-                      @if($errors->has('role'))
-                      <p> {{ $errors->first('role') }} </p>
-                      @endif
-                      <div class="col-6 has-success form-group">
+                         <input type="password" id="inputIsValid" name="password" value="" class="is-valid form-control-success form-control">
+                      </div-->
+
+                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">DATE DE NAISSANCE</label>
                         <input type="date" id="inputIsValid" name="date_naissance" value="{{ old('date_naissance') }}" class="is-valid form-control-success form-control">
                       </div>
@@ -309,6 +293,10 @@
                 </div>
               </form>
             </div>
+            <div class="card-header">
+             <center><strong></strong></center>
+            </div>
+
           </div>
 
               </div>

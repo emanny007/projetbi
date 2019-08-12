@@ -29,7 +29,7 @@ class EmployeController extends Controller
     {
 
       $employes=Employe::all();
-  
+
          return view('employes.index', compact('employes'));
          /* la fonction compact équivaut à array('employes' => $employes) */
 
@@ -95,9 +95,9 @@ class EmployeController extends Controller
           'numero_sss' => $request->get('numero_sss'),
           'nom' =>  strtoupper($request->get('nom')),
           'prenom' =>  strtoupper($request->get('prenom')),
-          'password' => Hash::make($request->input('password')),
+          //'password' => Hash::make($request->input('password')),
+          //'role' => $request->get('role'),
           'email' => strtolower($request->get('email')),
-          'role' => $request->get('role'),
           'date_naissance' => $request->get('date_naissance'),
           'mail_perso' => strtolower($request->get('mail_perso')),
           'tel_pro' => $request->get('tel_pro'),
@@ -199,7 +199,7 @@ class EmployeController extends Controller
                'contact_urgent' => 'required|numeric',
                'entite' => 'required',
                'sexe' => 'required',
-               'photo' => 'required',
+               //'photo' => 'required',
                'civilite' => 'required',
                'situation_matrimoniale' => 'required',
                'nbre_enfant' => 'required|numeric',
@@ -215,7 +215,7 @@ class EmployeController extends Controller
                 $employe->numero_sss = $request->get('numero_sss');
                 $employe->nom = strtoupper($request->get('nom'));
                 $employe->prenom = strtoupper($request->get('prenom'));
-                $employe->password = Hash::make($request->input('password'));
+                $employe->password = Hash::make($request->input('mot_pass'));
                 $employe->email = strtolower($request->get('email'));
                 $employe->role = $request->get('role');
                 $employe->date_naissance = $request->get('date_naissance');

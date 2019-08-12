@@ -56,16 +56,19 @@
                             <i class="fas fa-upload"></i>
                             <span class="bot-line"></span>Extraction</a>
                     </li>
-                    <!--li class="has-sub">
+                    <li class="has-sub">
                         <a href="#">
-                            <i class="fas fa-file-text"></i>
-                            <span class="bot-line"></span>Contrats</a>
+                            <i class="zmdi zmdi-settings"></i>
+                            <span class="bot-line"></span>Parametres</a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="{{ url('/contrats/index') }}"><i class="fas fa-folder-open"></i>Liste contrats</a>
+                                <a href="{{ url('/parametres/departements') }}"><i class="fas fa-folder-open"></i>Departement</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/parametres/sites') }}"><i class="fas fa-folder-open"></i>Entite</a>
                             </li>
                         </ul>
-                    </li-->
+                    </li>
 
                     <li class="has-sub"><a href="#"> <img src="{{ url('images/icon/groupecofina.jpg') }}" alt="Groupe Cofina" width="50" height="50"/></a></li>
                 </ul>

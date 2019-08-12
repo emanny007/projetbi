@@ -36,10 +36,8 @@
                             <i class="zmdi zmdi-male-female"></i>
                         </div>
                         <div class="text">
-
-                            <h2>{{count($nb_empl)}}</h2>
-
-                            <span>EMPLOYES</span>
+                            <h1>{{count($nb_empl)}}</h1>
+                            <h4>EMPLOYES</h4>
                         </div>
                     </div>
                     <div class="overview-chart">
@@ -48,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-lg-2">
             <div class="overview-item overview-item--c2">
                 <div class="overview__inner">
                     <div class="overview-box clearfix">
@@ -56,8 +54,8 @@
                             <i class="zmdi zmdi-group-work"></i>
                         </div>
                         <div class="text">
-                            <h2>{{count($nb_cdi)}}</h2>
-                            <span>CDI</span>
+                            <h1>{{count($nb_cdi)}}</h1>
+                            <h4>CDI</h4>
                         </div>
                     </div>
                     <div class="overview-chart">
@@ -66,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-lg-2">
             <div class="overview-item overview-item--c3">
                 <div class="overview__inner">
                     <div class="overview-box clearfix">
@@ -74,8 +72,8 @@
                             <i class="zmdi zmdi-view-dashboard"></i>
                         </div>
                         <div class="text">
-                            <h2>{{count($nb_cdd)}}</h2>
-                            <span>CDD</span>
+                            <h1>{{count($nb_cdd)}}</h1>
+                            <h4>CDD</h4>
                         </div>
                     </div>
                     <div class="overview-chart">
@@ -84,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-lg-2">
             <div class="overview-item overview-item--c4">
                 <div class="overview__inner">
                     <div class="overview-box clearfix">
@@ -92,8 +90,8 @@
                             <i class="zmdi zmdi-layers"></i>
                         </div>
                         <div class="text">
-                            <h2>{{count($nb_stage)}}</h2>
-                            <span>STAGE</span>
+                            <h1>{{count($nb_stage)}}</h1>
+                            <h4>STAGES</h4>
                         </div>
                     </div>
                     <div class="overview-chart">
@@ -102,8 +100,26 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c1">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                      <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                    <div class="text">
+                        <h1>{{count($nb_prestation)}}</h1>
+                        <h4>PRESTATIONS</h4>
+                    </div>
+                </div>
+                <div class="overview-chart">
+                    <canvas id="widgetChart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="col-lg-12">
         <h2 class="title-2 m-b-25">Listes des 20 dernieres recruts</h2>
@@ -142,6 +158,8 @@
             </div>
         </div>
   </div>
+
+
 
   <div class="col-lg-6">
         <div class="au-card m-b-30">

@@ -110,6 +110,24 @@ Route::delete('/employes/{id}', 'EmployeController@destroy')->name('destroy');
 //Route::get('/employe/afficher', 'EmployeController@afficher');
 
 
+//CRUD DES DEPARTEMENTS
+Route::get('/parametres/departements', 'DepartementController@index')->name('departements.index');
+Route::get('/parametres/departements/create', 'DepartementController@create')->name('departements.create');
+Route::post('/parametres/departements', 'DepartementController@store')->name('departements.store');
+Route::put('/parametres/departements/{id}', 'DepartementController@update')->name('departements.update');
+Route::get('/parametres/departements/{id}', 'DepartementController@show')->name('departements.show');
+Route::get('/parametres/departements/{id}/edit', 'DepartementController@edit')->name('departements.edit');
+Route::delete('/parametres/departements/{id}', 'DepartementController@destroy')->name('departements.destroy');
+
+//CRUD DES SITES
+Route::get('/parametres/sites', 'SiteController@index')->name('sites.index');
+Route::get('/parametres/sites/create', 'SiteController@create')->name('sites.create');
+Route::post('/parametres/sites', 'SiteController@store')->name('sites.store');
+Route::put('/parametres/sites/{id}', 'SiteController@update')->name('sites.update');
+Route::get('/parametres/sites/{id}', 'SiteController@show')->name('sites.show');
+Route::get('/parametres/sites/{id}/edit', 'SiteController@edit')->name('sites.edit');
+Route::delete('/parametres/sites/{id}', 'SiteController@destroy')->name('sites.destroy');
+
 //GESTIONS DES CONGES
 Route::get('/conges/index', 'CongeController@index')->name('conges.index');
 Route::get('/conges/{id}/edit', 'CongeController@edit')->name('conges.edit');
@@ -118,6 +136,7 @@ Route::post('/conges/{id}', 'CongeController@store')->name('conges.store');
 //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
 Route::get('/reportings/export', 'ReportingController@export')->name('reportings.export');
 Route::get('/reportings/index', 'ReportingController@index')->name('reportings.index');
+Route::get('/reportings/exportdata', 'ExcelController@exportdata')->name('reportings.exportdata');
 
 //GRAPHIQUE CONSOLETVs/CHARTS
 Route::get('/analyse/index', 'analyseController@index')->name('analyse.index');

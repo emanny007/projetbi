@@ -21,10 +21,21 @@
   @yield('modify_employe')
   @yield('show_employe')
 
+  @yield('departement')
+  @yield('creation_departement')
+  @include('flash::message')
+  @yield('modify_departement')
+
+  @yield('site')
+  @yield('creation_site')
+  @include('flash::message')
+  @yield('modify_site')
+
   @yield('accueil_admin')
   @yield('modify_edit_conge')
   @yield('index_conge')
   @yield('reporting_excel')
+  @yield('reporting_exportdata')
 
   @yield('analyse_entite')
   @yield('analyse_employe')

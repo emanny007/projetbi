@@ -15,7 +15,7 @@
                               <thead>
                                 <tr>
                                   <th>DEPARTEMENT </th>
-                                  <th> <center>NBE DE STAFFS </center></th>
+                                  <th> <center>NBRE DE STAFFS </center></th>
                                 </tr>
                               </thead>
                                 <tbody>

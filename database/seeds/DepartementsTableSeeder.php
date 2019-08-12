@@ -14,41 +14,40 @@ class DepartementsTableSeeder extends Seeder
       DB::table('departements')->insert([
 
       [
-          'libelle' => 'RESSOURCE HUMAINE'
+          'libelle' => 'RESSOURCE HUMAINE',
       ],
       [
-          'libelle' => 'INFORMATIQUE'
+          'libelle' => 'INFORMATIQUE',
       ],
       [
-          'libelle' => 'FINANCE'
+          'libelle' => 'FINANCE',
       ],
       [
-          'libelle' => 'DMCC'
+          'libelle' => 'DMCC',
       ],
       [
-          'libelle' => 'DIRECTION'
+          'libelle' => 'DIRECTION',
       ],
       [
-          'libelle' => 'EXPLOITATION'
+          'libelle' => 'DEX',
       ],
       [
-          'libelle' => 'CREDIT'
+          'libelle' => 'CREDIT',
       ],
       [
-          'libelle' => 'AUDIT'
+          'libelle' => 'AUDIT',
       ],
       [
-          'libelle' => 'CONTROL-INTERNE'
+          'libelle' => 'CONTROL-INTERNE',
       ],
       [
-          'libelle' => 'DIRECTION'
-      ],
-      ,
-      [
-          'libelle' => 'RETAIL'
+          'libelle' => 'DIRECTION',
       ],
       [
-          'libelle' => 'LEGAL'
+          'libelle' => 'RETAIL',
+      ],
+      [
+          'libelle' => 'LEGAL',
       ],
   ]);
     }
