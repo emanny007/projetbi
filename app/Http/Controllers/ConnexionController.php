@@ -71,12 +71,10 @@ class ConnexionController extends Controller
                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
-                 else if(($user->role=="CHECKER")&&($user->entite =="CTI"))
+                 else if(($user->role=="CHECKER")&&($user->entite =="CAC"))
                   {
 
-                  //  return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté');
-
-                  return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+                    return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
                  else if(($user->role=="MAKER")&&($user->entite =="SENEGAL"))
@@ -87,10 +85,10 @@ class ConnexionController extends Controller
                   return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
-                 else if(($user->role=="CHECKER")&&($user->entite =="SENEGAL"))
+                 else if(($user->role=="CHECKER")&&($user->entite =="COFINA SN"))
                   {
 
-                   return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté');
+                   return redirect('/cofinasn-checker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté');
 
                   //return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 

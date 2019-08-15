@@ -1,4 +1,4 @@
-@extends('layouts.checker')
+@extends('layouts.checkersn')
 
 @section('accueil_checker')
 <!-- MAIN CONTENT-->
@@ -106,8 +106,6 @@
         </div>
     </div>
 
-
-
     <div class="col-lg-12">
         <h2 class="title-2 m-b-25">Listes des dix dernieres recruts</h2>
         <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
@@ -137,35 +135,19 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
-          <div class="au-card m-b-30">
-            <div class="au-card-inner">
-                <h3 class="title-2 m-b-40">FILIALES </h3>
-                {!! $geo->render() !!}
-            </div>
-        </div>
-
-
-
-            </div>
-
-
+          <div class="col-lg-12">
+                <div class="au-card m-b-30">
+                  <div class="au-card-inner">
+                      <h3 class="title-2 m-b-40">FILIALES </h3>
+                      {!! $geo->render() !!}
+                  </div>
+              </div>
+          </div>
 </div>
 
 
 
 
-
-
-
-
-
-
-
-
-        </div>
-    </div>
-</div>
 
 
 @endsection

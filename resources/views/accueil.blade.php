@@ -150,7 +150,7 @@
     </div>
 
 <div class="row m-t-25">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
           <div class="au-card m-b-30">
             <div class="au-card-inner">
                 <h3 class="title-2 m-b-40">FILIALES </h3>
@@ -159,16 +159,14 @@
         </div>
   </div>
 
-
-
-  <div class="col-lg-6">
+  <!--div class="col-lg-6">
         <div class="au-card m-b-30">
           <div class="au-card-inner">
               <h3 class="title-2 m-b-40">FILIALES </h3>
-              {!! $geo->render() !!}
+
           </div>
       </div>
-</div>
+</div-->
 </div>
 
 </div>

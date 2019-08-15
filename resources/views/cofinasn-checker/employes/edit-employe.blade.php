@@ -1,4 +1,4 @@
-@extends('layouts.checker')
+@extends('layouts.checkersn')
 
 @section('modify_employe_checker')
   <!-- MAIN CONTENT-->
@@ -7,14 +7,14 @@
           <div class="container-fluid"><br />
 
             <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
+              <a class="btn btn-xs btn-primary" href="{{ route('snck.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
             </center>
             <div class="row well m-t-30">
                   <div class="col-md-12">
@@ -24,7 +24,7 @@
                       </div>
 
                       <div class="card-body card-block">
-                      <form class="form-horizontal" method="POST" action="{{ route('update-employe',$employe->id)}}">
+                      <form class="form-horizontal" method="POST" action="{{ route('snck.update-employe',$employe->id)}}">
 
                       {{ csrf_field() }}
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
@@ -277,7 +277,7 @@
 
                       <br />
                     <div class="form-group"> <center>
-                      <a class="btn btn-xs btn-danger" href="{{ route('index-employe') }}">RETOURNER</a>
+                      <a class="btn btn-xs btn-danger" href="{{ route('snck.index-employe') }}">RETOURNER</a>
                   <button type="submit"  class="btn btn-success">MODIFIER</button>
                 </center>
                 </div>

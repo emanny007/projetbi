@@ -8,7 +8,7 @@
             <br />
             <div class="col-sm-6 col-lg-12">
               <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('main')}}"><span class="fas fa-user"></span> Employes &nbsp;</a>
                 <a class="btn btn-xs btn-primary" href="{{ route('show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
                 <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
                 <a class="btn btn-xs btn-primary" href="{{ route('contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
@@ -24,7 +24,7 @@
                               <div class="col-md-12">
                                 <div class="card">
                                   <div class="card-header">
-                                   <strong></strong>
+                                   <center><strong>Gestion des conges</strong></center>
                                   </div>
 
                                   <div class="card-body card-block">
@@ -46,7 +46,6 @@
                                                     <td>Entite: {{ $employe->entite }}</td>
 
                                                 </tr>
-
 
                                                 @foreach ($conge as $conge)
                                                 <tr>

@@ -3,33 +3,33 @@
     <div class="section__content section__content--p35">
         <div class="header3-wrap">
             <div class="header__logo">
-                <a href="#"> <img src="{{ url('images/icon/logo.jpg') }}" alt="Groupe Cofina" width="200" height="75"/></a>
+                <a href="#"> <img src="{{ url('images/icon/logo.jpg')}}" alt="Groupe Cofina" width="200" height="75"/></a>
             </div>
             <div class="header__navbar">
                 <ul class="list-unstyled">
 
                     <li>
-                      <a href="{{ url('/cote-d-ivoire/accueil') }}">
+                      <a href="{{ url('/cofinasn-checker/accueil') }}">
                       <i class="fas fa-home"></i>
                       <span class="bot-line"></span>Accueil</a>
                     </li>
 
                   <li class="has-sub">
-                      <a href="{{ url('/cote-d-ivoire/accueil') }}">
+                      <a href="{{ url('/cofinasn-checker/accueil') }}">
                       <i class="fas fa-user"></i>Employes</a>
                       <span class="bot-line"></span>
                       </a>
                     <ul class="header3-sub-list list-unstyled">
                         <li>
-                          <a href="{{ url('/cote-d-ivoire/employes/create-employe') }}"><i class="fas fa-folder-open"></i>Ajouter Employe</a>
+                          <a href="{{ url('/cofinasn-checker/employes/create-employe') }}"><i class="fas fa-folder-open"></i>Ajouter Employe</a>
                         </li>
                           <li>
-                            <a href="{{ url('cote-d-ivoire/employes') }}"><i class="fas fa-folder-open"></i>Liste Employe</a>
+                            <a href="{{ url('/cofinasn-checker/employes') }}"><i class="fas fa-folder-open"></i>Liste Employe</a>
                           </li>
                       </ul>
                   </li>
                     <li>
-                        <a href="{{ url('cote-d-ivoire/conges/index') }}">
+                        <a href="{{ url('/cofinasn-checker/conges/index') }}">
                             <i class="fas fa-table"></i>
                             <span class="bot-line"></span>Congés</a>
                     </li>
@@ -66,7 +66,7 @@
 
                         </ul>
                     </li-->
-                    <li class="has-sub"><a href="#"> <img src="{{ url('images/icon/ci.png') }}" alt="Groupe Cofina" width="50" height="50"/></a></li>
+                    <li class="has-sub"><a href="#"> <img src="{{ url('images/drapeau/senegal.jpg') }}" alt="Groupe Cofina" width="50" height="50"/></a></li>
                 </ul>
             </div>
             <div class="header__tool">

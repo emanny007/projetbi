@@ -14,58 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-*/
 
-
-
-/*
 Route::get('/', function () {
     return view('/');
 });
-
 */
-// PAGE D'ACCUEIL DU PROFIL CHECKER DU GROUPE
-
-//Route::post('/accueil-checker', 'CompteController@accueil_checker')->name('accueil');
-Route::get('/accueil', 'CompteController@accueil_checker')->name('accueil');
-Route::get('/cote-d-ivoire/accueil', 'CompteController@cotedivoire')->name('cotedivoire.accueil');
-
-
-//**************************
-Route::get('/cote-d-ivoire/employes', 'EmployeciController@index')->name('index-employe');
-Route::get('/cote-d-ivoire/employes/create-employe', 'EmployeciController@create')->name('create-employe');
-Route::post('/cote-d-ivoire/employes', 'EmployeciController@store')->name('store-employe');
-Route::put('/cote-d-ivoire/employes/{id}', 'EmployeciController@update')->name('update-employe');
-Route::get('/cote-d-ivoire/employes/{id}', 'EmployeciController@show')->name('show-employe');
-Route::get('/cote-d-ivoire/employes/{id}/edit-employe', 'EmployeciController@edit')->name('edit-employe');
-Route::delete('/cote-d-ivoire/employes/destroy-employe/{id}', 'EmployeciController@destroy')->name('destroy-employe');
-
-
-
-//GESTIONS DES CONGES
-Route::get('/cote-d-ivoire/conges/index', 'CongeciController@index')->name('ci.conges.index');
-Route::get('/cote-d-ivoire/conges/{id}/edit', 'CongeciController@edit')->name('ci.conges.edit');
-Route::post('/cote-d-ivoire/conges/{id}', 'CongeciController@store')->name('ci.conges.store');
-
-//GESTION DU POSTE CHECKER CI
-Route::get('/cote-d-ivoire/postes/{id}/edit', 'PosteciController@edit')->name('ci.postes.edit');
-Route::post('/cote-d-ivoire/postes/{id}', 'PosteciController@update')->name('ci.postes.update');
-
-//GESTION DE CONTRAT CHECKER CI
-Route::get('/cote-d-ivoire/contrats/{id}/edit', 'ContratciController@edit')->name('ci.contrats.edit');
-Route::post('/cote-d-ivoire/contrats/{id}', 'ContratciController@update')->name('ci.contrats.update');
-//GESTION
-Route::get('/cote-d-ivoire/postes/{id}/edit', 'PosteciController@edit')->name('ci.postes.edit');
-
-Route::get('/cote-d-ivoire/experiences/{id}/edit', 'ExperienceciController@edit')->name('ci.experiences.edit');
-
-//GESTION DE LA FORMATION
-Route::get('/cote-d-ivoire/formations/{id}/edit', 'FormationciController@edit')->name('ci.formations.edit');
-Route::post('/cote-d-ivoire/formations/{id}', 'FormationController@store')->name('ci.formations.store');
-
-//GESTION DE L4'EXPERIENCE PROFESSIONNELLE
-Route::get('/cote-d-ivoire/experiences/{id}/edit', 'ExperienceciController@edit')->name('ci.experiences.edit');
-Route::post('/cote-d-ivoire/experiences/{id}', 'ExperienceciController@store')->name('ci.experiences.store');
 
 
 
@@ -73,6 +26,109 @@ Route::post('/cote-d-ivoire/experiences/{id}', 'ExperienceciController@store')->
 Route::group([
   'middleware' =>'App\Http\Middleware\Auth',
 ],function (){
+
+  //****************************************************************
+  // PAGE D'ACCUEIL DU PROFIL CHECKER FILIALE CAC
+  //****************************************************************
+  //Route::post('/accueil-checker', 'CompteController@accueil_checker')->name('accueil');
+  Route::get('/accueil', 'CompteController@accueil_checker')->name('accueil');
+  Route::get('/cote-d-ivoire/accueil', 'CompteController@cotedivoire')->name('cotedivoire.accueil');
+
+
+  //**************************
+  Route::get('/cote-d-ivoire/employes', 'EmployeciController@index')->name('index-employe');
+  Route::get('/cote-d-ivoire/employes/create-employe', 'EmployeciController@create')->name('create-employe');
+  Route::post('/cote-d-ivoire/employes', 'EmployeciController@store')->name('store-employe');
+  Route::put('/cote-d-ivoire/employes/{id}', 'EmployeciController@update')->name('update-employe');
+  Route::get('/cote-d-ivoire/employes/{id}', 'EmployeciController@show')->name('show-employe');
+  Route::get('/cote-d-ivoire/employes/{id}/edit-employe', 'EmployeciController@edit')->name('edit-employe');
+  Route::delete('/cote-d-ivoire/employes/destroy-employe/{id}', 'EmployeciController@destroy')->name('destroy-employe');
+
+
+
+  //GESTIONS DES CONGES
+  Route::get('/cote-d-ivoire/conges/index', 'CongeciController@index')->name('ci.conges.index');
+  Route::get('/cote-d-ivoire/conges/{id}/edit', 'CongeciController@edit')->name('ci.conges.edit');
+  Route::post('/cote-d-ivoire/conges/{id}', 'CongeciController@store')->name('ci.conges.store');
+
+  //GESTION DU POSTE CHECKER CI
+  Route::get('/cote-d-ivoire/postes/{id}/edit', 'PosteciController@edit')->name('ci.postes.edit');
+  Route::post('/cote-d-ivoire/postes/{id}', 'PosteciController@update')->name('ci.postes.update');
+
+  //GESTION DE CONTRAT CHECKER CI
+  Route::get('/cote-d-ivoire/contrats/{id}/edit', 'ContratciController@edit')->name('ci.contrats.edit');
+  Route::post('/cote-d-ivoire/contrats/{id}', 'ContratciController@update')->name('ci.contrats.update');
+  //GESTION
+  Route::get('/cote-d-ivoire/postes/{id}/edit', 'PosteciController@edit')->name('ci.postes.edit');
+
+  Route::get('/cote-d-ivoire/experiences/{id}/edit', 'ExperienceciController@edit')->name('ci.experiences.edit');
+
+  //GESTION DE LA FORMATION
+  Route::get('/cote-d-ivoire/formations/{id}/edit', 'FormationciController@edit')->name('ci.formations.edit');
+  Route::post('/cote-d-ivoire/formations/{id}', 'FormationController@store')->name('ci.formations.store');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/cote-d-ivoire/experiences/{id}/edit', 'ExperienceciController@edit')->name('ci.experiences.edit');
+  Route::post('/cote-d-ivoire/experiences/{id}', 'ExperienceciController@store')->name('ci.experiences.store');
+
+  //***************************************************************
+  // PAGE D'ACCUEIL DU PROFIL CHECKER FILIALE SENEGAL
+  //***************************************************************
+
+  //Route::post('/accueil-checker', 'CompteController@accueil_checker')->name('accueil');
+  Route::get('/accueil', 'ComptesnckController@accueil_checker')->name('snck.accueil');
+  Route::get('/cofinasn-checker/accueil', 'ComptesnckController@senegalsnck')->name('senegalsnck.accueil');
+
+  //**************************
+  Route::get('/cofinasn-checker/employes', 'EmployesnckController@index')->name('snck.index-employe');
+  Route::get('/cofinasn-checker/employes/create-employe', 'EmployesnckController@create')->name('snck.create-employe');
+  Route::post('/cofinasn-checker/employes', 'EmployesnckController@store')->name('snck.store-employe');
+  Route::put('/cofinasn-checker/employes/{id}', 'EmployesnckController@update')->name('snck.update-employe');
+  Route::get('/cofinasn-checker/employes/{id}', 'EmployesnckController@show')->name('snck.show-employe');
+  Route::get('/cofinasn-checker/employes/{id}/edit-employe', 'EmployesnckController@edit')->name('snck.edit-employe');
+  Route::delete('/cofinasn-checker/employes/destroy-employe/{id}', 'EmployesnckController@destroy')->name('snck.destroy-employe');
+
+
+  //GESTIONS DES CONGES
+  Route::get('/cofinasn-checker/conges/index', 'CongesnckController@index')->name('snck.conges.index');
+  Route::get('/cofinasn-checker/conges/{id}/edit', 'CongesnckController@edit')->name('snck.conges.edit');
+  Route::post('/cofinasn-checker/conges/{id}', 'CongesnckController@store')->name('snck.conges.store');
+
+  //GESTION DU POSTE CHECKER CI
+  Route::get('/cofinasn-checker/postes/{id}/edit', 'PostesnckController@edit')->name('snck.postes.edit');
+  Route::post('/cofinasn-checker/postes/{id}', 'PostesnckController@update')->name('snck.postes.update');
+
+  //GESTION DE CONTRAT CHECKER CI
+  Route::get('/cofinasn-checker/contrats/{id}/edit', 'ContratsnckController@edit')->name('snck.contrats.edit');
+  Route::post('/cofinasn-checker/contrats/{id}', 'ContratsnckController@update')->name('snck.contrats.update');
+  //GESTION
+  Route::get('/cofinasn-checker/postes/{id}/edit', 'PostesnckController@edit')->name('snck.postes.edit');
+
+  Route::get('/cofinasn-checker/experiences/{id}/edit', 'ExperiencesnckController@edit')->name('snck.experiences.edit');
+
+  //GESTION DE LA FORMATION
+  Route::get('/cofinasn-checker/formations/{id}/edit', 'FormationsnckController@edit')->name('snck.formations.edit');
+  Route::post('/cofinasn-checker/formations/{id}', 'FormationsnckController@store')->name('snck.formations.store');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/cofinasn-checker/experiences/{id}/edit', 'ExperiencesnckController@edit')->name('snck.experiences.edit');
+  Route::post('/cofinasn-checker/experiences/{id}', 'ExperiencesnckController@store')->name('snck.experiences.store');
+
+  //******************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/includes/master', 'ConnexionController@comptemaker')->name('includes.headerdesktop-maker');
 
 //GESTION DU POSTE

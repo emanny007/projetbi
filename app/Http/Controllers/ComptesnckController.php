@@ -9,59 +9,8 @@ use App\Employe;
 use DB;
 
 
-class CompteController extends Controller
+class ComptesnckController extends Controller
 {
-  public function accueil(Request $request)
-  {
-    $geo = Charts::create('geo', 'highcharts')
-
-            ->title('GROUPE COFINA')
-
-            ->elementLabel('COFINA')
-
-            ->labels(['SN', 'CI', 'CG', 'GN', 'ML','GA','BF'])
-            //->labels(['CI'])
-            ->colors(['#DA1124', '#985689'])
-
-            ->values([500,300,75,100,100,100,100,30])
-
-            ->dimensions(500,500)
-
-            ->responsive(true);
-
-
-   $choisir_entite = $request->input('choisir_entite');
-if(!empty($choisir_entite)){
-   //$employes=DB::table('employes')->where('entite', '=',choisir_entite)->get();
-      $nb_empl=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite'");
-      $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
-      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
-      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
-      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION'");
-      $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
-
- }else{
-      $nb_empl=DB::select("SELECT * FROM employes");
-      $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
-      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
-      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
-      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION'");
-      $employes=Employe::orderby('id','desc')->paginate(20);
-
- }
-    $sites=Site::all();
-    flash("Bienvenue dans votre plateforme d'analyse decisionnelle: cofiquick!!")->success();
-       return view('/accueil',[
-       'sites' => $sites,
-       'employes' => $employes,
-       'geo' => $geo,
-       'nb_empl' => $nb_empl,
-       'nb_cdi' => $nb_cdi,
-       'nb_cdd' => $nb_cdd,
-       'nb_stage' => $nb_stage,
-       'nb_prestation' => $nb_prestation,
-     ]);
-  }
 
   public function deconnexion()
   {
@@ -81,7 +30,9 @@ if(!empty($choisir_entite)){
 
 
 
-public function cotedivoire(Request $request)
+
+
+public function senegalsnck(Request $request)
 {
   $geo = Charts::create('geo', 'highcharts')
 
@@ -102,7 +53,7 @@ public function cotedivoire(Request $request)
 
 
  //$choisir_entite = $request->input('choisir_entite');
- $choisir_entite = "CAC";
+ $choisir_entite = "COFINA SN";
 if(!empty($choisir_entite)){
  //$employes=DB::table('employes')->where('entite', '=',choisir_entite)->get();
     $nb_empl=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite'");
@@ -122,7 +73,7 @@ if(!empty($choisir_entite)){
 }
   $sites=Site::all();
   flash("Vous êtes la bienvenue!!")->success();
-     return view('/cote-d-ivoire/accueil',['sites' => $sites,'employes' => $employes,'geo' => $geo,'nb_empl' => $nb_empl,'nb_cdi' => $nb_cdi,'nb_cdd' => $nb_cdd,
+     return view('/cofinasn-checker/accueil',['sites' => $sites,'employes' => $employes,'geo' => $geo,'nb_empl' => $nb_empl,'nb_cdi' => $nb_cdi,'nb_cdd' => $nb_cdd,
      'nb_stage' => $nb_stage,'nb_prestation' => $nb_prestation,
    ]);
 }

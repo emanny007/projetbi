@@ -1,4 +1,4 @@
-@extends('layouts.checker')
+@extends('layouts.checkersn')
 
 @section('creation_employe_checker')
   <!-- MAIN CONTENT-->
@@ -10,10 +10,10 @@
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-header">
-                       <strong>Ajouter un employe</strong>
+                       <center><strong>Ajouter un employe</strong></center>
                       </div>
                       <div class="card-body card-block">
-                      <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('store-employe') }}">
+                      <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('snck.store-employe') }}">
                       {{ csrf_field() }}
                       <div class="row">
                       <div class="col-6 has-success form-group">
@@ -252,7 +252,7 @@
                     <div class="form-group">
                        <center>
 
-                      <a class="btn btn-xs btn-danger" href="{{ route('index-employe') }}">RETOURNER</a>
+                      <a class="btn btn-xs btn-danger" href="{{ route('snck.index-employe') }}">RETOURNER</a>
                       <button type="submit"  class="btn btn-success">AJOUTER </button>
 
                 </center>

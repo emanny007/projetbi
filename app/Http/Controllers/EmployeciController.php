@@ -59,12 +59,12 @@ class EmployeciController extends Controller
     public function store(Request $request)
     {
 
-      /*$request->validate([
+      $request->validate([
          'matricule' => 'bail|required|between:5,20',
          'numero_sss' => 'bail|required',
          'nom' => 'required|max:100|alpha',
          'prenom' => 'required',
-         'password' => 'required|min:5',
+         //'password' => 'required|min:5',
          'date_naissance' => 'required|date',
          'email' => 'bail|required|email',
          'mail_perso' => 'bail|required|email',
@@ -83,7 +83,7 @@ class EmployeciController extends Controller
          'secteur' => 'required',
          'departement'=>'required'
        ]
-);*/
+);
         //  Employe::create($request->all());
 
         $employe = new Employe([
@@ -91,9 +91,9 @@ class EmployeciController extends Controller
           'numero_sss' => $request->get('numero_sss'),
           'nom' => $request->get('nom'),
           'prenom' => $request->get('prenom'),
-          'password' => Hash::make($request->input('password')),
+          //'password' => Hash::make($request->input('password')),
+          //'role' => $request->get('role'),
           'email' => $request->get('email'),
-          'role' => $request->get('role'),
           'date_naissance' => $request->get('date_naissance'),
           'mail_perso' => $request->get('mail_perso'),
           'tel_pro' => $request->get('tel_pro'),
@@ -179,40 +179,39 @@ class EmployeciController extends Controller
      */
     public function update(Request $request, $id)
     {
-/*
-            $request->validate([
+              $request->validate([
                'matricule' => 'bail|required|between:5,20',
                'numero_sss' => 'bail|required',
                'nom' => 'required|max:255|alpha',
                'prenom' => 'required',
-               'password' => 'required|min:5',
+               //'password' => 'required|min:5',
                'email' => 'bail|required|email',
-               'role' => 'required',
+               //'role' => 'required',
                'date_naissance' => 'required|date',
-               'mail_perso' => 'bail|required|email',
-               'tel_pro' => 'required|numeric',
-               'tel_perso' => 'required|numeric',
+               'mail_perso' => 'bail|email',
+               'tel_perso' => 'numeric',
                'contact_urgent' => 'required|numeric',
                'entite' => 'required',
                'sexe' => 'required',
-               'photo' => 'required',
+               //'photo' => 'required',
                'civilite' => 'required',
                'situation_matrimoniale' => 'required',
                'nbre_enfant' => 'required|numeric',
                'nationnalite' => 'required',
                'origine' => 'required'
              ]
-      ); */
+      );
                 $employe = Employe::findOrFail($id);
                 //$employe->update($request->all());
                 $employe->matricule = $request->get('matricule');
                 $employe->numero_sss = $request->get('numero_sss');
-                $employe->prenom = $request->get('prenom');
-                $employe->password = Hash::make($request->input('password'));
-                $employe->email = $request->get('email');
+                $employe->nom = strtoupper($request->get('nom'));
+                $employe->prenom = strtoupper($request->get('prenom'));
+                $employe->password = Hash::make($request->input('mot_pass'));
+                $employe->email = strtolower($request->get('email'));
                 $employe->role = $request->get('role');
                 $employe->date_naissance = $request->get('date_naissance');
-                $employe->mail_perso = $request->get('mail_perso');
+                $employe->mail_perso = strtolower($request->get('mail_perso'));
                 $employe->tel_pro = $request->get('tel_pro');
                 $employe->tel_perso = $request->get('tel_perso');
                 $employe->contact_urgent = $request->get('contact_urgent');
@@ -230,35 +229,8 @@ class EmployeciController extends Controller
                 $employe->pays = $request->get('pays');
                 $employe->save();
 
-                /*$contrat = new Contrat();
-                //[
-                $id_empl= $request->get('id_empl');
-                $employe = Contrat::findOrFail($id_empl);
-                $contrat->type_contrat = $request->get('type_contrat');
-                $contrat->date_debut = $request->get('date_debut');
-                $contrat->date_fin = $request->get('date_fin');
-                $contrat->employe_id = $request->get('id_empl');
-
-            //]);
-                $contrat->save();
-                */
-                /*
-                DB::table('contrats')->updateOrInsert([
-                  'employe_id' => $request->get('id_empl'),
-                ],
-                [
-                  'type_contrat' => $request->get('type_contrat'),
-                  'date_debut' => $request->get('date_debut'),
-                  'date_fin' => $request->get('date_fin'),
-                  'employe_id' => $request->get('id_empl'),
-                  "created_at" =>  CarbonCarbon::now(),
-                  "updated_at" => CarbonCarbon::now()
-                ]);
-
-                */
              //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-            return redirect()->back()->with('status','L employé a bien été modifié');
-
+            return redirect()->back()->with('status','L employé a bien été modifié avec succes!!');
     }
 
     /**
@@ -271,6 +243,6 @@ class EmployeciController extends Controller
     {
         $employe = Employe::findOrFail($id);
         $employe->delete();
-        return redirect('/cote-d-ivoire/destroy-employe')->with('success', 'Employe deleted!');
+        return redirect('/cote-d-ivoire/destroy-employe')->with('success', 'Employe deleted !!');
     }
 }
