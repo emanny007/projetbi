@@ -34,7 +34,7 @@
                     <div class="row">
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">NOM</label>
-                        <input type="text" id="inputIsValid" name="nom" value="{{ old('nom') }}"class="is-valid form-control-success form-control"  required>
+                        <input type="text" id="inputIsValid" name="nom" value="{{ old('nom') }}"class="is-valid form-control-success form-control" required>
                       </div>
                       @if($errors->has('nom'))
                       <p> {{ $errors->first('nom') }} </p>
@@ -50,7 +50,7 @@
                       <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">EMAIL PROFESSIONNEL</label>
-                          <input type="email" id="inputIsValid" name="email" value="{{ old('email') }}" class="is-valid form-control-success form-control"  required>
+                          <input type="email" id="inputIsValid" name="email" value="{{ old('email') }}" class="is-valid form-control-success form-control" required>
                         </div>
                         @if($errors->has('email'))
                         <p> {{ $errors->first('email') }} </p>
@@ -94,7 +94,7 @@
                       @endif
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">CONTACT URGENT</label>
-                        <input type="text" id="inputIsValid" name="contact_urgent" value="{{ old('contact_urgent') }}" class="is-valid form-control-success form-control">
+                        <input type="text" id="inputIsValid" name="contact_urgent" value="{{ old('contact_urgent') }}" class="is-valid form-control-success form-control" required>
                       </div>
                       @if($errors->has('contact_urgent'))
                       <p> {{ $errors->first('contact_urgent') }} </p>
@@ -114,7 +114,7 @@
                       <p> {{ $errors->first('entite') }} </p>
                       @endif
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">SEXE</label>
+                        <label for="inputIsValid" class="form-control-label">SEXE</label>
                           <select name="sexe" id="selectLg" class="is-valid form-control-success form-control">
                             <option></option>
                             <option value="MASCULIN">MASCULIN</option>
@@ -127,7 +127,7 @@
                       </div>
                       <div class="row">
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">CIVILITE</label>
+                        <label for="inputIsValid" class="form-control-label">CIVILITE</label>
                           <select name="civilite" id="selectLg" class="is-valid form-control-success form-control">
                             <option></option>
                             <option value="MONSIEUR">Monsieur</option>
@@ -139,7 +139,7 @@
                       <p> {{ $errors->first('civilite') }} </p>
                       @endif
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">SITUATION MATRIMONIALE</label>
+                        <label for="inputIsValid" class="form-control-label">SITUATION MATRIMONIALE</label>
                           <select name="situation_matrimoniale" id="selectLg" class="is-valid form-control-success form-control">
                             <option></option>
                             <option value="CELIBATAIRE">CELIBATAIRE</option>
@@ -154,7 +154,7 @@
                       </div>
                       <div class="row">
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
+                        <label for="inputIsValid" class="form-control-label">JOINDRE UNE PHOTO</label>
                         <input type="file" id="inputIsValid" name="photo" class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('photo'))
@@ -162,7 +162,7 @@
                       @endif
 
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
+                        <label for="inputIsValid" class="form-control-label">NOMBRE D'ENFANTS</label>
                         <input type="text" id="inputIsValid" name="nbre_enfant" class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('nbre_enfant'))
@@ -186,17 +186,20 @@
                     @if($errors->has('secteur'))
                     <p> {{ $errors->first('secteur') }} </p>
                     @endif
+
                     <div class="col-6 has-success form-group">
-                      <label for="inputIsValid" class=" form-control-label">CATEGORIE</label>
-                        <select name="categorie" id="selectLg" class="is-valid form-control-success form-control">
-                          <option></option>
-                          <option value="CADRE">CADRE</option>
-                          <option value="NON CADRE">NON CADRE</option>
-                        </select>
+                      <label for="inputIsValid" class="form-control-label">PAYS</label>
+                      <select name="pays" id="selectLg" class="form-control is-valid form-control-success form-control">
+                        <option></option>
+                        @foreach($sites as $site)
+                        <option value="{{$site->pays}}">{{$site->pays}}</option>
+                        @endforeach
+                      </select>
                     </div>
-                    @if($errors->has('categorie'))
-                    <p> {{ $errors->first('categorie') }} </p>
+                    @if($errors->has('pays'))
+                      <p> {{ $errors->first('pays') }} </p>
                     @endif
+
                     </div>
                     <div class="row">
                     <div class="col-6 has-success form-group">
@@ -225,7 +228,7 @@
                     </div>
 
                     <div class="row">
-                    <div class="col-6 has-success form-group">
+                    <!--div class="col-6 has-success form-group">
                       <label for="inputIsValid" class=" form-control-label">ORIGINE</label>
                       <select name="origine" id="selectLg" class="form-control is-valid form-control-success form-control">
                         <option></option>
@@ -237,24 +240,23 @@
                     @if($errors->has('origine'))
                       <p> {{ $errors->first('origine') }} </p>
                     @endif
+                  -->
+                  <div class="col-6 has-success form-group">
+                    <label for="inputIsValid" class=" form-control-label">CATEGORIE</label>
+                      <select name="categorie" id="selectLg" class="is-valid form-control-success form-control">
+                        <option></option>
+                        <option value="CADRE">CADRE</option>
+                        <option value="NON CADRE">NON CADRE</option>
+                      </select>
+                  </div>
+                  @if($errors->has('categorie'))
+                  <p> {{ $errors->first('categorie') }} </p>
+                  @endif
+
 
                     <div class="col-6 has-success form-group">
-                      <label for="inputIsValid" class=" form-control-label">PAYS</label>
-                      <select name="pays" id="selectLg" class="form-control is-valid form-control-success form-control">
-                        <option></option>
-                        @foreach($sites as $site)
-                        <option value="{{$site->pays}}">{{$site->pays}}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                    @if($errors->has('pays'))
-                      <p> {{ $errors->first('pays') }} </p>
-                    @endif
-
-                  </div>
-                    <!--div class="col-6 has-success form-group">
                       <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
-                        <select name="type_contrat" id="selectLg" class="is-valid form-control-success form-control">
+                        <select name="type_contrat" id="selectLg" class="is-valid form-control-success form-control" required>
                           <option></option>
                           <option value="STAGE">STAGE</option>
                           <option value="PRESTATION">PRESTATION</option>
@@ -268,20 +270,20 @@
                     </div>
                     <div class="row">
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
-                        <input type="date" id="inputIsValid" name="date_debut" value="{{ old('date_debut') }}" class="is-valid form-control-success form-control">
+                        <label for="inputIsValid" class=" form-control-label">DEBUT CONTRAT</label>
+                        <input type="date" id="inputIsValid" name="date_debut" value="{{ old('date_debut') }}" class="is-valid form-control-success form-control" required>
                       </div>
                       @if($errors->has('date_debut'))
                       <p> {{ $errors->first('date_debut') }} </p>
                       @endif
                     <div class="col-6 has-success form-group">
-                      <label for="inputIsValid" class=" form-control-label">DATE FIN</label>
-                      <input type="date" id="inputIsValid" name="date_fin" value="{{ old('date_fin') }}" class="is-valid form-control-success form-control">
+                      <label for="inputIsValid" class=" form-control-label">FIN CONTRAT</label>
+                      <input type="date" id="inputIsValid" name="date_fin" value="{{ old('date_fin') }}" class="is-valid form-control-success form-control"required>
                     </div>
                     @if($errors->has('date_fin'))
                     <p> {{ $errors->first('date_fin') }} </p>
                     @endif
-                  </div-->
+                  </div>
                     <br /><br />
                     <div class="form-group">
                        <center>

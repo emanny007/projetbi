@@ -34,13 +34,13 @@ class analyseController extends Controller
     $o=Employe::where('sexe','FEMININ')->where('departement','DIRECTION')->count();
 
 
-    $data = Charts::multi('bar', 'material')
+    $data = Charts::multi('bar', 'c3')
     // Setup the chart settings
     ->title("Repartition par sexe et par departement des staffs")
     // A dimension of 0 means it will take 100% of the space
     ->dimensions(0, 400) // Width x Height
     // This defines a preset of colors already done:)
-    ->template("material")
+    ->template("C3")
     // You could always set them manually
     //->colors(['#2196F3', '#F44336', '#FFC107'])
     // Setup the diferent datasets (this is a multi chart)

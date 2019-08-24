@@ -4,8 +4,8 @@
 <script src="{{asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
 <!-- Vendor JS       -->
-<script src="{{asset('vendor/slick/slick.min.js')}}">
-</script>
+<script src="{{asset('vendor/slick/slick.min.js')}}"> </script>
+
 <script src="{{asset('vendor/wow/wow.min.js')}}"></script>
 <script src="{{asset('vendor/animsition/animsition.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
@@ -21,6 +21,8 @@
 <!-- pdf Datatables  JS-->
 <script src="{{asset('DataTables/build/pdfmake.min.js')}}"></script>
 <script src="{{asset('DataTables/build/vfs_fonts.js')}}"></script>
+<!-- Main JS-->
+<script src="{{asset('js/main.js')}}"></script>
 
 <script src="{{asset('DataTables/build/buttons.html5.min.js')}}"></script>
 <script src="{{asset('DataTables/build/buttons.print.min.js')}}"></script>
@@ -28,8 +30,6 @@
 <script src="{{asset('DataTables/build/jszip.min.js')}}"></script>
 <script src="{{asset('DataTables/build/jszip.min.js')}}"></script>
 
-<!-- Main JS-->
-<script src="{{asset('js/main.js')}}"></script>
 
 
 <script language="JavaScript">

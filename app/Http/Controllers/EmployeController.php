@@ -31,7 +31,7 @@ class EmployeController extends Controller
       $employes=Employe::all();
 
          return view('employes.index', compact('employes'));
-         
+
     }
 
     /**
@@ -42,7 +42,7 @@ class EmployeController extends Controller
     public function create()
     {
       $departements= Departement::all();
-      $sites= Site::orderby('id','asc')->paginate(20);
+      $sites= Site::where('pays','<>','NULL')->get();
       $groupes= Groupe::orderby('id','asc')->paginate(20);
         return view('employes.create',[
           'sites' => $sites,
@@ -79,7 +79,7 @@ class EmployeController extends Controller
          'situation_matrimoniale' => 'required',
          'nbre_enfant' => 'required|numeric',
          'nationnalite' => 'required',
-         'origine' => 'required',
+         //'origine' => 'required',
          'categorie' => 'required',
          'secteur' => 'required',
          'departement'=>'required'
@@ -109,7 +109,7 @@ class EmployeController extends Controller
           'situation_matrimoniale' => $request->get('situation_matrimoniale'),
           'nbre_enfant' => $request->get('nbre_enfant'),
           'nationnalite' => $request->get('nationnalite'),
-          'origine' => $request->get('origine'),
+          //'origine' => $request->get('origine'),
           'categorie' => $request->get('categorie'),
           'secteur' => $request->get('secteur'),
           'departement' => $request->get('departement'),
@@ -127,6 +127,15 @@ class EmployeController extends Controller
         }
 
         $employe->save();
+
+        Contrat::create([
+        'type_contrat' => $request->get('type_contrat'),
+        'date_debut' => $request->get('date_debut'),
+        'date_fin' => $request->get('date_fin'),
+        'employe_id' => $employe->id,
+        'created_at'=>$today,
+        'updated_at'=>$today,
+      ]);
 
        return redirect('/employes')->with('success', 'L\'employé a été ajouté avec succes !');
       //return redirect()->back()->with('status','L employé a été bien ajouté');

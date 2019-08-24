@@ -39,7 +39,7 @@ class CongeciController extends Controller
 
     $conge->save();
 
-    return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutés');
+    return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutées');
   }
 
 

@@ -44,8 +44,6 @@ class ConnexionController extends Controller
      */
     public function authentification(Request $request)
     {
-
-
       $request->validate([
         'password' => 'required|min:5|alpha_num',
         'email' => 'required|email'
@@ -71,18 +69,28 @@ class ConnexionController extends Controller
                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
+                 else if(($user->role=="CHECKER")&&($user->entite =="CTI"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
+                 else if(($user->role=="MAKER")&&($user->entite =="CAC"))
+                  {
+
+                    return redirect('/cac/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
                  else if(($user->role=="CHECKER")&&($user->entite =="CAC"))
                   {
 
                     return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
-                 else if(($user->role=="MAKER")&&($user->entite =="SENEGAL"))
+                 else if(($user->role=="MAKER")&&($user->entite =="COFINA SN"))
                   {
 
-                  //  return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté');
-
-                  return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+                    return redirect('/cofinasn/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
                  else if(($user->role=="CHECKER")&&($user->entite =="COFINA SN"))

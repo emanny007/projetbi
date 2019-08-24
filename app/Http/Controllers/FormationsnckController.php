@@ -39,7 +39,7 @@ class FormationsnckController extends Controller
 
     $formation->save();
 
-    return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutés');
+    return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutées');
   }
 
 

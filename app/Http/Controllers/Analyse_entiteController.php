@@ -37,7 +37,7 @@ class Analyse_entiteController extends Controller
 
           ->responsive(true)
 
-          ->colors(['#00FF00', '#25FDE9', '#8EA2C6','#FF0000','#791CF8'])
+          ->colors(['#00FF00', '#25FDE9', '#8EA2C6','#FF0000','#791CF8','#2C75FF'])
 
           ->groupBy('entite');
 
@@ -78,7 +78,7 @@ $n=Employe::where('sexe','FEMININ')->where('entite','COFINA CG')->count();
 $o=Employe::where('sexe','FEMININ')->where('entite','CAC')->count();
 
 
-$data = Charts::multi('bar', 'material')
+$data = Charts::multi('bar', 'google')
 // Setup the chart settings
 ->title("Repartition des staffs par sexe et par entité")
 // A dimension of 0 means it will take 100% of the space
@@ -94,7 +94,6 @@ $data = Charts::multi('bar', 'material')
 // Setup what the values mean
 ->labels(['CTI', 'CSG', 'COFINA GN','COFINA SN','COFINA ML','COFINA CG','CAC']);
 
-
 //************************************************
 
       return view('/analyse/entite',['employe' => $employes,'area' => $data,'data' => $area,'femmes' => $femmes,
@@ -103,7 +102,6 @@ $data = Charts::multi('bar', 'material')
                   'total_employes' =>$total_employes,
                   'total_hommes' => $total_hommes,
                   'total_femmes' => $total_femmes,
-
                 ]);
   }
 

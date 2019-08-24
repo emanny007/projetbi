@@ -166,7 +166,7 @@ $cofinacg_d = DB::table('employes')->join('contrats','employes.id','=','contrats
                                                                       ->where('employes.entite','COFINA ML')
                                                                       ->where('contrats.type_contrat','STAGE')->count();
 //************************************************
-    $data = Charts::multi('bar', 'material')
+    $data = Charts::multi('bar', 'google')
     // Setup the chart settings
     ->title("Analyse éffectuée par type de contrats et par entite")
     // A dimension of 0 means it will take 100% of the space

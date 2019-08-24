@@ -6,7 +6,7 @@
 <meta name="keywords" content="Developpeur PHP/LARAVEL/SYMFONY">
 
 <!-- Title Page-->
-<title>SOLUTION DECISIONNELLE: BI RH</title>
+<title>SOLUTION DECISIONNELLE RH : COFIQUICK ! </title>
 
 <!-- Fontfaces CSS-->
 <link rel="shortcut icon" type="image/x-icon" href="{{ url('images/icon/favicon.png')}}">
