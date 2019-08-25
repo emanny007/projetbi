@@ -37,6 +37,7 @@ class ContratsnController extends Controller
                 'employe_id' => $request->get('id_empl'),
               ]);
            //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
+           flash("Successfull !!!")->success();
           return redirect()->back()->with('status','L employé a bien été modifié');
   }
 

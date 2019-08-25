@@ -1,4 +1,4 @@
-@extends('layouts.master-cac')
+@extends('layouts.master-csg')
 
 @section('accueil_admin')
 <!-- MAIN CONTENT--><br />

@@ -36,7 +36,7 @@ class ContratcacController extends Controller
                 'date_fin' => $request->get('date_fin'),
                 'employe_id' => $request->get('id_empl'),
               ]);
-           //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
+           flash("Successfull !!!")->success();
           return redirect()->back()->with('status','L employé a bien été modifié');
   }
 

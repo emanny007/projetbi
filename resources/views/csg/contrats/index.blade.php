@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-csg')
 
 @section('liste_contrat')
 <!-- MAIN CONTENT-->
@@ -51,8 +51,8 @@
                                                           <td>{{ $employe->entite }}</td>
                                                           <td>{{ $employe->departement }}</td>
                                                           <td>{{ $employe->categorie}}</td>
-                                                          <td><a class="btn btn-xs btn-success" href="{{ route('contrats.show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
-                  <a class="btn btn-xs btn-danger" href="{{ route('contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span></a></td>
+                                                          <td><a class="btn btn-xs btn-success" href="{{ route('csg.contrats.show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
+                  <a class="btn btn-xs btn-danger" href="{{ route('csg.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span></a></td>
 
                                                       </tr>
                                                     @endforeach

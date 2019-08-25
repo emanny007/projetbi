@@ -101,6 +101,12 @@ class ConnexionController extends Controller
                   //return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
+                 else if(($user->role=="MAKER")&&($user->entite =="CSG"))
+                  {
+
+                    return redirect('/csg/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
 
              }
 

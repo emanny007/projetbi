@@ -1,4 +1,4 @@
-@extends('layouts.master-cac')
+@extends('layouts.master-csg')
 
 @section('index_conge')
 <!-- MAIN CONTENT-->
@@ -41,7 +41,7 @@
                                       <td>{{ date('d-m-Y', strtotime($conge->date_retour)) }}</td>
 																			<td>{{ $conge->sexe }}</td>
                                       <td>{{ $conge->departement }}</td>
-																			<td align="center"><a class="btn btn-xs btn-primary" href="{{ route('cac.conges.edit',$conge->employe_id) }}"><span class="fas fa-edit"></span></a></td>
+																			<td align="center"><a class="btn btn-xs btn-primary" href="{{ route('csg.conges.edit',$conge->employe_id) }}"><span class="fas fa-edit"></span></a></td>
                                     </tr>
                                       @endforeach
                                     </tbody>

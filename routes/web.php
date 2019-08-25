@@ -1,59 +1,60 @@
 <?php
 
 
+
   //****************************************************************
-  // PAGE D'ACCUEIL DU PROFIL CHECKER FILIALE COFINA SN
+  // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE CSG
   //****************************************************************
 
 //GESTION DU POSTE
-Route::get('/cac/postes/{id}/edit', 'PostecacController@edit')->name('cac.postes.edit');
-Route::post('/cac/postes/{id}', 'PostecacController@update')->name('cac.postes.update');
+Route::get('/csg/postes/{id}/edit', 'PostecsgController@edit')->name('csg.postes.edit');
+Route::post('/csg/postes/{id}', 'PostecsgController@update')->name('csg.postes.update');
 
 //GESTION DE L'EXPERIENCE PROFESSIONNELLE
-Route::get('/cac/experiences/{id}/edit', 'ExperiencecacController@edit')->name('cac.experiences.edit');
-Route::post('/cac/experiences/{id}', 'ExperiencecacController@store')->name('cac.experiences.store');
+Route::get('/csg/experiences/{id}/edit', 'ExperiencecsgController@edit')->name('csg.experiences.edit');
+Route::post('/csg/experiences/{id}', 'ExperiencecsgController@store')->name('csg.experiences.store');
 
 //GESTION DE LA FORMATION
-Route::get('/cac/formations/{id}/edit', 'FormationcacController@edit')->name('cac.formations.edit');
-Route::post('/cac/formations/{id}', 'FormationcacController@store')->name('cac.formations.store');
+Route::get('/csg/formations/{id}/edit', 'FormationcsgController@edit')->name('csg.formations.edit');
+Route::post('/csg/formations/{id}', 'FormationcsgController@store')->name('csg.formations.store');
 
 //PAGE D'ACCUEIL DU MASTER GROUPE
-  Route::post('/cac/accueil', 'ComptecacController@accueil')->name('cac.accueil');
-  Route::get('/cac/accueil', 'ComptecacController@accueil')->name('cac.accueil');
-  Route::get('/cac/accueil', 'ComptecacController@senegal')->name('cac.accueil');
+  Route::post('/csg/accueil', 'ComptecsgController@accueil')->name('csg.accueil');
+  Route::get('/csg/accueil', 'ComptecsgController@accueil')->name('csg.accueil');
+  Route::get('/csg/accueil', 'ComptecsgController@senegal')->name('csg.accueil');
 
 //TABLEAU DE BOARD DES EMPLOYES
-Route::get('/cac/employes', 'EmployecacController@index')->name('cac.main');
-Route::get('/cac/employes/create', 'EmployecacController@create')->name('cac.create');
-Route::post('/cac/employes', 'EmployecacController@store')->name('cac.store');
-Route::put('/cac/employes/{id}', 'EmployecacController@update')->name('cac.update');
-Route::get('/cac/employes/{id}', 'EmployecacController@show')->name('cac.show');
-Route::get('/cac/employes/{id}/edit', 'EmployecacController@edit')->name('cac.edit');
-Route::delete('/cac/employes/{id}', 'EmployecacController@destroy')->name('cac.destroy');
+Route::get('/csg/employes', 'EmployecsgController@index')->name('csg.main');
+Route::get('/csg/employes/create', 'EmployecsgController@create')->name('csg.create');
+Route::post('/csg/employes', 'EmployecsgController@store')->name('csg.store');
+Route::put('/csg/employes/{id}', 'EmployecsgController@update')->name('csg.update');
+Route::get('/csg/employes/{id}', 'EmployecsgController@show')->name('csg.show');
+Route::get('/csg/employes/{id}/edit', 'EmployecsgController@edit')->name('csg.edit');
+Route::delete('/csg/employes/{id}', 'EmployecsgController@destroy')->name('csg.destroy');
 
 //GESTIONS DES CONGES
-Route::get('/cac/conges/index', 'CongecacController@index')->name('cac.conges.index');
-Route::get('/cac/conges/{id}/edit', 'CongecacController@edit')->name('cac.conges.edit');
-Route::post('/cac/conges/{id}', 'CongecacController@store')->name('cac.conges.store');
+Route::get('/csg/conges/index', 'CongecsgController@index')->name('csg.conges.index');
+Route::get('/csg/conges/{id}/edit', 'CongecsgController@edit')->name('csg.conges.edit');
+Route::post('/csg/conges/{id}', 'CongecsgController@store')->name('csg.conges.store');
 
 //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
-Route::get('/cac/reportings/export', 'ReportingcacController@export')->name('cac.reportings.export');
-Route::get('/cac/reportings/index', 'ReportingcacController@index')->name('cac.reportings.index');
-Route::get('/cac/reportings/exportdata', 'ExcelcacController@exportdata')->name('cac.reportings.exportdata');
+Route::get('/csg/reportings/export', 'ReportingcsgController@export')->name('csg.reportings.export');
+Route::get('/csg/reportings/index', 'ReportingcsgController@index')->name('csg.reportings.index');
+Route::get('/csg/reportings/exportdata', 'ExcelcsgController@exportdata')->name('csg.reportings.exportdata');
 
 //GRAPHIQUE CONSOLETVs/CHARTS
-Route::get('/cac/analyse/index', 'analysecacController@index')->name('cac.analyse.index');
-Route::get('/cac/analyse/entite', 'Analyse_entitecacController@entite')->name('cac.analyse.entite');
-Route::get('/cac/analyse/genre', 'Analyse_entitecacController@genre')->name('cac.analyse.genre');
-Route::get('/cac/analyse/contrat', 'Analyse_contratcacController@contrat')->name('cac.analyse.contrat');
+Route::get('/csg/analyse/index', 'analysecsgController@index')->name('csg.analyse.index');
+Route::get('/csg/analyse/entite', 'Analyse_entitecsgController@entite')->name('csg.analyse.entite');
+Route::get('/csg/analyse/genre', 'Analyse_entitecsgController@genre')->name('csg.analyse.genre');
+Route::get('/csg/analyse/contrat', 'Analyse_contratcsgController@contrat')->name('csg.analyse.contrat');
 
 //GESTION DES CONTRATS
-Route::get('/cac/contrats', 'ContratcacController@index')->name('cac.contrats');
-Route::get('/cac/contrats/index', 'ContratcacController@index')->name('cac.contrats.index');
-Route::get('/cac/contrats/undefined', 'ContratcacController@index')->name('cac.contrats.undefined');
-Route::get('/cac/contrats/{id}/edit', 'ContratcacController@edit')->name('cac.contrats.edit');
-Route::post('/cac/contrats/{id}', 'ContratcacController@update')->name('cac.contrats.update');
-Route::get('/cac/contrats/{id}', 'ContratcacController@show')->name('cac.contrats.show');
+Route::get('/csg/contrats', 'ContratcsgController@index')->name('csg.contrats');
+Route::get('/csg/contrats/index', 'ContratcsgController@index')->name('csg.contrats.index');
+Route::get('/csg/contrats/undefined', 'ContratcsgController@index')->name('csg.contrats.undefined');
+Route::get('/csg/contrats/{id}/edit', 'ContratcsgController@edit')->name('csg.contrats.edit');
+Route::post('/csg/contrats/{id}', 'ContratcsgController@update')->name('csg.contrats.update');
+Route::get('/csg/contrats/{id}', 'ContratcsgController@show')->name('csg.contrats.show');
 
 
 /*
@@ -85,8 +86,68 @@ Route::group([
 
 
 
+
+    //****************************************************************
+    // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE CAC
+    //****************************************************************
+
+  //GESTION DU POSTE
+  Route::get('/cac/postes/{id}/edit', 'PostecacController@edit')->name('cac.postes.edit');
+  Route::post('/cac/postes/{id}', 'PostecacController@update')->name('cac.postes.update');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/cac/experiences/{id}/edit', 'ExperiencecacController@edit')->name('cac.experiences.edit');
+  Route::post('/cac/experiences/{id}', 'ExperiencecacController@store')->name('cac.experiences.store');
+
+  //GESTION DE LA FORMATION
+  Route::get('/cac/formations/{id}/edit', 'FormationcacController@edit')->name('cac.formations.edit');
+  Route::post('/cac/formations/{id}', 'FormationcacController@store')->name('cac.formations.store');
+
+  //PAGE D'ACCUEIL DU MASTER GROUPE
+    Route::post('/cac/accueil', 'ComptecacController@accueil')->name('cac.accueil');
+    Route::get('/cac/accueil', 'ComptecacController@accueil')->name('cac.accueil');
+    Route::get('/cac/accueil', 'ComptecacController@senegal')->name('cac.accueil');
+
+  //TABLEAU DE BOARD DES EMPLOYES
+  Route::get('/cac/employes', 'EmployecacController@index')->name('cac.main');
+  Route::get('/cac/employes/create', 'EmployecacController@create')->name('cac.create');
+  Route::post('/cac/employes', 'EmployecacController@store')->name('cac.store');
+  Route::put('/cac/employes/{id}', 'EmployecacController@update')->name('cac.update');
+  Route::get('/cac/employes/{id}', 'EmployecacController@show')->name('cac.show');
+  Route::get('/cac/employes/{id}/edit', 'EmployecacController@edit')->name('cac.edit');
+  Route::delete('/cac/employes/{id}', 'EmployecacController@destroy')->name('cac.destroy');
+
+  //GESTIONS DES CONGES
+  Route::get('/cac/conges/index', 'CongecacController@index')->name('cac.conges.index');
+  Route::get('/cac/conges/{id}/edit', 'CongecacController@edit')->name('cac.conges.edit');
+  Route::post('/cac/conges/{id}', 'CongecacController@store')->name('cac.conges.store');
+
+  //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
+  Route::get('/cac/reportings/export', 'ReportingcacController@export')->name('cac.reportings.export');
+  Route::get('/cac/reportings/index', 'ReportingcacController@index')->name('cac.reportings.index');
+  Route::get('/cac/reportings/exportdata', 'ExcelcacController@exportdata')->name('cac.reportings.exportdata');
+
+  //GRAPHIQUE CONSOLETVs/CHARTS
+  Route::get('/cac/analyse/index', 'analysecacController@index')->name('cac.analyse.index');
+  Route::get('/cac/analyse/entite', 'Analyse_entitecacController@entite')->name('cac.analyse.entite');
+  Route::get('/cac/analyse/genre', 'Analyse_entitecacController@genre')->name('cac.analyse.genre');
+  Route::get('/cac/analyse/contrat', 'Analyse_contratcacController@contrat')->name('cac.analyse.contrat');
+
+  //GESTION DES CONTRATS
+  Route::get('/cac/contrats', 'ContratcacController@index')->name('cac.contrats');
+  Route::get('/cac/contrats/index', 'ContratcacController@index')->name('cac.contrats.index');
+  Route::get('/cac/contrats/undefined', 'ContratcacController@index')->name('cac.contrats.undefined');
+  Route::get('/cac/contrats/{id}/edit', 'ContratcacController@edit')->name('cac.contrats.edit');
+  Route::post('/cac/contrats/{id}', 'ContratcacController@update')->name('cac.contrats.update');
+  Route::get('/cac/contrats/{id}', 'ContratcacController@show')->name('cac.contrats.show');
+
+
+
+
+
+
 //****************************************************************
-// PAGE D'ACCUEIL DU PROFIL CHECKER FILIALE COFINA SN
+// PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA SN
 //****************************************************************
   Route::get('/includes/master', 'ConnexionController@comptemaker')->name('includes.headerdesktop-maker');
 

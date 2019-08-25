@@ -1,4 +1,4 @@
-@extends('layouts.master-cac')
+@extends('layouts.master-csg')
 
 @section('main')
 <!-- MAIN CONTENT-->
@@ -19,7 +19,7 @@
                           {{ session()->get('danger') }}
                         </div>
                         @endif
-                                        <a class="btn btn-xs btn-success" href="{{ route('cac.create') }}"><span class="glyphicon glyphicon-eye-open"></span>Ajouter</a>
+                                        <a class="btn btn-xs btn-success" href="{{ route('csg.create') }}"><span class="glyphicon glyphicon-eye-open"></span>Ajouter</a>
                                           <br /><br />
                                           <center><label for="inputIsValid" align="center"><strong>GESTION DES EMPLOYES</strong></label></center>
                                           <!-- DATA TABLE-->
@@ -46,8 +46,8 @@
                                                           <td>{{ $employe->sexe }}</td>
                                                           <td>{{ $employe->entite }}</td>
                                                           <td>
-                                                            <center><a class="btn btn-xs btn-info" href="{{ route('cac.show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
-                                                            <a class="btn btn-xs btn-primary" href="{{ route('cac.edit',$employe->id) }}"><span class="fas fa-edit"></span></a>
+                                                            <center><a class="btn btn-xs btn-info" href="{{ route('csg.show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
+                                                            <a class="btn btn-xs btn-primary" href="{{ route('csg.edit',$employe->id) }}"><span class="fas fa-edit"></span></a>
                                                             <!--form action="{{ route('destroy', $employe->id) }}" method="post">
                                                             <button class="btn btn-danger" type="submit"><span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form-->
                                                           </center>

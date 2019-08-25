@@ -17,7 +17,7 @@ use App\Groupe;
 use App\Site;
 use DB;
 
-class EmployecacController extends Controller
+class EmployecsgController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,9 +28,9 @@ class EmployecacController extends Controller
     public function index()
     {
 
-      $employes=Employe::all()->where('entite','CAC');
+      $employes=Employe::all()->where('entite','CSG');
 
-         return view('cac.employes.index', compact('employes'));
+         return view('csg.employes.index', compact('employes'));
 
     }
 
@@ -44,7 +44,7 @@ class EmployecacController extends Controller
       $departements= Departement::all();
       $sites= Site::orderby('id','asc')->paginate(20);
       $groupes= Groupe::orderby('id','asc')->paginate(20);
-        return view('cac.employes.create',[
+        return view('csg.employes.create',[
           'sites' => $sites,
           'groupes' => $groupes,
           'departements' => $departements
@@ -138,7 +138,7 @@ class EmployecacController extends Controller
         'updated_at'=>$today,
       ]);
 
-       return redirect('/cac/employes')->with('success', 'L\'employé a été ajouté avec succes !');
+       return redirect('/csg/employes')->with('success', 'L\'employé a été ajouté avec succes !');
       //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
 
@@ -153,7 +153,7 @@ class EmployecacController extends Controller
        //print_r($request->input());
 
       $employes = Employe::find($id);
-      return view('cac.employes.show',['employe' => $employes]);
+      return view('csg.employes.show',['employe' => $employes]);
     }
 
     /**
@@ -172,7 +172,7 @@ class EmployecacController extends Controller
       $employe = Employe::findOrFail($id);
       $sites= Site::orderby('id','asc')->paginate(20);
       $groupes= Groupe::orderby('id','asc')->paginate(20);
-        return view('cac.employes.edit',[
+        return view('csg.employes.edit',[
           'employe' => $employe,
           'sites' => $sites,
           'groupes' => $groupes,
@@ -213,7 +213,7 @@ class EmployecacController extends Controller
                'situation_matrimoniale' => 'required',
                'nbre_enfant' => 'required|numeric',
                'nationnalite' => 'required',
-
+               //'origine' => 'required'
              ]
       );
                 $today = date("Y-m-d H:i:s");
@@ -274,7 +274,8 @@ class EmployecacController extends Controller
 
                 */
              //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-            return redirect()->back()->with('status','L \'employé a bien été modifié');
+             flash("L'employé a bien été modifié !!!")->success();
+            return redirect()->back()->with('success','L\'employé a bien été modifié');
 
     }
 
@@ -288,6 +289,6 @@ class EmployecacController extends Controller
     {
         $employe = Employe::findOrFail($id);
         $employe->delete();
-        return redirect('/cac/employes')->with('success', 'Employe deleted!');
+        return redirect('/csg/employes')->with('success', 'Employe deleted!');
     }
 }

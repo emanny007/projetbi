@@ -12,7 +12,7 @@ use App\Groupe;
 use App\Site;
 use DB;
 
-class ContratsnckController extends Controller
+class ContratcsgController extends Controller
 {
 
   public function edit($id)
@@ -21,13 +21,14 @@ class ContratsnckController extends Controller
       $contrat=DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')
         ->join('contrats','employes.id','=','contrats.id')->where('employe_id', '=', $id)->get()->first();
       $employe = Employe::findOrFail($id);
-       return view('cofinasn-checker.contrats.edit', compact('employe','contrat'));
+       return view('csg.contrats.edit', compact('employe','contrat'));
   }
 
 
 
   public function update(Request $request, $id)
   {
+
               DB::table('contrats')->updateOrInsert(['employe_id' => $request->get('id_empl')],
               [
                 'type_contrat' => $request->get('type_contrat'),
@@ -35,7 +36,7 @@ class ContratsnckController extends Controller
                 'date_fin' => $request->get('date_fin'),
                 'employe_id' => $request->get('id_empl'),
               ]);
-           //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
+           
            flash("Successfull !!!")->success();
           return redirect()->back()->with('status','L employé a bien été modifié');
   }

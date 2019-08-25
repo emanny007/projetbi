@@ -1,4 +1,4 @@
-@extends('layouts.master-cac')
+@extends('layouts.master-csg')
 
 @section('modify_employe')
   <!-- MAIN CONTENT-->
@@ -7,14 +7,14 @@
           <div class="container-fluid"><br />
             <div class="col-sm-6 col-lg-12">
               <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
+                <a class="btn btn-xs btn-primary" href="{{ route('csg.conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
               </center>
             <div class="row well m-t-30">
                   <div class="col-md-12">
@@ -24,7 +24,7 @@
                       </div>
 
                       <div class="card-body card-block">
-                      <form class="form-horizontal" method="POST" action="{{ route('cac.update',$employe->id)}}">
+                      <form class="form-horizontal" method="POST" action="{{ route('csg.update',$employe->id)}}">
                       {{ csrf_field() }}
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
                       <div class="row">
@@ -62,7 +62,7 @@
                       <div class="row">
                       <div class="col-3 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>
-                         <input type="password" id="inputIsValid" name="mot_pass" value="{{ $employe->mot_pass }}" placeholder=" ******************** "class="is-valid form-control-success form-control">
+                         <input type="password" id="inputIsValid" name="mot_pass" value="{{ $employe->mot_pass }}" placeholder=" ************************* "class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('mot_pass'))
                       <p> {{ $errors->first('mot_pass') }} </p>
@@ -179,7 +179,7 @@
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
-                        <input type="file" id="inputIsValid" name="photo" class="is-valid form-control-success form-control">
+                        <input type="file" id="inputIsValid" name="photo" value="{{ $employe->photo }}" class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('photo'))
                       <p> {{ $errors->first('photo') }} </p>
@@ -274,7 +274,7 @@
 
                       <br />
                     <div class="form-group"> <center>
-                      <a class="btn btn-xs btn-danger" href="{{ route('cac.main') }}">RETOURNER</a>
+                      <a class="btn btn-xs btn-danger" href="{{ route('csg.main') }}">RETOURNER</a>
                   <button type="submit"  class="btn btn-success">MODIFIER</button>
                 </center>
                 </div>

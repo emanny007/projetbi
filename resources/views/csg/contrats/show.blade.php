@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-csg')
 
 @section('show_employe_contrat')
   <!-- MAIN CONTENT-->
@@ -16,7 +16,7 @@
                        <div class="mx-auto">
                               <marquee> <strong>  AUCUN CONTRAT N'A ETE RENSEIGNE POUR CET EMPLOYE !!! </strong></marquee>
                        </div>
-                       <center><a class="btn btn-xs btn-danger" href="{{ route('contrats.index') }}">RETOURNER</a></center>
+                       <center><a class="btn btn-xs btn-danger" href="{{ route('csg.contrats.index') }}">RETOURNER</a></center>
                     </div>
 
                    @else
@@ -130,7 +130,7 @@
                                         </table>
                                     </div>
                                     <center><br /><br />
-                                      <a class="btn btn-xs btn-danger" href="{{ url('/contrats/index') }}">RETOURNER</a>
+                                      <a class="btn btn-xs btn-danger" href="{{ url('/csg/contrats/index') }}">RETOURNER</a>
                                     </center>
                                 </div>
                                 <!--  END TOP CAMPAIGN-->

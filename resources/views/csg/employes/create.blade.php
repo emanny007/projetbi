@@ -1,4 +1,4 @@
-@extends('layouts.master-cac')
+@extends('layouts.master-csg')
 
 @section('creation_employe')
   <!-- MAIN CONTENT-->
@@ -13,7 +13,7 @@
                        <center><strong>NOUVEL EMPLOYE</strong></center>
                       </div>
                       <div class="card-body card-block">
-                      <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('cac.store') }}">
+                      <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('csg.store') }}">
                         {{ csrf_field() }}
                         <div class="row">
                         <div class="col-6 has-success form-group">
@@ -71,7 +71,7 @@
                         <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">EMAIL PERSONNEL</label>
-                          <input type="email" id="inputIsValid" name="mail_perso" class="is-valid form-control-success form-control">
+                          <input type="email" id="inputIsValid" name="mail_perso" value="{{ old('mail_perso') }}" class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('mail_perso'))
                         <p> {{ $errors->first('mail_perso') }} </p>
@@ -87,7 +87,7 @@
                         <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">TELEPHONE PERSONNEL</label>
-                          <input type="text" id="inputIsValid" name="tel_perso" class="is-valid form-control-success form-control">
+                          <input type="text" id="inputIsValid" name="tel_perso" value="{{ old('tel_perso') }}"class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('tel_perso'))
                         <p> {{ $errors->first('tel_perso') }} </p>
@@ -103,7 +103,7 @@
                         <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">ENTITE</label>
-                            <select name="entite" id="selectLg" class="is-valid form-control-success form-control">
+                            <select name="entite" id="selectLg" value="{{ old('entite') }}" class="is-valid form-control-success form-control">
                               <option></option>
                               @foreach($sites as $site)
                               <option value="{{$site->entite}}">{{ $site->entite }}</option>
@@ -115,7 +115,7 @@
                         @endif
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class="form-control-label">SEXE</label>
-                            <select name="sexe" id="selectLg" class="is-valid form-control-success form-control">
+                            <select name="sexe" id="selectLg" value="{{ old('sexe') }}" class="is-valid form-control-success form-control">
                               <option></option>
                               <option value="MASCULIN">MASCULIN</option>
                               <option value="FEMININ">FEMININ</option>
@@ -155,7 +155,7 @@
                         <div class="row">
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class="form-control-label">JOINDRE UNE PHOTO</label>
-                          <input type="file" id="inputIsValid" name="photo" class="is-valid form-control-success form-control">
+                          <input type="file" id="inputIsValid" name="photo" value="{{ old('photo') }}" class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('photo'))
                         <p> {{ $errors->first('photo') }} </p>
@@ -163,7 +163,7 @@
 
                         <div class="col-6 has-success form-group">
                           <label for="inputIsValid" class="form-control-label">NOMBRE D'ENFANTS</label>
-                          <input type="text" id="inputIsValid" name="nbre_enfant" class="is-valid form-control-success form-control">
+                          <input type="text" id="inputIsValid" name="nbre_enfant" value="{{ old('nbre_enfant') }}" class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('nbre_enfant'))
                         <p> {{ $errors->first('nbre_enfant') }} </p>
@@ -181,10 +181,6 @@
                         </div>
                         @if($errors->has('nationnalite'))
                         <p> {{ $errors->first('nationnalite') }} </p>
-                        @endif
-
-                        @if($errors->has('secteur'))
-                        <p> {{ $errors->first('secteur') }} </p>
                         @endif
 
                         <div class="col-6 has-success form-group">
@@ -276,7 +272,7 @@
                         @if($errors->has('date_debut'))
                         <p> {{ $errors->first('date_debut') }} </p>
                         @endif
-                        <div class="col-6 has-success form-group">                        
+                        <div class="col-6 has-success form-group">
                         <label id="autre" class=" form-control-label">FIN CONTRAT</label>
                         @if(empty($contrat))
                         <input type="date" id="date_fin" name="date_fin" value="{{ old('date_fin') }}"class="is-valid form-control-success form-control">
@@ -292,7 +288,7 @@
                         <div class="form-group">
                          <center>
 
-                      <a class="btn btn-xs btn-danger" href="{{ route('cac.main') }}">RETOURNER</a>
+                      <a class="btn btn-xs btn-danger" href="{{ route('csg.main') }}">RETOURNER</a>
                       <button type="submit"  class="btn btn-success">VALIDER </button>
 
                       </center>

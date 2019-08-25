@@ -104,7 +104,7 @@ class ContratController extends Controller
                 */
 
                 $today = date("Y-m-d H:i:s");
-                
+
                 DB::table('contrats')->updateOrInsert(['employe_id' => $request->get('id_empl')],
                 [
                   'type_contrat' => $request->get('type_contrat'),
@@ -116,6 +116,7 @@ class ContratController extends Controller
                   //'updated_at' => Carbon::today()->get()
                 ]);
              //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
+             flash("Successfull !!!")->success();
             return redirect()->back()->with('status','L employé a bien été modifié');
     }
 
