@@ -9,43 +9,23 @@ use Illuminate\Support\Facades\Hash;
 use App\Employe;
 use App\Site;
 use DB;
+
 class ConnexionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
      //La vue index ne fait que retourner la page d'authentification des utilisateurs
     public function index()
     {
       $sites= Site::all();
 
-    //  flash("Vous êtes la bienvenue!")->success();
       return view('connexions/index',['sites' => $sites]);
       // return view('/',['sites' => $sites]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function authentification(Request $request)
     {
       $request->validate([
-        'password' => 'required|min:5|alpha_num',
+        'password' => 'required|min:4|alpha_num',
         'email' => 'required|email'
        ]);
 
@@ -100,11 +80,15 @@ class ConnexionController extends Controller
 
                   //return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
-                 }
-                 else if(($user->role=="MAKER")&&($user->entite =="CSG"))
+                 }else if(($user->role=="MAKER")&&($user->entite =="CSG"))
                   {
 
                     return redirect('/csg/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }else if(($user->role=="MAKER")&&($user->entite =="COFINA GN"))
+                  {
+
+                    return redirect('/cofinagn/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
 
@@ -112,16 +96,6 @@ class ConnexionController extends Controller
 
 
 
-
-/*
-
-      $empl=Employe::where('');
-
-      dd($empl->entite);
-
-      flash("Vous êtes la bienvenue!")->success();
-
-      return redirect('/accueil'); */
     }else{
 
        return back()
@@ -134,19 +108,6 @@ class ConnexionController extends Controller
 
   }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-
-
       public function comptemaker(Request $request)
       {
 
@@ -156,42 +117,4 @@ class ConnexionController extends Controller
        }
 
 
-
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

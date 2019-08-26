@@ -17,7 +17,7 @@ use App\Groupe;
 use App\Site;
 use DB;
 
-class EmployeController extends Controller
+class EmployegnController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,9 +28,9 @@ class EmployeController extends Controller
     public function index()
     {
 
-      $employes=Employe::all();
+      $employes=Employe::all()->where('entite','COFINA GN');
 
-         return view('employes.index', compact('employes'));
+         return view('cofinagn.employes.index', compact('employes'));
 
     }
 
@@ -42,9 +42,9 @@ class EmployeController extends Controller
     public function create()
     {
       $departements= Departement::all();
-      $sites= Site::where('pays','<>','NULL')->get();
+      $sites= Site::orderby('id','asc')->paginate(20);
       $groupes= Groupe::orderby('id','asc')->paginate(20);
-        return view('employes.create',[
+        return view('cofinagn.employes.create',[
           'sites' => $sites,
           'groupes' => $groupes,
           'departements' => $departements
@@ -61,15 +61,15 @@ class EmployeController extends Controller
     {
 
       $request->validate([
-         'matricule' => 'bail|required|between:5,20',
-         'numero_sss' => 'bail|required',
-         'nom' => 'required|max:100|alpha',
-         'prenom' => 'required',
+         'matricule' => 'bail|between:4,20',
+         'numero_sss' => 'bail',
+         'nom' => 'required|alpha',
+         'prenom' => 'required|alpha',
          //'password' => 'min:5',
          'date_naissance' => 'required|date',
          'email' => 'bail|required|email',
-         'mail_perso' => 'bail|required|email',
-         'tel_pro' => 'required|numeric',
+         'mail_perso' => 'bail|email',
+         'tel_pro' => 'numeric',
          'tel_perso' => 'required|numeric',
          'contact_urgent' => 'required|numeric',
          'entite' => 'required',
@@ -82,6 +82,7 @@ class EmployeController extends Controller
          //'origine' => 'required',
          'categorie' => 'required',
          'secteur' => 'required',
+         'date_debut' => 'required|date',
          'departement'=>'required'
        ]
 );
@@ -137,7 +138,7 @@ class EmployeController extends Controller
         'updated_at'=>$today,
       ]);
 
-       return redirect('/employes')->with('success', 'L\'employé a été ajouté avec succes !');
+       return redirect('/cofinagn/employes')->with('success', 'L\'employé a été ajouté avec succes !');
       //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
 
@@ -152,7 +153,7 @@ class EmployeController extends Controller
        //print_r($request->input());
 
       $employes = Employe::find($id);
-      return view('employes.show',['employe' => $employes]);
+      return view('cofinagn.employes.show',['employe' => $employes]);
     }
 
     /**
@@ -171,7 +172,7 @@ class EmployeController extends Controller
       $employe = Employe::findOrFail($id);
       $sites= Site::orderby('id','asc')->paginate(20);
       $groupes= Groupe::orderby('id','asc')->paginate(20);
-        return view('employes.edit',[
+        return view('cofinagn.employes.edit',[
           'employe' => $employe,
           'sites' => $sites,
           'groupes' => $groupes,
@@ -212,7 +213,7 @@ class EmployeController extends Controller
                'situation_matrimoniale' => 'required',
                'nbre_enfant' => 'required|numeric',
                'nationnalite' => 'required',
-               'origine' => 'required'
+
              ]
       );
                 $today = date("Y-m-d H:i:s");
@@ -272,8 +273,9 @@ class EmployeController extends Controller
                 ]);
 
                 */
+             
              flash("L'employé a bien été modifié")->success();
-            return redirect()->back()->with('status','L employé a bien été modifié');
+            return redirect()->back()->with('status','L \'employé a bien été modifié');
 
     }
 
@@ -287,6 +289,6 @@ class EmployeController extends Controller
     {
         $employe = Employe::findOrFail($id);
         $employe->delete();
-        return redirect('/employes')->with('success', 'Employe deleted!');
+        return redirect('/cofinagn/employes')->with('success', 'Employe deleted!');
     }
 }

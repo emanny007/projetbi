@@ -56,7 +56,7 @@ class ExperienceController extends Controller
       ]);
 
       $experience->save();
-
+      flash("Vos informations ont bien été ajoutées !!!")->success();
       return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutés');
     }
 

@@ -13,7 +13,7 @@ use App\Groupe;
 use App\Site;
 use DB;
 
-class ExperiencecsgController extends Controller
+class ExperiencegnController extends Controller
 {
 
   public function edit($id)
@@ -21,7 +21,7 @@ class ExperiencecsgController extends Controller
     $experience = new Experience();
     $experience = Experience::where('employe_id', $id)->get();
     $employe = Employe::findOrFail($id);
-     return view('csg.experiences.edit', compact('employe','experience'));
+     return view('cofinagn.experiences.edit', compact('employe','experience'));
   }
 
 

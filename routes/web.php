@@ -3,6 +3,96 @@
 
 
   //****************************************************************
+  // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA GN
+  //****************************************************************
+
+//GESTION DU POSTE
+Route::get('/cofinagn/postes/{id}/edit', 'PostegnController@edit')->name('gn.postes.edit');
+Route::post('/cofinagn/postes/{id}', 'PostegnController@update')->name('gn.postes.update');
+
+//GESTION DE L'EXPERIENCE PROFESSIONNELLE
+Route::get('/cofinagn/experiences/{id}/edit', 'ExperiencegnController@edit')->name('gn.experiences.edit');
+Route::post('/cofinagn/experiences/{id}', 'ExperiencegnController@store')->name('gn.experiences.store');
+
+//GESTION DE LA FORMATION
+Route::get('/cofinagn/formations/{id}/edit', 'FormationgnController@edit')->name('gn.formations.edit');
+Route::post('/cofinagn/formations/{id}', 'FormationgnController@store')->name('gn.formations.store');
+
+//PAGE D'ACCUEIL DU MASTER GROUPE
+  Route::post('/cofinagn/accueil', 'ComptegnController@accueil')->name('gn.accueil');
+  Route::get('/cofinagn/accueil', 'ComptegnController@accueil')->name('gn.accueil');
+  Route::get('/cofinagn/accueil', 'ComptegnController@senegal')->name('gn.accueil');
+
+//TABLEAU DE BOARD DES EMPLOYES
+Route::get('/cofinagn/employes', 'EmployegnController@index')->name('gn.main');
+Route::get('/cofinagn/employes/create', 'EmployegnController@create')->name('gn.create');
+Route::post('/cofinagn/employes', 'EmployegnController@store')->name('gn.store');
+Route::put('/cofinagn/employes/{id}', 'EmployegnController@update')->name('gn.update');
+Route::get('/cofinagn/employes/{id}', 'EmployegnController@show')->name('gn.show');
+Route::get('/cofinagn/employes/{id}/edit', 'EmployegnController@edit')->name('gn.edit');
+Route::delete('/cofinagn/employes/{id}', 'EmployegnController@destroy')->name('gn.destroy');
+
+//GESTIONS DES CONGES
+Route::get('/cofinagn/conges/index', 'CongegnController@index')->name('gn.conges.index');
+Route::get('/cofinagn/conges/{id}/edit', 'CongegnController@edit')->name('gn.conges.edit');
+Route::post('/cofinagn/conges/{id}', 'CongegnController@store')->name('gn.conges.store');
+
+//GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
+Route::get('/cofinagn/reportings/export', 'ReportinggnController@export')->name('gn.reportings.export');
+Route::get('/cofinagn/reportings/index', 'ReportinggnController@index')->name('gn.reportings.index');
+Route::get('/cofinagn/reportings/exportdata', 'ExcelgnController@exportdata')->name('gn.reportings.exportdata');
+
+//GRAPHIQUE CONSOLETVs/CHARTS
+Route::get('/cofinagn/analyse/index', 'analysegnController@index')->name('gn.analyse.index');
+Route::get('/cofinagn/analyse/entite', 'Analyse_entitegnController@entite')->name('gn.analyse.entite');
+Route::get('/cofinagn/analyse/genre', 'Analyse_entitegnController@genre')->name('gn.analyse.genre');
+Route::get('/cofinagn/analyse/contrat', 'Analyse_contratgnController@contrat')->name('gn.analyse.contrat');
+
+//GESTION DES CONTRATS
+Route::get('/cofinagn/contrats', 'ContratgnController@index')->name('gn.contrats');
+Route::get('/cofinagn/contrats/index', 'ContratgnController@index')->name('gn.contrats.index');
+Route::get('/cofinagn/contrats/undefined', 'ContratgnController@index')->name('gn.contrats.undefined');
+Route::get('/cofinagn/contrats/{id}/edit', 'ContratgnController@edit')->name('gn.contrats.edit');
+Route::post('/cofinagn/contrats/{id}', 'ContratgnController@update')->name('gn.contrats.update');
+Route::get('/cofinagn/contrats/{id}', 'ContratgnController@show')->name('gn.contrats.show');
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
+    return view('/');
+});
+*/
+
+
+
+
+Route::group([
+  'middleware' =>'App\Http\Middleware\Auth',
+],function (){
+
+
+
+
+
+
+
+
+
+  //****************************************************************
   // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE CSG
   //****************************************************************
 
@@ -55,37 +145,6 @@ Route::get('/csg/contrats/undefined', 'ContratcsgController@index')->name('csg.c
 Route::get('/csg/contrats/{id}/edit', 'ContratcsgController@edit')->name('csg.contrats.edit');
 Route::post('/csg/contrats/{id}', 'ContratcsgController@update')->name('csg.contrats.update');
 Route::get('/csg/contrats/{id}', 'ContratcsgController@show')->name('csg.contrats.show');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('/');
-});
-*/
-
-
-
-
-Route::group([
-  'middleware' =>'App\Http\Middleware\Auth',
-],function (){
-
-
-
 
     //****************************************************************
     // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE CAC
