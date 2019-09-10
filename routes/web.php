@@ -3,6 +3,142 @@
 
 
   //****************************************************************
+  // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA MALI
+  //****************************************************************
+
+//GESTION DU POSTE
+Route::get('/cofinaml/postes/{id}/edit', 'PostemlController@edit')->name('ml.postes.edit');
+Route::post('/cofinaml/postes/{id}', 'PostemlController@update')->name('ml.postes.update');
+
+//GESTION DE L'EXPERIENCE PROFESSIONNELLE
+Route::get('/cofinaml/experiences/{id}/edit', 'ExperiencemlController@edit')->name('ml.experiences.edit');
+Route::post('/cofinaml/experiences/{id}', 'ExperiencemlController@store')->name('ml.experiences.store');
+
+//GESTION DE LA FORMATION
+Route::get('/cofinaml/formations/{id}/edit', 'FormationmlController@edit')->name('ml.formations.edit');
+Route::post('/cofinaml/formations/{id}', 'FormationcgController@store')->name('ml.formations.store');
+
+//PAGE D'ACCUEIL DU MASTER GROUPE
+  Route::post('/cofinaml/accueil', 'ComptemlController@accueil')->name('ml.accueil');
+  Route::get('/cofinaml/accueil', 'ComptemlController@accueil')->name('ml.accueil');
+  Route::get('/cofinaml/accueil', 'ComptemlController@senegal')->name('ml.accueil');
+
+//TABLEAU DE BOARD DES EMPLOYES
+Route::get('/cofinaml/employes', 'EmployemlController@index')->name('ml.main');
+Route::get('/cofinaml/employes/create', 'EmployemlController@create')->name('ml.create');
+Route::post('/cofinaml/employes', 'EmployemlController@store')->name('ml.store');
+Route::put('/cofinaml/employes/{id}', 'EmployemlController@update')->name('ml.update');
+Route::get('/cofinaml/employes/{id}', 'EmployemlController@show')->name('ml.show');
+Route::get('/cofinaml/employes/{id}/edit', 'EmployemlController@edit')->name('ml.edit');
+Route::delete('/cofinaml/employes/{id}', 'EmployemlController@destroy')->name('ml.destroy');
+
+//GESTIONS DES CONGES
+Route::get('/cofinaml/conges/index', 'CongemlController@index')->name('ml.conges.index');
+Route::get('/cofinaml/conges/{id}/edit', 'CongemlController@edit')->name('ml.conges.edit');
+Route::post('/cofinaml/conges/{id}', 'CongemlController@store')->name('ml.conges.store');
+
+//GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
+Route::get('/cofinaml/reportings/export', 'ReportingmlController@export')->name('ml.reportings.export');
+Route::get('/cofinaml/reportings/index', 'ReportingmlController@index')->name('ml.reportings.index');
+Route::get('/cofinaml/reportings/exportdata', 'ExcelmlController@exportdata')->name('ml.reportings.exportdata');
+
+//GRAPHIQUE CONSOLETVs/CHARTS
+Route::get('/cofinaml/analyse/index', 'analysemlController@index')->name('ml.analyse.index');
+Route::get('/cofinaml/analyse/entite', 'Analyse_entitemlController@entite')->name('ml.analyse.entite');
+Route::get('/cofinaml/analyse/genre', 'Analyse_entitemlController@genre')->name('ml.analyse.genre');
+Route::get('/cofinaml/analyse/contrat', 'Analyse_contratmlController@contrat')->name('ml.analyse.contrat');
+
+//GESTION DES CONTRATS
+Route::get('/cofinaml/contrats', 'ContratmlController@index')->name('ml.contrats');
+Route::get('/cofinaml/contrats/index', 'ContratmlController@index')->name('ml.contrats.index');
+Route::get('/cofinaml/contrats/undefined', 'ContratmlController@index')->name('ml.contrats.undefined');
+Route::get('/cofinaml/contrats/{id}/edit', 'ContratmlController@edit')->name('ml.contrats.edit');
+Route::post('/cofinaml/contrats/{id}', 'ContratmlController@update')->name('ml.contrats.update');
+Route::get('/cofinaml/contrats/{id}', 'ContratmlController@show')->name('ml.contrats.show');
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
+    return view('/');
+});
+*/
+
+
+
+
+Route::group([
+  'middleware' =>'App\Http\Middleware\Auth',
+],function (){
+
+    //****************************************************************
+    // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA CONGO
+    //****************************************************************
+
+  //GESTION DU POSTE
+  Route::get('/cofinacg/postes/{id}/edit', 'PostecgController@edit')->name('cg.postes.edit');
+  Route::post('/cofinacg/postes/{id}', 'PostecgController@update')->name('cg.postes.update');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/cofinacg/experiences/{id}/edit', 'ExperiencecgController@edit')->name('cg.experiences.edit');
+  Route::post('/cofinacg/experiences/{id}', 'ExperiencecgController@store')->name('cg.experiences.store');
+
+  //GESTION DE LA FORMATION
+  Route::get('/cofinacg/formations/{id}/edit', 'FormationcgController@edit')->name('cg.formations.edit');
+  Route::post('/cofinacg/formations/{id}', 'FormationcgController@store')->name('cg.formations.store');
+
+  //PAGE D'ACCUEIL DU MASTER GROUPE
+    Route::post('/cofinacg/accueil', 'ComptecgController@accueil')->name('cg.accueil');
+    Route::get('/cofinacg/accueil', 'ComptecgController@accueil')->name('cg.accueil');
+    Route::get('/cofinacg/accueil', 'ComptecgController@senegal')->name('cg.accueil');
+
+  //TABLEAU DE BOARD DES EMPLOYES
+  Route::get('/cofinacg/employes', 'EmployecgController@index')->name('cg.main');
+  Route::get('/cofinacg/employes/create', 'EmployecgController@create')->name('cg.create');
+  Route::post('/cofinacg/employes', 'EmployecgController@store')->name('cg.store');
+  Route::put('/cofinacg/employes/{id}', 'EmployecgController@update')->name('cg.update');
+  Route::get('/cofinacg/employes/{id}', 'EmployecgController@show')->name('cg.show');
+  Route::get('/cofinacg/employes/{id}/edit', 'EmployecgController@edit')->name('cg.edit');
+  Route::delete('/cofinacg/employes/{id}', 'EmployecgController@destroy')->name('cg.destroy');
+
+  //GESTIONS DES CONGES
+  Route::get('/cofinacg/conges/index', 'CongecgController@index')->name('cg.conges.index');
+  Route::get('/cofinacg/conges/{id}/edit', 'CongecgController@edit')->name('cg.conges.edit');
+  Route::post('/cofinacg/conges/{id}', 'CongecgController@store')->name('cg.conges.store');
+
+  //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
+  Route::get('/cofinacg/reportings/export', 'ReportingcgController@export')->name('cg.reportings.export');
+  Route::get('/cofinacg/reportings/index', 'ReportingcgController@index')->name('cg.reportings.index');
+  Route::get('/cofinacg/reportings/exportdata', 'ExcelcgController@exportdata')->name('cg.reportings.exportdata');
+
+  //GRAPHIQUE CONSOLETVs/CHARTS
+  Route::get('/cofinacg/analyse/index', 'analysecgController@index')->name('cg.analyse.index');
+  Route::get('/cofinacg/analyse/entite', 'Analyse_entitecgController@entite')->name('cg.analyse.entite');
+  Route::get('/cofinacg/analyse/genre', 'Analyse_entitecgController@genre')->name('cg.analyse.genre');
+  Route::get('/cofinacg/analyse/contrat', 'Analyse_contratcgController@contrat')->name('cg.analyse.contrat');
+
+  //GESTION DES CONTRATS
+  Route::get('/cofinacg/contrats', 'ContratcgController@index')->name('cg.contrats');
+  Route::get('/cofinacg/contrats/index', 'ContratcgController@index')->name('cg.contrats.index');
+  Route::get('/cofinacg/contrats/undefined', 'ContratcgController@index')->name('cg.contrats.undefined');
+  Route::get('/cofinacg/contrats/{id}/edit', 'ContratcgController@edit')->name('cg.contrats.edit');
+  Route::post('/cofinacg/contrats/{id}', 'ContratcgController@update')->name('cg.contrats.update');
+  Route::get('/cofinacg/contrats/{id}', 'ContratcgController@show')->name('cg.contrats.show');
+
+  //****************************************************************
   // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA GN
   //****************************************************************
 
@@ -55,41 +191,6 @@ Route::get('/cofinagn/contrats/undefined', 'ContratgnController@index')->name('g
 Route::get('/cofinagn/contrats/{id}/edit', 'ContratgnController@edit')->name('gn.contrats.edit');
 Route::post('/cofinagn/contrats/{id}', 'ContratgnController@update')->name('gn.contrats.update');
 Route::get('/cofinagn/contrats/{id}', 'ContratgnController@show')->name('gn.contrats.show');
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('/');
-});
-*/
-
-
-
-
-Route::group([
-  'middleware' =>'App\Http\Middleware\Auth',
-],function (){
-
-
-
-
-
-
-
 
 
   //****************************************************************

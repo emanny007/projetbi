@@ -102,65 +102,13 @@
                   @endif
                 </div>
 
-
-                <div class="row">
-                <div class="col-6 has-warning form-group">
-                  <label for="inputIsValid" class=" form-control-label">DEPARTEMENT</label>
-                    <select name="departements" id="selectLg" class="is-invalid form-control form-control">
-                      <option>ALL</option>
-                      <option>RESSOURCE HUMAINE</option>
-                      <option>INFORMATIQUE</option>
-                      <option>FINANCE</option>
-                      <option>AUDIT</option>
-                      <option>CONTROL INTERNE</option>
-                      <option>DMCC</option>
-                      <option>DIRECTION</option>
-                      <option>TRANSFORMATION</option>
-                    </select>
-                </div>
-
-                <div class="col-6 has-warning form-group">
-                  <label for="inputIsValid" class=" form-control-label">SECTEUR</label>
-                    <select name="secteur" id="selectLg" class="is-invalid form-control form-control">
-                      <option>ALL</option>
-                      <option value="SALES">SALES</option>
-                      <option value="NON SALES">NON SALES</option>
-                    </select>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-6 has-warning form-group">
-                  <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
-                    <select name="departements" id="selectLg" class="is-invalid form-control form-control">
-                      <option>ALL</option>
-                      <option>STAGE</option>
-                      <option>PRESTATION</option>
-                      <option>CDD</option>
-                      <option>CDI</option>
-                    </select>
-                </div>
-
-                <div class="col-6 has-warning form-group">
-                  <label for="inputIsValid" class=" form-control-label">CATEGORIE</label>
-                    <select name="secteur" id="selectLg" class="is-invalid form-control form-control">
-                      <option>ALL</option>
-                      <option value="SALES">CADRE</option>
-                      <option value="NON SALES">NON CADRE</option>
-                    </select>
-                </div>
-              </div>
-
-
-
-
             <div>
               <br />
               <center>
-                <!--button id="payment-button" type="submit" class="btn btn-lg btn-danger">
+                <button id="payment-button" type="submit" class="btn btn-lg btn-danger">
                     <i class="fa fa-download fa-lg"></i>&nbsp;
                     <span id="payment-button-amount">Exporter</span>
-                </button--->
+                </button>
               </center>
             </div>
           </form>

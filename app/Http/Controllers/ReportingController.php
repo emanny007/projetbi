@@ -12,6 +12,11 @@ use App\Site;
 use App\Employe;
 use DB;
 
+use App\Contrat;
+use App\Departement;
+use App\Groupe;
+
+
 //use Excel;
 
 class EmployesExport implements FromCollection
@@ -48,9 +53,13 @@ class ReportingController extends Controller
     public function index()
     {
       $employes=Employe::all();
-       $sites=Site::all();
+       $departements= Departement::all();
+       $sites= Site::where('pays','<>','NULL')->get();
+
+
         return view('reportings/index',[
         'sites' => $sites,
+        '$departements' => $departements,
         'employes' => $employes,
       ]);
     }
