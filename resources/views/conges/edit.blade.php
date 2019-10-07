@@ -45,15 +45,19 @@
 
                                                     <td>Entite: {{ $employe->entite }}</td>
 
+                                                    <td>ACTION</td>
+
                                                 </tr>
 
                                                 @foreach ($conge as $conge)
                                                 <tr>
-                                                    <td>Date Demande:  {{ date('d-m-Y', strtotime($conge->date_demande)) }}</td>
+                                                    <td>Demande:  {{ date('d-m-Y', strtotime($conge->date_demande)) }}</td>
                                                     <td>Type De Conge: {{ $conge->type_conge }}</td>
-                                                    <td>Date Depart: {{ date('d-m-Y', strtotime($conge->date_depart)) }}</td>
-                                                    <td>Date Retour: {{ date('d-m-Y', strtotime($conge->date_retour)) }}</td>
+                                                    <td>Depart: {{ date('d-m-Y', strtotime($conge->date_depart)) }}</td>
+                                                    <td>Retour: {{ date('d-m-Y', strtotime($conge->date_retour)) }}</td>
                                                     <td>Commentaire: {{ $conge->commentaire }}</td>
+                                                    <td><form action="{{ route('conges.destroy', $conge->id) }}" method="post" onsubmit = 'ConfirmDelete()'><button class="btn btn-danger" type="submit">
+                                                        <span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

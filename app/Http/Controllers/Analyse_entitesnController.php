@@ -59,6 +59,7 @@ class Analyse_entitesnController extends Controller
               ->groupBy('sexe');
 
 //*************************************************
+//*************************************************
 $a=Employe::where('sexe','MASCULIN')->where('entite','CTI')->count();
 $b=Employe::where('sexe','MASCULIN')->where('entite','CSG')->count();
 $c=Employe::where('sexe','MASCULIN')->where('entite','COFINA GN')->count();
@@ -66,6 +67,11 @@ $d=Employe::where('sexe','MASCULIN')->where('entite','COFINA SN')->count();
 $e=Employe::where('sexe','MASCULIN')->where('entite','COFINA ML')->count();
 $f=Employe::where('sexe','MASCULIN')->where('entite','COFINA CG')->count();
 $g=Employe::where('sexe','MASCULIN')->where('entite','CAC')->count();
+$h=Employe::where('sexe','MASCULIN')->where('entite','COFINA BF')->count();
+$v=Employe::where('sexe','MASCULIN')->where('entite','CPS SN')->count();
+$w=Employe::where('sexe','MASCULIN')->where('entite','CPS ML')->count();
+$x=Employe::where('sexe','MASCULIN')->where('entite','CPS CI')->count();
+$y=Employe::where('sexe','MASCULIN')->where('entite','COFINA SERVICE FRANCE')->count();
 
 
 $i=Employe::where('sexe','FEMININ')->where('entite','CTI')->count();
@@ -75,6 +81,12 @@ $l=Employe::where('sexe','FEMININ')->where('entite','COFINA SN')->count();
 $m=Employe::where('sexe','FEMININ')->where('entite','COFINA ML')->count();
 $n=Employe::where('sexe','FEMININ')->where('entite','COFINA CG')->count();
 $o=Employe::where('sexe','FEMININ')->where('entite','CAC')->count();
+$p=Employe::where('sexe','FEMININ')->where('entite','COFINA BF')->count();
+$q=Employe::where('sexe','FEMININ')->where('entite','CPS SN')->count();
+$r=Employe::where('sexe','FEMININ')->where('entite','CPS ML')->count();
+$s=Employe::where('sexe','FEMININ')->where('entite','CPS CI')->count();
+$t=Employe::where('sexe','FEMININ')->where('entite','COFINA SERVICE FRANCE')->count();
+
 
 
 $data = Charts::multi('bar', 'c3')
@@ -88,10 +100,10 @@ $data = Charts::multi('bar', 'c3')
 //->colors(['#2196F3', '#F44336', '#FFC107'])
 ->colors(['#2C75FF', '#FF0000'])
 // Setup the diferent datasets (this is a multi chart)
-->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g])
-->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o])
+->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g,$h,$v,$w,$x,$y])
+->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o,$p,$q,$r,$s,$t])
 // Setup what the values mean
-->labels(['CTI', 'CSG', 'COFINA GN','COFINA SN','COFINA ML','COFINA CG','CAC']);
+->labels(['CTI', 'CSG', 'COFINA GN','COFINA SN','COFINA ML','COFINA CG','CAC','COFINA BF','CPS SN','CPS ML','CPS CI','COFINA SERVICE FRANCE']);
 
 
 //************************************************

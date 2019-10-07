@@ -52,10 +52,7 @@ class SiteController extends Controller
       $request->validate([
 
          'photo' => 'required',
-         'nationnalite' => 'required',
-         'pays' => 'required',
-
-       ]
+         ]
 );
         //  Employe::create($request->all());
 
@@ -105,8 +102,10 @@ class SiteController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+      $sites = Site::findOrFail($id);
+
+      return view('parametres.sites.edit',['sites' => $sites]);
+  }
 
     /**
      * Update the specified resource in storage.
@@ -117,7 +116,25 @@ class SiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+      $today = date("Y-m-d H:i:s");
+      $sites = Site::findOrFail($id);
+
+      $sites->entite = strtoupper($request->get('entite'));
+      $sites->pays = strtoupper($request->get('pays'));
+      $sites->nationnalite = strtoupper($request->get('nationnalite'));
+      $sites->updated_at=$today;
+
+      if($request->hasFile('drapeau')){
+        $drapeau = $request->file('drapeau');
+        $filename= $request->drapeau->getClientOriginalName();
+        Image::make($drapeau)->save(public_path('/images/drapeau/'.$filename));
+        $sites->lien = $filename;
+      }
+
+      $sites->save();
+
+      return redirect('/parametres/sites')->with('success', 'successfull !!!');
     }
 
     /**
@@ -128,6 +145,9 @@ class SiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $sites = Site::findOrFail($id);
+      $sites->delete();
+      return redirect('/parametres/sites')->with('success', 'Sorry :( Entite deleted!');
+
     }
 }

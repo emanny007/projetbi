@@ -1,5 +1,133 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
+    return view('/');
+});
+*/
+
+
+
+
+Route::group([
+  'middleware' =>'App\Http\Middleware\Auth',
+],function (){
+
+  //***************************************************************
+  // PAGE D'ACCUEIL DU PROFIL MAKER CTI (DROIT LIMITE)
+  //***************************************************************
+
+  //Route::post('/accueil-checker', 'CompteController@accueil_checker')->name('accueil');
+  Route::post('/cti-maker/accueil', 'ComptectiController@accueil_maker')->name('cti.accueil');
+  Route::get('/cti-maker/accueil', 'ComptectiController@accueil_maker')->name('cti.accueil');
+  Route::get('/cti-maker/accueil', 'ComptectiController@accueil_liste_entite')->name('cti-entite.accueil');
+
+  //**************************
+  Route::get('/cti-maker/employes', 'EmployectiController@index')->name('cti.index-employe');
+  Route::get('/cti-maker/employes/create-employe', 'EmployectiController@create')->name('cti.create-employe');
+  Route::post('/cti-maker/employes', 'EmployectiController@store')->name('cti.store-employe');
+  Route::put('/cti-maker/employes/{id}', 'EmployectiController@update')->name('cti.update-employe');
+  Route::get('/cti-maker/employes/{id}', 'EmployectiController@show')->name('cti.show-employe');
+  Route::get('/cti-maker/employes/{id}/edit-employe', 'EmployectiController@edit')->name('cti.edit-employe');
+  Route::delete('/cti-maker/employes/destroy-employe/{id}', 'EmployectiController@destroy')->name('cti.destroy-employe');
+
+
+  //GESTIONS DES CONGES
+  Route::get('/cti-maker/conges/index', 'CongectiController@index')->name('cti.conges.index');
+  Route::get('/cti-maker/conges/{id}/edit', 'CongectiController@edit')->name('cti.conges.edit');
+  Route::post('/cti-maker/conges/{id}', 'CongectiController@store')->name('cti.conges.store');
+
+  //GESTION DU POSTE MAKER CTI
+  Route::get('/cti-maker/postes/{id}/edit', 'PostectiController@edit')->name('cti.postes.edit');
+  Route::post('/cti-maker/postes/{id}', 'PostectiController@update')->name('cti.postes.update');
+
+  //GESTION DE CONTRAT MAKER CTI
+  Route::get('/cti-maker/contrats/{id}/edit', 'ContratctiController@edit')->name('cti.contrats.edit');
+  Route::post('/cti-maker/contrats/{id}', 'ContratctiController@update')->name('cti.contrats.update');
+  //GESTION
+  Route::get('/cti-maker/postes/{id}/edit', 'PostesctiController@edit')->name('cti.postes.edit');
+
+  Route::get('/cti-maker/experiences/{id}/edit', 'ExperiencectiController@edit')->name('cti.experiences.edit');
+
+  //GESTION DE LA FORMATION
+  Route::get('/cti-maker/formations/{id}/edit', 'FormationctiController@edit')->name('cti.formations.edit');
+  Route::post('/cti-maker/formations/{id}', 'FormationctiController@store')->name('cti.formations.store');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/cti-maker/experiences/{id}/edit', 'ExperiencectiController@edit')->name('cti.experiences.edit');
+  Route::post('/cti-maker/experiences/{id}', 'ExperiencectiController@store')->name('cti.experiences.store');
+
+
+  //****************************************************************
+  // PAGE D'ACCUEIL PROFIL MAKER DE LA FILIALE FINELLE
+  //****************************************************************
+
+  //GESTION DU POSTE
+  Route::get('/finelle/postes/{id}/edit', 'PostefineController@edit')->name('fine.postes.edit');
+  Route::post('/finelle/postes/{id}', 'PostefineController@update')->name('fine.postes.update');
+
+  //GESTION DE L'EXPERIENCE PROFESSIONNELLE
+  Route::get('/finelle/experiences/{id}/edit', 'ExperiencefineController@edit')->name('fine.experiences.edit');
+  Route::post('/finelle/experiences/{id}', 'ExperiencefineController@store')->name('fine.experiences.store');
+
+  //GESTION DE LA FORMATION
+  Route::get('/finelle/formations/{id}/edit', 'FormationfineController@edit')->name('fine.formations.edit');
+  Route::post('/finelle/formations/{id}', 'FormationfineController@store')->name('fine.formations.store');
+
+  //PAGE D'ACCUEIL DU MASTER GROUPE
+  Route::post('/finelle/accueil', 'ComptefineController@accueil')->name('fine.accueil');
+  Route::get('/finelle/accueil', 'ComptefineController@accueil')->name('fine.accueil');
+  Route::get('/finelle/accueil', 'ComptefineController@senegal')->name('fine.accueil');
+
+  //TABLEAU DE BOARD DES EMPLOYES
+  Route::get('/finelle/employes', 'EmployefineController@index')->name('fine.main');
+  Route::get('/finelle/employes/create', 'EmployefineController@create')->name('fine.create');
+  Route::post('/finelle/employes', 'EmployefineController@store')->name('fine.store');
+  Route::put('/finelle/employes/{id}', 'EmployefineController@update')->name('fine.update');
+  Route::get('/finelle/employes/{id}', 'EmployefineController@show')->name('fine.show');
+  Route::get('/finelle/employes/{id}/edit', 'EmployefineController@edit')->name('fine.edit');
+  Route::delete('/finelle/employes/{id}', 'EmployefineController@destroy')->name('fine.destroy');
+
+  //GESTIONS DES CONGES
+  Route::get('/finelle/conges/index', 'CongefineController@index')->name('fine.conges.index');
+  Route::get('/finelle/conges/{id}/edit', 'CongefineController@edit')->name('fine.conges.edit');
+  Route::post('/finelle/conges/{id}', 'CongefineController@store')->name('fine.conges.store');
+
+  //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
+  Route::get('/finelle/reportings/index', 'ReportingfineController@export')->name('fine.reportings.export');
+  Route::post('/finelle/reportings/index', 'ReportingfineController@index')->name('fine.reportings.index');
+  Route::get('/finelle/reportings/exportdata', 'ExcelfineController@exportdata')->name('fine.reportings.exportdata');
+
+
+  //GRAPHIQUE CONSOLETVs/CHARTS
+  Route::get('/finelle/analyse/index', 'analysefineController@index')->name('fine.analyse.index');
+  Route::get('/finelle/analyse/entite', 'Analyse_entitefineController@entite')->name('fine.analyse.entite');
+  Route::get('/finelle/analyse/genre', 'Analyse_entitefineController@genre')->name('fine.analyse.genre');
+  Route::get('/finelle/analyse/contrat', 'Analyse_contratfineController@contrat')->name('fine.analyse.contrat');
+  Route::get('/finelle/analyse/indicateur', 'Analyse_indicateurfineController@indicateur')->name('fine.analyse.indicateur');
+  Route::post('/finelle/analyse/indicateur', 'Analyse_indicateurfineController@indicateur')->name('fine.analyse.indicateur');
+
+  //GESTION DES CONTRATS
+  Route::get('/finelle/contrats', 'ContratfineController@index')->name('fine.contrats');
+  Route::get('/finelle/contrats/index', 'ContratfineController@index')->name('fine.contrats.index');
+  Route::get('/finelle/contrats/undefined', 'ContratfineController@index')->name('fine.contrats.undefined');
+  Route::get('/finelle/contrats/{id}/edit', 'ContratfineController@edit')->name('fine.contrats.edit');
+  Route::post('/finelle/contrats/{id}', 'ContratfineController@update')->name('fine.contrats.update');
+  Route::get('/finelle/contrats/{id}', 'ContratfineController@show')->name('fine.contrats.show');
 
 
   //****************************************************************
@@ -56,33 +184,6 @@ Route::get('/cofinaml/contrats/{id}/edit', 'ContratmlController@edit')->name('ml
 Route::post('/cofinaml/contrats/{id}', 'ContratmlController@update')->name('ml.contrats.update');
 Route::get('/cofinaml/contrats/{id}', 'ContratmlController@show')->name('ml.contrats.show');
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return view('/');
-});
-*/
-
-
-
-
-Route::group([
-  'middleware' =>'App\Http\Middleware\Auth',
-],function (){
 
     //****************************************************************
     // PAGE D'ACCUEIL DU PROFIL MAKER FILIALE COFINA CONGO
@@ -283,15 +384,18 @@ Route::get('/csg/contrats/{id}', 'ContratcsgController@show')->name('csg.contrat
   Route::post('/cac/conges/{id}', 'CongecacController@store')->name('cac.conges.store');
 
   //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
-  Route::get('/cac/reportings/export', 'ReportingcacController@export')->name('cac.reportings.export');
-  Route::get('/cac/reportings/index', 'ReportingcacController@index')->name('cac.reportings.index');
+  Route::get('/cac/reportings/index', 'ReportingcacController@export')->name('cac.reportings.export');
+  Route::post('/cac/reportings/index', 'ReportingcacController@index')->name('cac.reportings.index');
   Route::get('/cac/reportings/exportdata', 'ExcelcacController@exportdata')->name('cac.reportings.exportdata');
+
 
   //GRAPHIQUE CONSOLETVs/CHARTS
   Route::get('/cac/analyse/index', 'analysecacController@index')->name('cac.analyse.index');
   Route::get('/cac/analyse/entite', 'Analyse_entitecacController@entite')->name('cac.analyse.entite');
   Route::get('/cac/analyse/genre', 'Analyse_entitecacController@genre')->name('cac.analyse.genre');
   Route::get('/cac/analyse/contrat', 'Analyse_contratcacController@contrat')->name('cac.analyse.contrat');
+  Route::get('/cac/analyse/indicateur', 'Analyse_indicateurcacController@indicateur')->name('cac.analyse.indicateur');
+  Route::post('/cac/analyse/indicateur', 'Analyse_indicateurcacController@indicateur')->name('cac.analyse.indicateur');
 
   //GESTION DES CONTRATS
   Route::get('/cac/contrats', 'ContratcacController@index')->name('cac.contrats');
@@ -447,17 +551,7 @@ Route::get('/csg/contrats/{id}', 'ContratcsgController@show')->name('csg.contrat
   Route::get('/cofinasn-checker/experiences/{id}/edit', 'ExperiencesnckController@edit')->name('snck.experiences.edit');
   Route::post('/cofinasn-checker/experiences/{id}', 'ExperiencesnckController@store')->name('snck.experiences.store');
 
-  //******************
-
-
-
-
-
-
-
-
-
-
+  //*******************************************************************************************************************************
 
 
 
@@ -471,10 +565,12 @@ Route::post('/postes/{id}', 'PosteController@update')->name('postes.update');
 //GESTION DE L'EXPERIENCE PROFESSIONNELLE
 Route::get('/experiences/{id}/edit', 'ExperienceController@edit')->name('experiences.edit');
 Route::post('/experiences/{id}', 'ExperienceController@store')->name('experiences.store');
+Route::delete('/experiences/{id}', 'ExperienceController@destroy')->name('experiences.destroy');
 
 //GESTION DE LA FORMATION
 Route::get('/formations/{id}/edit', 'FormationController@edit')->name('formations.edit');
 Route::post('/formations/{id}', 'FormationController@store')->name('formations.store');
+Route::delete('/formations/{id}', 'FormationController@destroy')->name('formations.destroy');
 
 //PAGE D'ACCUEIL DU MASTER GROUPE
   Route::post('/accueil', 'CompteController@accueil')->name('accueil');
@@ -498,6 +594,15 @@ Route::get('/employes/{id}/edit', 'EmployeController@edit')->name('edit');
 Route::delete('/employes/{id}', 'EmployeController@destroy')->name('destroy');
 //Route::get('/employe/afficher', 'EmployeController@afficher');
 
+//CRUD DES PROFILS USERS
+Route::get('/parametres/users', 'UserController@index')->name('users.index');
+Route::get('/parametres/users/create', 'UserController@create')->name('users.create');
+Route::post('/parametres/users', 'UserController@store')->name('users.store');
+Route::put('/parametres/users/{id}', 'UserController@update')->name('users.update');
+Route::get('/parametres/users/{id}', 'UserController@show')->name('users.show');
+Route::get('/parametres/users/{id}/edit', 'UserController@edit')->name('users.edit');
+Route::delete('/parametres/users/{id}', 'UserController@destroy')->name('users.destroy');
+
 
 //CRUD DES DEPARTEMENTS
 Route::get('/parametres/departements', 'DepartementController@index')->name('departements.index');
@@ -509,6 +614,7 @@ Route::get('/parametres/departements/{id}/edit', 'DepartementController@edit')->
 Route::delete('/parametres/departements/{id}', 'DepartementController@destroy')->name('departements.destroy');
 
 //CRUD DES SITES
+
 Route::get('/parametres/sites', 'SiteController@index')->name('sites.index');
 Route::get('/parametres/sites/create', 'SiteController@create')->name('sites.create');
 Route::post('/parametres/sites', 'SiteController@store')->name('sites.store');
@@ -521,10 +627,12 @@ Route::delete('/parametres/sites/{id}', 'SiteController@destroy')->name('sites.d
 Route::get('/conges/index', 'CongeController@index')->name('conges.index');
 Route::get('/conges/{id}/edit', 'CongeController@edit')->name('conges.edit');
 Route::post('/conges/{id}', 'CongeController@store')->name('conges.store');
+Route::delete('/conges/{id}', 'CongeController@destroy')->name('conges.destroy');
 
 //GESTIONS DES EXTRACTIONS VERS DES FORMATS EXCEL
-Route::get('/reportings/export', 'ReportingController@export')->name('reportings.export');
-Route::get('/reportings/index', 'ReportingController@index')->name('reportings.index');
+Route::get('/reportings/index', 'ReportingController@export')->name('reportings.export');
+//Route::get('/reportings/index', 'ReportingController@index')->name('reportings.index');
+Route::post('/reportings/index', 'ReportingController@index')->name('reportings.index');
 Route::get('/reportings/exportdata', 'ExcelController@exportdata')->name('reportings.exportdata');
 
 //GRAPHIQUE CONSOLETVs/CHARTS
@@ -532,6 +640,8 @@ Route::get('/analyse/index', 'analyseController@index')->name('analyse.index');
 Route::get('/analyse/entite', 'Analyse_entiteController@entite')->name('analyse.entite');
 Route::get('/analyse/genre', 'Analyse_entiteController@genre')->name('analyse.genre');
 Route::get('/analyse/contrat', 'Analyse_contratController@contrat')->name('analyse.contrat');
+Route::get('/analyse/indicateur', 'Analyse_indicateurController@indicateur')->name('analyse.indicateur');
+Route::post('/analyse/indicateur', 'Analyse_indicateurController@indicateur')->name('analyse.indicateur');
 
 //GESTION DES CONTRATS
 Route::get('/contrats', 'ContratController@index')->name('contrats');

@@ -41,6 +41,7 @@
   @yield('analyse_employe')
   @yield('analyse_genre')
   @yield('analyse_contrat')
+  @yield('analyse_indicateur')
 
 
   @yield('liste_contrat')

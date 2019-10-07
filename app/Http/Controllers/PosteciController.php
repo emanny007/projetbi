@@ -22,7 +22,7 @@ class PosteciController extends Controller
   //$poste = Poste::where('employe_id', $id)->get();
   $poste=DB::table('employes')->select('employe_id','employes.id','employes.matricule','employes.nom','employes.prenom','employes.sexe','employes.departement','employes.categorie','employes.secteur','employes.entite','employes.email','postes.intitule','postes.fonction',
   'postes.grade_local','postes.grade_cofina','postes.fonction_n1','postes.date_embauche','postes.date_entree','postes.anciennete')
-   ->join('postes','employes.id','=','postes.id')->where('employe_id', '=', $id)->get()->first();
+   ->join('postes','employes.id','=','postes.employe_id')->where('employe_id', '=', $id)->get()->first();
     //  $formation=Formation::all($id);
     $employe = Employe::findOrFail($id);
      return view('cote-d-ivoire.postes.edit', compact('employe','poste'));

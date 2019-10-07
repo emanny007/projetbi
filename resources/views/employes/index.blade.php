@@ -25,9 +25,10 @@
                                           <center><label for="inputIsValid" align="center"><strong>GESTION DES EMPLOYES</strong></label></center>
                                           <!-- DATA TABLE-->
                                           <div class="table-responsive table m-b-40">
-                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-order='[[ 1, "desc" ]]' data-page-length='100' style="width:100%">
+                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-order='[[ 0, "desc" ]]' data-page-length='100' style="width:100%">
                                                   <thead>
                                                       <tr>
+                                                        <th>ID</th>
                                                           <th>MATRICULE</th>
                                                           <th>NOM</th>
                                                           <th>PRENOM</th>
@@ -39,6 +40,7 @@
                                                   <tbody>
                                                     @foreach ($employes as $employe)
                                                       <tr>
+                                                        <td>{{ $employe->id }}</td>
                                                           <td>{{ $employe->matricule }}</td>
                                                           <td>{{ $employe->nom }}</td>
                                                           <td>{{ $employe->prenom }}</td>
@@ -46,8 +48,10 @@
                                                           <td>{{ $employe->entite }}</td>
                                                           <td><a class="btn btn-xs btn-info" href="{{ route('show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
                                                             <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-edit"></span></a>
-                                                            <!--form action="{{ route('destroy', $employe->id) }}" method="post">
-                                                            <button class="btn btn-danger" type="submit"><span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form-->
+
+                                                            <form action="{{ route('destroy', $employe->id) }}" method="post" onsubmit = 'ConfirmDelete()'>
+                                                            <button class="btn btn-danger" type="submit"><span class="fas fa-archive"></span></button>@csrf @method('DELETE')
+                                                           </form>
                                                         </td>
                                                       </tr>
                                                     @endforeach
@@ -61,6 +65,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

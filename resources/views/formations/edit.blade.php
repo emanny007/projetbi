@@ -45,16 +45,18 @@
 
                                                     <td>Entite: {{ $employe->entite }}</td>
 
+                                                    <td>Action</td>
                                                 </tr>
-
 
                                                 @foreach ($formation as $formation)
                                                 <tr>
                                                     <td>Formation: {{ $formation->libelle }}</td>
-                                                    <td>Nbre Heure: {{ $formation->nbre_heure }}</td>
+                                                    <td>Ets: {{ $formation->nbre_heure }}</td>
                                                     <td>Cout: {{ $formation->cout }}</td>
-                                                    <td>Date Debut: {{ $formation->date_debut }}</td>
-                                                    <td>Date Fin: {{ $formation->date_fin }}</td>
+                                                    <td>Debut: {{ $formation->date_debut }}</td>
+                                                    <td>Fin: {{ $formation->date_fin }}</td>
+                                                    <td><form action="{{ route('formations.destroy', $formation->id) }}" method="post" onsubmit = 'ConfirmDelete()'><button class="btn btn-danger" type="submit">
+                                                        <span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -71,7 +73,7 @@
                       <form name="form1" class="form-horizontal" method="POST" action="{{ route('formations.store',$employe->id)}}">
                         {{ csrf_field() }}
                         <div class="row">
-                          <div class="col-4 has-success form-group">
+                          <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">INTITULE DE LA FORMATION</label>
                           <input type="text" id="inputIsValid" name="libelle" class="is-valid form-control-success form-control">
                           <input type="hidden" value="{{ $employe->id }}" name="id_empl"/>
@@ -80,8 +82,8 @@
                           <p> {{ $errors->first('libelle') }} </p>
                           @endif
 
-                          <div class="col-2 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">NOMBRE HEURE</label>
+                          <div class="col-3 has-success form-group">
+                          <label for="inputIsValid" class=" form-control-label">ETABLISSEMENT</label>
                           <input type="text" id="inputIsValid" name="nbre_heure" class="is-valid form-control-success form-control">
                           </div>
                           @if($errors->has('nbre_heure'))

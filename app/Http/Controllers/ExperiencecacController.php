@@ -24,8 +24,6 @@ class ExperiencecacController extends Controller
      return view('cac.experiences.edit', compact('employe','experience'));
   }
 
-
-
     public function store(Request $request)
     {
       $experience = new Experience([

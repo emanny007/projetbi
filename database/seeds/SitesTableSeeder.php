@@ -52,7 +52,7 @@ class SitesTableSeeder extends Seeder
       [
         'pays' => 'COTE D IVOIRE',
         'entite' => 'CAC',
-        'nationnalite' => 'IVOIRIENNEE',
+        'nationnalite' => 'IVOIRIENNE',
         'lien' => 'ci.png',
       ],
       [

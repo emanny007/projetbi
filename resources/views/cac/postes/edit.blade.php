@@ -61,6 +61,7 @@
                     <div class="card-body card-block">
                       <form name="form1" class="form-horizontal" method="POST" action="{{ route('cac.postes.update',$employe->id)}}">
                         {{ csrf_field() }}
+
                         <div class="row">
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">Intitule du poste</label>
@@ -76,17 +77,7 @@
                           <p> {{ $errors->first('intitule') }} </p>
                           @endif
 
-                          <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">Fonction</label>
-                          @if(!empty($poste))
-                          <input type="text" id="inputIsValid" name="fonction" value="{{ $poste->fonction }}" class="is-valid form-control-success form-control">
-                          @else
-                            <input type="text" id="inputIsValid" name="fonction" class="is-valid form-control-success form-control">
-                          @endif
-                          </div>
-                          @if($errors->has('fonction'))
-                          <p> {{ $errors->first('fonction') }} </p>
-                          @endif
+
 
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">Grade Local</label>
@@ -112,10 +103,54 @@
                             <p> {{ $errors->first('grade_cofina') }} </p>
                             @endif
 
+                            <div class="col-3 has-success form-group">
+                            <label for="inputIsValid" class=" form-control-label">Anciennete</label>
+                            <select name="anciennete" id="selectLg" class="is-valid form-control form-control">
+                            @if(!empty($poste))
+                            <option value="{{ $poste->anciennete }}">{{ $poste->anciennete }}</option>
+                            @else
+                            <option></option>
+                            @endif
+                            <option value="1 AN">1 AN</option>
+                            <option value="2 ANS">2 ANS</option>
+                            <option value="3 ANS">3 ANS</option>
+                            <option value="4 ANS">4 ANS</option>
+                            <option value="5 ANS">5 ANS</option>
+                            <option value="6 ANS">6 ANS</option>
+                            <option value="7 ANS">7 ANS</option>
+                            <option value="8 ANS">8 ANS</option>
+                            <option value="9 ANS">9 ANS</option>
+                            <option value="10 ANS">10 ANS</option>
+                            <option value="11 ANS">11 ANS</option>
+                            <option value="12 ANS">12 ANS</option>
+                            <option value="13 ANS">13 ANS</option>
+                            <option value="14 ANS">14 ANS</option>
+                            <option value="15 ANS">15 ANS</option>
+                            <option value="AUTRE"> >15 ANS</option>
+
+                            </select>
+                            </div>
+                            
+                            @if($errors->has('anciennete'))
+                            <p> {{ $errors->first('anciennete') }} </p>
+                            @endif
                         </div>
                           <div class="row">
+
+                            <div class="col-3 has-success form-group">
+                            <label for="inputIsValid" class=" form-control-label">Nom du n+1</label>
+                            @if(!empty($poste))
+                            <input type="text" id="inputIsValid" name="fonction" value="{{ $poste->fonction }}" class="is-valid form-control-success form-control">
+                            @else
+                              <input type="text" id="inputIsValid" name="fonction" class="is-valid form-control-success form-control">
+                            @endif
+                            </div>
+                            @if($errors->has('fonction'))
+                            <p> {{ $errors->first('fonction') }} </p>
+                            @endif
+
                           <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">Fonction N1</label>
+                          <label for="inputIsValid" class=" form-control-label">Fonction N+1</label>
                           @if(!empty($poste))
                           <input type="text" id="inputIsValid" name="fonction_n1" value="{{ $poste->fonction_n1 }}" class="is-valid form-control-success form-control">
                           @else
@@ -124,18 +159,6 @@
                           </div>
                           @if($errors->has('fonction_n1'))
                           <p> {{ $errors->first('fonction_n1') }} </p>
-                          @endif
-
-                          <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">Anciennete</label>
-                          @if(!empty($poste))
-                          <input type="text" id="inputIsValid" name="anciennete"  value="{{ $poste->anciennete }}" class="is-valid form-control-success form-control">
-                          @else
-                          <input type="text" id="inputIsValid" name="anciennete" class="is-valid form-control-success form-control">
-                          @endif
-                          </div>
-                          @if($errors->has('anciennete'))
-                          <p> {{ $errors->first('anciennete') }} </p>
                           @endif
 
                         <div class="col-3 has-success form-group">
@@ -162,6 +185,7 @@
                         @endif
                         </div>
                         <br />
+
                       <div class="form-group"> <center>
                         <a class="btn btn-xs btn-danger" href="{{ route('cac.main') }}">RETOURNER</a>
                     <button type="submit"  class="btn btn-success">MODIFIER</button>

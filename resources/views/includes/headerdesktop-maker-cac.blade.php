@@ -43,6 +43,9 @@
                             <li>
                                 <a href="{{ url('/cac/analyse/contrat') }}"><i class="fas fa-folder-open"></i>Contrat</a>
                             </li>
+                            <li>
+                                <a href="{{ url('/cac/analyse/indicateur') }}"><i class="fas fa-folder-open"></i>Indicateur</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -51,8 +54,8 @@
                             <i class="fas fa-table"></i>
                             <span class="bot-line"></span>Congés</a>
                     </li>
-                    <li> <!-- url('/cofinasn/reportings/index') -->
-                        <a href="#">
+                    <li>
+                        <a href="{{ url('/cac/reportings/index') }}">
                             <i class="fas fa-upload"></i>
                             <span class="bot-line"></span>Extraction</a>
                     </li>

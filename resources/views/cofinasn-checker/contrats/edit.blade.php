@@ -69,7 +69,7 @@
                <strong></strong>
               </div>
                     <div class="card-body card-block">
-                      <form name="form1" class="form-horizontal" method="POST" action="{{ route('ci.contrats.update',$employe->id)}}">
+                      <form name="form1" class="form-horizontal" method="POST" action="{{ route('snck.contrats.update',$employe->id)}}">
                         {{ csrf_field() }}
                         <div class="row">
                         <div class="col-4 has-success form-group">
@@ -119,7 +119,7 @@
                         </div>
                         <br />
                       <div class="form-group"> <center>
-                        <a class="btn btn-xs btn-danger" href="{{ route('index-employe') }}">RETOURNER</a>
+                        <a class="btn btn-xs btn-danger" href="{{ route('snck.index-employe') }}">RETOURNER</a>
                     <button type="submit"  class="btn btn-success">VALIDER</button>
                   </center>
                   </div>

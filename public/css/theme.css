@@ -39,6 +39,11 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*-----------------------------------------------------*/
 /*                   GENERIC                           */
 /*-----------------------------------------------------*/
+
+#type_filtre {
+  margin:auto;
+  background-color : rgba(255,255,:155,0.5);
+}
 /* ----- Normalize ----- */
 * {
     margin: 0;

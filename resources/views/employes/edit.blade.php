@@ -24,7 +24,7 @@
                       </div>
 
                       <div class="card-body card-block">
-                      <form class="form-horizontal" method="POST" action="{{ route('update',$employe->id)}}">
+                      <form  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('update',$employe->id)}}">
 
                       {{ csrf_field() }}
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
@@ -180,16 +180,29 @@
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
-                        <input type="file" id="inputIsValid" name="photo" class="is-valid form-control-success form-control">
+                        <input type="file" id="inputIsValid" name="photo" value="/images/{{ $employe->photo }}" class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('photo'))
                       <p> {{ $errors->first('photo') }} </p>
                       @endif
 
-                      <div class="col-3 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
-                        <input type="text" id="inputIsValid" name="nbre_enfant" value="{{ $employe->nbre_enfant }}" class="is-valid form-control-success form-control">
+                    <div class="col-3 has-success form-group">
+                      <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
+                      <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control">
+                      <option value="{{ $employe->nbre_enfant }}">{{ $employe->nbre_enfant }}</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                      </select>
                       </div>
+
                       @if($errors->has('nbre_enfant'))
                       <p> {{ $errors->first('nbre_enfant') }} </p>
                       @endif
@@ -198,8 +211,8 @@
                           <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
                           <select name="nationnalite" id="selectLg" class="form-control is-valid form-control-success form-control">
                             <option value="{{ $employe->nationnalite }}">{{ $employe->nationnalite }}</option>
-                            @foreach($sites as $site)
-                            <option value="{{$site->nationnalite}}">{{$site->nationnalite}}</option>
+                            @foreach($nationnalite as $nationnalites)
+                            <option value="{{$nationnalites->nationnalite}}">{{$nationnalites->nationnalite}}</option>
                             @endforeach
                           </select>
                       </div>
@@ -209,12 +222,12 @@
 
 
                       <div class="col-3 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">ORIGINE</label>
-                        <select name="origine" id="selectLg" class="form-control is-valid form-control-success form-control">
-                          <option value="{{ $employe->origine }}">{{ $employe->origine }}</option>
-                          @foreach($sites as $site)
-                          <option value="{{$site->pays}}">{{$site->pays}}</option>
-                          @endforeach
+                        <label for="inputIsValid" class=" form-control-label">STATUT</label>
+                        <select name="statut" id="selectLg" class="form-control is-valid form-control-success form-control">
+                          <option value="{{ $employe->statut }}">{{ $employe->statut }}</option>
+                          <option value="ACTIVE">ACTIVE</option>
+                          <option value="DESACTIVE">DESACTIVE</option>
+
                         </select>
                       </div>
                       @if($errors->has('origine'))
@@ -262,8 +275,8 @@
                                       <label for="inputIsValid" class=" form-control-label">PAYS</label>
                                         <select name="pays" id="selectLg" class="is-valid form-control-success form-control">
                                           <option value="{{ $employe->pays }}">{{ $employe->pays }}</option>
-                                          @foreach($sites as $site)
-                                          <option value="{{$site->pays}}">{{$site->pays}}</option>
+                                          @foreach($pays as $pays)
+                                          <option value="{{$pays->pays}}">{{$pays->pays}}</option>
                                           @endforeach
                                         </select>
                                     </div>

@@ -15,6 +15,7 @@
           <label for="inputIsValid"><strong>CHOISIR UNE FILIALE</strong></label>
             <select name="choisir_entite" id="selectLg" onChange="this.form.submit();"  class="form-control is-valid form-control-success form-control">
               <option></option>
+              <option>ALL STAFF</option>
               @foreach($sites as $site)
               <option value="{{ $site->entite }}">{{ $site->entite }}</option>
               @endforeach
@@ -131,7 +132,7 @@
                             @foreach ($employes as $employe)
                               <tr>
                                 <td>{{ $employe->created_at }}</td>
-                                  <td>{{ $employe->matricule }}</td>
+                                  <!--td>{{ $employe->matricule }}</td-->
                                   <td>{{ $employe->nom }}</td>
                                   <td>{{ $employe->prenom }}</td>
                                   <td>{{ $employe->email }}</td>

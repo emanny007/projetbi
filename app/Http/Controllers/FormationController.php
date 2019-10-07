@@ -119,6 +119,9 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $formation = Formation::findOrFail($id);
+      $formation->delete();
+      //return redirect('/formations')->with('success', 'Formation deleted!');
+      return redirect()->back()->with('status','Formation deleted !!');
     }
 }

@@ -57,7 +57,7 @@ class ExperienceController extends Controller
 
       $experience->save();
       flash("Vos informations ont bien été ajoutées !!!")->success();
-      return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutés');
+      return redirect()->back()->with('success', 'Les informations renseignées ont bien été rajoutées');
     }
 
     /**
@@ -105,6 +105,9 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $experience = Experience::findOrFail($id);
+      $experience->delete();
+      return redirect()->back()->with('success', 'Experience deleted !');
+      //return redirect('experiences.edit')->with('success', 'Experience deleted!');
     }
 }

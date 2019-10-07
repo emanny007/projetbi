@@ -9,7 +9,7 @@
             <div class="col-sm-6 col-lg-12">
 
               @include('includes.sous-menu-ml')
-              
+
           </div>
 
                         <div class="row well m-t-30">
@@ -64,6 +64,7 @@
                     <div class="card-body card-block">
                       <form name="form1" class="form-horizontal" method="POST" action="{{ route('ml.experiences.store',$employe->id)}}">
                         {{ csrf_field() }}
+
                         <div class="row">
                           <div class="col-4 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">ENTREPRISE</label>
@@ -84,7 +85,17 @@
 
                           <div class="col-4 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">NIVEAU D'ETUDE</label>
-                          <input type="text" id="inputIsValid" name="niveau_etude" class="is-valid form-control-success form-control">
+                          <select name="niveau_etude" id="selectLg" class="is-valid form-control-success form-control">
+                          <!--input type="text" id="inputIsValid" name="niveau_etude" class="is-valid form-control-success form-control"-->
+                          <option></option>
+                          <option value="BAC +5">BAC +5</option>
+                          <option value="BAC +4">BAC +4</option>
+                          <option value="BAC +3">BAC +3</option>
+                          <option value="BAC +2">BAC +2</option>
+                          <option value="BAC +1">BAC +1</option>
+                          <option value="BAC">BAC</option>
+                          <option value="AUTRE">AUTRE</option>
+                        </select>
                           </div>
                           @if($errors->has('niveau_etude'))
                           <p> {{ $errors->first('niveau_etude') }} </p>
@@ -93,7 +104,27 @@
                           <div class="row">
                           <div class="col-4 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">NOMBRE D'ANNEE D'EXPERIENCE</label>
-                          <input type="text" id="inputIsValid" name="nbre_annee_exp" class="is-valid form-control-success form-control">
+                          <select name="nbre_annee_exp" id="selectLg" class="is-valid form-control form-control">
+                          <option></option>
+                          <option value="-1"> -1 AN</option>
+                          <option value="1">1 AN</option>
+                          <option value="2">2 ANS</option>
+                          <option value="3">3 ANS</option>
+                          <option value="4">4 ANS</option>
+                          <option value="5">5 ANS</option>
+                          <option value="6">6 ANS</option>
+                          <option value="7">7 ANS</option>
+                          <option value="8">8 ANS</option>
+                          <option value="9">9 ANS</option>
+                          <option value="10">10 ANS</option>
+                          <option value="11">11 ANS</option>
+                          <option value="12">12 ANS</option>
+                          <option value="13">13 ANS</option>
+                          <option value="14">14 ANS</option>
+                          <option value="15">15 ANS</option>
+                          <option value="AUTRE"> >15 ANS</option>
+                          </select>
+
                           </div>
                           @if($errors->has('nbre_annee_exp'))
                           <p> {{ $errors->first('nbre_annee_exp') }} </p>
@@ -115,6 +146,7 @@
                         @endif
                         </div>
                         <br />
+
                       <div class="form-group"> <center>
                         <a class="btn btn-xs btn-danger" href="{{ route('ml.main') }}">RETOURNER</a>
                     <button type="submit"  class="btn btn-success">VALIDER</button>

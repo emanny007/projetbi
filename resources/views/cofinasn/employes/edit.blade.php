@@ -24,7 +24,7 @@
                       </div>
 
                       <div class="card-body card-block">
-                      <form class="form-horizontal" method="POST" action="{{ route('sn.update',$employe->id)}}">
+                      <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('sn.update',$employe->id)}}">
                       {{ csrf_field() }}
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
                       <div class="row">
@@ -179,7 +179,7 @@
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
-                        <input type="file" id="inputIsValid" name="photo" class="is-valid form-control-success form-control">
+                        <input type="file" id="inputIsValid" name="photo" value="/images/{{ $employe->photo }}" class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('photo'))
                       <p> {{ $errors->first('photo') }} </p>

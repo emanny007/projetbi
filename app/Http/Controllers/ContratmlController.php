@@ -19,7 +19,7 @@ class ContratmlController extends Controller
   {
       $contrat = new Contrat();
       $contrat=DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')
-        ->join('contrats','employes.id','=','contrats.id')->where('employe_id', '=', $id)->get()->first();
+        ->join('contrats','employes.id','=','contrats.employe_id')->where('employe_id', '=', $id)->get()->first();
       $employe = Employe::findOrFail($id);
        return view('cofinaml.contrats.edit', compact('employe','contrat'));
   }

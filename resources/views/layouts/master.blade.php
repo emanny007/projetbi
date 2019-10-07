@@ -31,6 +31,12 @@
   @include('flash::message')
   @yield('modify_site')
 
+
+  @yield('profil-users')
+  @yield('modify_users')
+
+
+
   @yield('accueil_admin')
   @yield('modify_edit_conge')
   @yield('index_conge')
@@ -41,6 +47,7 @@
   @yield('analyse_employe')
   @yield('analyse_genre')
   @yield('analyse_contrat')
+  @yield('analyse_indicateur')
 
 
   @yield('liste_contrat')

@@ -16,7 +16,8 @@ class ConnexionController extends Controller
      //La vue index ne fait que retourner la page d'authentification des utilisateurs
     public function index()
     {
-      $sites= Site::all();
+
+      $sites= Site::where('entite','<>','')->get();
 
       return view('connexions/index',['sites' => $sites]);
       // return view('/',['sites' => $sites]);
@@ -25,7 +26,7 @@ class ConnexionController extends Controller
     public function authentification(Request $request)
     {
       $request->validate([
-        'password' => 'required|min:4|alpha_num',
+        'password' => 'required|min:4',
         'email' => 'required|email'
        ]);
 
@@ -46,7 +47,7 @@ class ConnexionController extends Controller
                  if(($user->role=="MAKER")&&($user->entite=="CTI"))
                  {
 
-                   return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
                  else if(($user->role=="CHECKER")&&($user->entite =="CTI"))
@@ -55,25 +56,25 @@ class ConnexionController extends Controller
                     return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
-                 else if(($user->role=="MAKER")&&($user->entite =="CAC"))
+                 else if(($user->role=="CHECKER")&&($user->entite =="CAC"))
                   {
 
                     return redirect('/cac/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
-                 else if(($user->role=="CHECKER")&&($user->entite =="CAC"))
+                 else if(($user->role=="MAKER")&&($user->entite =="CAC"))
                   {
 
                     return redirect('/cote-d-ivoire/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
-                 else if(($user->role=="MAKER")&&($user->entite =="COFINA SN"))
+                 else if(($user->role=="CHECKER")&&($user->entite =="COFINA SN"))
                   {
 
                     return redirect('/cofinasn/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
-                 else if(($user->role=="CHECKER")&&($user->entite =="COFINA SN"))
+                 else if(($user->role=="MAKER")&&($user->entite =="COFINA SN"))
                   {
 
                    return redirect('/cofinasn-checker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté');
@@ -120,6 +121,85 @@ class ConnexionController extends Controller
 
                     return redirect('/cofinaml/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
+                 }else if(($user->role=="MAKER")&&($user->entite =="FINELLE"))
+                  {
+
+                    return redirect('/finelle/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }else if(($user->role=="CHECKER")&&($user->entite =="FINELLE"))
+                  {
+
+                    return redirect('/finelle/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+                 }
+
+
+
+                 if(($user->role=="MAKER")&&($user->entite=="CPS SN"))
+                 {
+
+                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
+                 else if(($user->role=="CHECKER")&&($user->entite =="CPS SN"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
+
+
+                 if(($user->role=="MAKER")&&($user->entite=="COFINA BF"))
+                 {
+
+                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
+                 else if(($user->role=="CHECKER")&&($user->entite =="COFINA BF"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
+
+                 if(($user->role=="MAKER")&&($user->entite=="CPS CI"))
+                 {
+
+                   return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
+                 else if(($user->role=="CHECKER")&&($user->entite =="CPS CI"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
+
+
+                 if(($user->role=="MAKER")&&($user->entite=="CPS ML"))
+                 {
+
+                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
+                 else if(($user->role=="CHECKER")&&($user->entite =="CPS ML"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
+                 }
+
+
+                 if(($user->role=="MAKER")&&($user->entite=="COFINA SERVICES FRANCE"))
+                 {
+
+                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+
+                 }
+                 else if(($user->role=="CHECKER")&&($user->entite =="COFINA SERVICES FRANCE"))
+                  {
+
+                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+
                  }
 
 
@@ -135,7 +215,6 @@ class ConnexionController extends Controller
             ]);
 
     }
-
 
   }
 

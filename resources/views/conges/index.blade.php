@@ -18,9 +18,10 @@
                       <br /><br />
                       <!-- DATA TABLE-->
                         <div class="table-responsive table--no-card m-b-30">
-                          <table class="table table-borderless table-striped table-earning"  id="example" class="display" data-order='[[ 1, "desc" ]]' data-page-length='50' style="width:100%">
+                          <table class="table table-borderless table-striped table-earning" id="example" class="display" data-order='[[ 0, "desc" ]]' data-page-length='100' style="width:100%">
                           <thead>
                               <tr>
+																<th>ID</th>
                                 <th>DATE DEMANDE</th>
                                 <th>STAFF</th>
                                 <th>TYPE CONGES</th>
@@ -34,6 +35,7 @@
                                   <tbody>
                                     @foreach ($conges as $conge)
                                     <tr>
+																			<td>{{ $conge->id }}</td>
                                       <td>{{ date('d-m-Y', strtotime($conge->date_demande)) }}</td>
                                       <td>{{ $conge->prenom }} {{$conge->nom }}</td>
                                       <td>{{ $conge->type_conge }}</td>

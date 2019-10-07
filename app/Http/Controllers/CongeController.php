@@ -110,6 +110,8 @@ class CongeController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $conge = Conge::findOrFail($id);
+      $conge->delete();
+      return redirect()->back()->with('success', 'Experience deleted !');
     }
 }

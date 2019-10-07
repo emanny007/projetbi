@@ -98,7 +98,7 @@
                         <div class="col-4 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
                         @if(!empty($contrat))
-                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control">
+                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control" required>
                         @else
                         <input type="date" id="inputIsValid" name="date_debut" class="is-valid form-control-success form-control">
                         @endif

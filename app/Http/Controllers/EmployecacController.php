@@ -42,11 +42,16 @@ class EmployecacController extends Controller
     public function create()
     {
       $departements= Departement::all();
-      $sites= Site::orderby('id','asc')->paginate(20);
+      $sites= Site::where('entite','<>','')->get();
+      $pays= Site::where('pays','<>','NULL')->get();
+      $nationnalite= Site::where('nationnalite','<>','NULL')->get();
       $groupes= Groupe::orderby('id','asc')->paginate(20);
+
         return view('cac.employes.create',[
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements
       ]);
     }
@@ -59,12 +64,11 @@ class EmployecacController extends Controller
      */
     public function store(Request $request)
     {
-
       $request->validate([
-         'matricule' => 'bail|between:4,20',
-         'numero_sss' => 'bail',
-         'nom' => 'required|alpha',
-         'prenom' => 'required|alpha',
+         'matricule' => 'between:2,20',
+         'numero_sss' => 'bail|required|numeric',
+         'nom' => 'required|max:100',
+         'prenom' => 'required',
          //'password' => 'min:5',
          'date_naissance' => 'required|date',
          'email' => 'bail|required|email',
@@ -74,20 +78,22 @@ class EmployecacController extends Controller
          'contact_urgent' => 'required|numeric',
          'entite' => 'required',
          'sexe' => 'required|alpha',
-         'photo' => 'required',
+         'photo' => 'required|image',
          'civilite' => 'required',
          'situation_matrimoniale' => 'required',
-         'nbre_enfant' => 'required|numeric',
+         //'nbre_enfant' => 'required|numeric',
          'nationnalite' => 'required',
          //'origine' => 'required',
          'categorie' => 'required',
          'secteur' => 'required',
-         'date_debut' => 'required|date',
-         'departement'=>'required'
+         'departement'=>'required',
+         'type_contrat'=>'required',
+         'date_debut'=>'required|date',
+        // 'date_fin'=>'date'
        ]
-);
+  );
         //  Employe::create($request->all());
-
+        $statut='ACTIVE';
         $today = date("Y-m-d H:i:s");
 
         $employe = new Employe([
@@ -111,6 +117,7 @@ class EmployecacController extends Controller
           'nbre_enfant' => $request->get('nbre_enfant'),
           'nationnalite' => $request->get('nationnalite'),
           //'origine' => $request->get('origine'),
+          'statut' => $statut,
           'categorie' => $request->get('categorie'),
           'secteur' => $request->get('secteur'),
           'departement' => $request->get('departement'),
@@ -165,17 +172,21 @@ class EmployecacController extends Controller
     public function edit($id)
     {
       $contrat = new Contrat();
-      //$contrat_empls= DB::table('contrats')->where(['employe_id','=','6'])->get();
-      $contrat= Contrat::find($id);
 
+      $contrat= Contrat::find($id);
       $departements= Departement::all();
       $employe = Employe::findOrFail($id);
-      $sites= Site::orderby('id','asc')->paginate(20);
+      $sites= Site::where('entite','<>','')->get();
+      $pays= Site::where('pays','<>','NULL')->get();
+      $nationnalite= Site::where('nationnalite','<>','NULL')->get();
       $groupes= Groupe::orderby('id','asc')->paginate(20);
+
         return view('cac.employes.edit',[
           'employe' => $employe,
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements,
           'contrat' => $contrat,
       ]);
@@ -194,89 +205,78 @@ class EmployecacController extends Controller
      */
     public function update(Request $request, $id)
     {
-              $request->validate([
-               'matricule' => 'bail|required|between:5,20',
-               'numero_sss' => 'bail|required',
-               'nom' => 'required|max:255|alpha',
-               'prenom' => 'required',
-               //'password' => 'min:5',
-               'email' => 'bail|required|email',
-               'date_naissance' => 'required|date',
-               'mail_perso' => 'bail|required|email',
-               'tel_pro' => 'required|numeric',
-               'tel_perso' => 'required|numeric',
-               'contact_urgent' => 'required|numeric',
-               'entite' => 'required',
-               'sexe' => 'required',
-               //'photo' => 'required',
-               'civilite' => 'required',
-               'situation_matrimoniale' => 'required',
-               'nbre_enfant' => 'required|numeric',
-               'nationnalite' => 'required',
+      $request->validate([
+       'matricule' => 'between:2,20',
+       'numero_sss' => 'required|numeric',
+       'nom' => 'required|max:200',
+       'prenom' => 'required',
+       //'password' => 'min:5',
+       'email' => 'bail|required|email',
+       'date_naissance' => 'required|date',
+       'mail_perso' => 'required|email',
+       'tel_pro' => 'required|numeric',
+       'tel_perso' => 'required|numeric',
+       'contact_urgent' => 'required|numeric',
+       'entite' => 'required',
+       'sexe' => 'required',
+       'photo' => 'image',
+       'civilite' => 'required',
+       'situation_matrimoniale' => 'required',
+       'nbre_enfant' => 'required',
+       'nationnalite' => 'required',
+       'statut' => 'required'
+     ]
+);
+        $today = date("Y-m-d H:i:s");
 
-             ]
-      );
-                $today = date("Y-m-d H:i:s");
+        $employe = Employe::findOrFail($id);
+        $mdp=$request->input('mot_pass');
 
-                $employe = Employe::findOrFail($id);
-                //$employe->update($request->all());
-                $employe->matricule = $request->get('matricule');
-                $employe->numero_sss = $request->get('numero_sss');
-                $employe->nom = strtoupper($request->get('nom'));
-                $employe->prenom = strtoupper($request->get('prenom'));
-                $employe->password = Hash::make($request->input('mot_pass'));
-                $employe->email = strtolower($request->get('email'));
-                $employe->role = $request->get('role');
-                $employe->date_naissance = $request->get('date_naissance');
-                $employe->mail_perso = strtolower($request->get('mail_perso'));
-                $employe->tel_pro = $request->get('tel_pro');
-                $employe->tel_perso = $request->get('tel_perso');
-                $employe->contact_urgent = $request->get('contact_urgent');
-                $employe->entite = $request->get('entite');
-                $employe->sexe = $request->get('sexe');
-                //$employe->photo = $request->get('photo');
-                $employe->civilite = $request->get('civilite');
-                $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
-                $employe->nbre_enfant = $request->get('nbre_enfant');
-                $employe->nationnalite = $request->get('nationnalite');
-                $employe->origine = $request->get('origine');
-                $employe->secteur = $request->get('secteur');
-                $employe->categorie = $request->get('categorie');
-                $employe->departement = $request->get('departement');
-                $employe->pays = $request->get('pays');
-                $employe->updated_at=$today;
-                $employe->save();
+        if(isset($mdp) && trim($mdp)!="" ){
 
-                /*$contrat = new Contrat();
-                //[
-                $id_empl= $request->get('id_empl');
-                $employe = Contrat::findOrFail($id_empl);
-                $contrat->type_contrat = $request->get('type_contrat');
-                $contrat->date_debut = $request->get('date_debut');
-                $contrat->date_fin = $request->get('date_fin');
-                $contrat->employe_id = $request->get('id_empl');
+        $employe->password = Hash::make($mdp);
 
-            //]);
-                $contrat->save();
-                */
-                /*
-                DB::table('contrats')->updateOrInsert([
-                  'employe_id' => $request->get('id_empl'),
-                ],
-                [
-                  'type_contrat' => $request->get('type_contrat'),
-                  'date_debut' => $request->get('date_debut'),
-                  'date_fin' => $request->get('date_fin'),
-                  'employe_id' => $request->get('id_empl'),
-                  "created_at" =>  CarbonCarbon::now(),
-                  "updated_at" => CarbonCarbon::now()
-                ]);
+        }
+        //$employe->update($request->all());
+        $employe->matricule = $request->get('matricule');
+        $employe->numero_sss = $request->get('numero_sss');
+        $employe->nom = strtoupper($request->get('nom'));
+        $employe->prenom = strtoupper($request->get('prenom'));
+        //$employe->password = Hash::make($request->input('mot_pass'));
+        $employe->email = strtolower($request->get('email'));
+        $employe->role = $request->get('role');
+        $employe->date_naissance = $request->get('date_naissance');
+        $employe->mail_perso = strtolower($request->get('mail_perso'));
+        $employe->tel_pro = $request->get('tel_pro');
+        $employe->tel_perso = $request->get('tel_perso');
+        $employe->contact_urgent = $request->get('contact_urgent');
+        $employe->entite = $request->get('entite');
+        $employe->sexe = $request->get('sexe');
+        $employe->civilite = $request->get('civilite');
+        $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
+        $employe->nbre_enfant = $request->get('nbre_enfant');
+        $employe->nationnalite = $request->get('nationnalite');
+        $employe->statut = $request->get('statut');
+        $employe->secteur = $request->get('secteur');
+        $employe->categorie = $request->get('categorie');
+        $employe->departement = $request->get('departement');
+        $employe->pays = $request->get('pays');
+        $employe->updated_at=$today;
 
-                */
-             //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-            return redirect()->back()->with('status','L \'employé a bien été modifié');
 
-    }
+        if($request->hasFile('photo')){
+          $photo = $request->file('photo');
+          //$data = $request->input('photo');
+          $filename= $request->photo->getClientOriginalName();
+          Image::make($photo)->save(public_path('/images/'.$filename));
+          //$request->photo->storeAs('/public/images',$filename);
+          $employe->photo = $filename;
+        }
+        $employe->save();
+
+     flash("L'employé a bien été modifié")->success();
+    return redirect()->back()->with('status','L employé a bien été modifié');
+}
 
     /**
      * Remove the specified resource from storage.

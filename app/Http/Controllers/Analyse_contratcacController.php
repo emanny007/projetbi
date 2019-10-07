@@ -165,6 +165,134 @@ $cofinacg_d = DB::table('employes')->join('contrats','employes.id','=','contrats
                                                                       ->select('employes.entite','employes.nom','contrats.type_contrat')
                                                                       ->where('employes.entite','COFINA ML')
                                                                       ->where('contrats.type_contrat','STAGE')->count();
+
+                                                                      //****************FINELLE****************************************
+                                                                                                         $finelle_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                                                           ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                                                           ->where('employes.entite','FINELLE')
+                                                                                                                                           ->where('contrats.type_contrat','CDD')->count();
+
+                                                                                                         $finelle_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                                                           ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                                                           ->where('employes.entite','FINELLE')
+                                                                                                                                           ->where('contrats.type_contrat','CDI')->count();
+
+                                                                                                         $finelle_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                                                           ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                                                           ->where('employes.entite','FINELLE')
+                                                                                                                                           ->where('contrats.type_contrat','PRESTATION')->count();
+
+                                                                                                         $finelle_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                                                            ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                                                            ->where('employes.entite','FINELLE')
+                                                                                                                                            ->where('contrats.type_contrat','STAGE')->count();
+  //****************COFINA BURKINA FASO****************************************
+$cofinabf_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                  ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                  ->where('employes.entite','COFINA BF')
+                                  ->where('contrats.type_contrat','CDD')->count();
+
+$cofinabf_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                   ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                   ->where('employes.entite','COFINA BF')
+                                   ->where('contrats.type_contrat','CDI')->count();
+
+$cofinabf_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                   ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                   ->where('employes.entite','COFINA BF')
+                                   ->where('contrats.type_contrat','PRESTATION')->count();
+
+$cofinabf_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                   ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                   ->where('employes.entite','COFINA BF')
+                                   ->where('contrats.type_contrat','STAGE')->count();
+
+ //****************CPS SN****************************************
+                                 $cpssn_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                   ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                   ->where('employes.entite','CPS SN')
+                                                                   ->where('contrats.type_contrat','CDD')->count();
+
+                                 $cpssn_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                    ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                    ->where('employes.entite','CPS SN')
+                                                                    ->where('contrats.type_contrat','CDI')->count();
+
+                                 $cpssn_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                    ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                    ->where('employes.entite','CPS SN')
+                                                                    ->where('contrats.type_contrat','PRESTATION')->count();
+
+                                 $cpssn_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                    ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                    ->where('employes.entite','CPS SN')
+                                                                    ->where('contrats.type_contrat','STAGE')->count();
+
+        //****************CPS ML****************************************
+                                                                  $cpsml_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                    ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                    ->where('employes.entite','CPS ML')
+                                                                                                    ->where('contrats.type_contrat','CDD')->count();
+
+                                                                  $cpsml_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                     ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                     ->where('employes.entite','CPS ML')
+                                                                                                     ->where('contrats.type_contrat','CDI')->count();
+
+                                                                  $cpsml_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                     ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                     ->where('employes.entite','CPS ML')
+                                                                                                     ->where('contrats.type_contrat','PRESTATION')->count();
+
+                                                                  $cpsml_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                                                     ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                                                     ->where('employes.entite','CPS ML')
+                                                                                                     ->where('contrats.type_contrat','STAGE')->count();
+
+
+ //****************CPS CI****************************************
+ $cpsci_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                 ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                 ->where('employes.entite','CPS CI')
+                                 ->where('contrats.type_contrat','CDD')->count();
+
+$cpsci_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                ->where('employes.entite','CPS CI')
+                                ->where('contrats.type_contrat','CDI')->count();
+
+$cpsci_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                ->where('employes.entite','CPS CI')
+                                ->where('contrats.type_contrat','PRESTATION')->count();
+
+$cpsci_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                ->where('employes.entite','CPS CI')
+                                ->where('contrats.type_contrat','STAGE')->count();
+
+                                //****************COFINA SERVICE FRANCE****************************************
+                              $cofinasf_a = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                ->where('employes.entite','COFINA SERVICES FRANCE')
+                                                                ->where('contrats.type_contrat','CDD')->count();
+
+                              $cofinasf_b = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                 ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                 ->where('employes.entite','COFINA SERVICES FRANCE')
+                                                                 ->where('contrats.type_contrat','CDI')->count();
+
+                              $cofinasf_c = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                 ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                 ->where('employes.entite','COFINA SERVICES FRANCE')
+                                                                 ->where('contrats.type_contrat','PRESTATION')->count();
+
+                              $cofinasf_d = DB::table('employes')->join('contrats','employes.id','=','contrats.employe_id')
+                                                                 ->select('employes.entite','employes.nom','contrats.type_contrat')
+                                                                 ->where('employes.entite','COFINA SERVICES FRANCE')
+                                                                 ->where('contrats.type_contrat','STAGE')->count();
+
+
 //************************************************
     $data = Charts::multi('bar', 'google')
     // Setup the chart settings
@@ -176,12 +304,13 @@ $cofinacg_d = DB::table('employes')->join('contrats','employes.id','=','contrats
     ->colors(['#FFFF00','#00FF00','#FF0000','#808080'])
     //->colors(['#2196F3', '#F44336', '#FFC107'])
     // Setup the diferent datasets (this is a multi chart)
-    ->dataset('CDD', [$cti_a,$cac_a,$cofinasn_a,$cofinagn_a,$csg_a,$cofinacg_a,$cofinaml_a])
-    ->dataset('CDI', [$cti_b,$cac_b,$cofinasn_b,$cofinagn_b,$csg_b,$cofinacg_b,$cofinaml_b])
-    ->dataset('PRESTATION', [$cti_c,$cac_c,$cofinasn_c,$cofinagn_c,$csg_c,$cofinacg_c,$cofinaml_c])
-    ->dataset('STAGE', [$cti_d,$cac_d,$cofinasn_d,$cofinagn_d,$csg_d,$cofinacg_d,$cofinaml_d])
+    ->dataset('CDD', [$cti_a,$cac_a,$cofinasn_a,$cofinagn_a,$csg_a,$cofinacg_a,$cofinaml_a,$cofinabf_a,$finelle_a,$cpssn_a,$cpsml_a,$cpsci_a,$cofinasf_a])
+    ->dataset('CDI', [$cti_b,$cac_b,$cofinasn_b,$cofinagn_b,$csg_b,$cofinacg_b,$cofinaml_b,$cofinabf_b,$finelle_b,$cpssn_b,$cpsml_b,$cpsci_b,$cofinasf_b])
+    ->dataset('PRESTATION', [$cti_c,$cac_c,$cofinasn_c,$cofinagn_c,$csg_c,$cofinacg_c,$cofinaml_c,$cofinabf_c,$finelle_c,$cpssn_c,$cpsml_c,$cpsci_c,$cofinasf_c])
+    ->dataset('STAGE', [$cti_d,$cac_d,$cofinasn_d,$cofinagn_d,$csg_d,$cofinacg_d,$cofinaml_d,$cofinabf_d,$finelle_d,$cpssn_d,$cpsml_d,$cpsci_d,$cofinasf_d])
     // Setup what the values mean
-    ->labels(['CTI','CAC','COFINA SN','COFINA GN','CSG','COFINA CG','COFINA ML']);
+    ->labels(['CTI','CAC','COFINA SN','COFINA GN','CSG','COFINA CG','COFINA ML','COFINA BF','FINELLE','CPS SN','CPS ML','CPS CI','COFINA SF']);
+
 
 //**********************************************************************
       $cdd=Contrat::where('type_contrat','CDD')->count();

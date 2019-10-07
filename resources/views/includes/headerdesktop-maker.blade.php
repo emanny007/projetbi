@@ -43,6 +43,9 @@
                             <li>
                                 <a href="{{ url('/analyse/contrat') }}"><i class="fas fa-folder-open"></i>Contrat</a>
                             </li>
+                            <li>
+                                <a href="{{ url('/analyse/indicateur') }}"><i class="fas fa-folder-open"></i>Indicateur</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -66,6 +69,9 @@
                             </li>
                             <li>
                                 <a href="{{ url('/parametres/sites') }}"><i class="fas fa-folder-open"></i>Entite</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/parametres/users') }}"><i class="fas fa-folder-open"></i>Profil User</a>
                             </li>
                         </ul>
                     </li>

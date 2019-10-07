@@ -96,8 +96,20 @@
                                                     <td>{{ $employe->entite }}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td>DEPARTEMENT</td>
+                                                    <td>{{ $employe->departement }}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>SEXE</td>
                                                     <td>{{ $employe->sexe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SECTEUR</td>
+                                                    <td>{{ $employe->secteur }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CATEGORIE</td>
+                                                    <td>{{ $employe->categorie }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>CIVILITE</td>
@@ -116,8 +128,8 @@
                                                     <td>{{ $employe->nationnalite }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>ORIGINE</td>
-                                                    <td>{{ $employe->origine }}</td>
+                                                    <td>STATUT</td>
+                                                    <td>{{ $employe->statut }}</td>
                                                 </tr>
 
                                             </tbody>

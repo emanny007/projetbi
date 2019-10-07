@@ -19,19 +19,25 @@ class analysegnController extends Controller
     $a=Employe::where('sexe','MASCULIN')->where('departement','INFORMATIQUE')->count();
     $b=Employe::where('sexe','MASCULIN')->where('departement','FINANCE')->count();
     $c=Employe::where('sexe','MASCULIN')->where('departement','CREDIT')->count();
-    $d=Employe::where('sexe','MASCULIN')->where('departement','RESSOURCE HUMAINE')->count();
+    $d=Employe::where('sexe','MASCULIN')->where('departement','RESSOURCES HUMAINES')->count();
     $e=Employe::where('sexe','MASCULIN')->where('departement','DMCC')->count();
-    $f=Employe::where('sexe','MASCULIN')->where('departement','CONTROL-INTERNE')->count();
-    $g=Employe::where('sexe','MASCULIN')->where('departement','DIRECTION')->count();
+    $f=Employe::where('sexe','MASCULIN')->where('departement','CONTROLE INTERNE')->count();
+    $g=Employe::where('sexe','MASCULIN')->where('departement','DIRECTION GENERALE')->count();
+    $h=Employe::where('sexe','MASCULIN')->where('departement','FACILITIES')->count();
+    $u=Employe::where('sexe','MASCULIN')->where('departement','RETAIL')->count();
+    $v=Employe::where('sexe','MASCULIN')->where('departement','AUDIT')->count();
 
 
     $i=Employe::where('sexe','FEMININ')->where('departement','INFORMATIQUE')->count();
     $j=Employe::where('sexe','FEMININ')->where('departement','FINANCE')->count();
     $k=Employe::where('sexe','FEMININ')->where('departement','CREDIT')->count();
-    $l=Employe::where('sexe','FEMININ')->where('departement','RESSOURCE HUMAINE')->count();
+    $l=Employe::where('sexe','FEMININ')->where('departement','RESSOURCES HUMAINES')->count();
     $m=Employe::where('sexe','FEMININ')->where('departement','DMCC')->count();
-    $n=Employe::where('sexe','FEMININ')->where('departement','CONTROL-INTERNE')->count();
-    $o=Employe::where('sexe','FEMININ')->where('departement','DIRECTION')->count();
+    $n=Employe::where('sexe','FEMININ')->where('departement','CONTROLE INTERNE')->count();
+    $o=Employe::where('sexe','FEMININ')->where('departement','DIRECTION GENERALE')->count();
+    $p=Employe::where('sexe','FEMININ')->where('departement','FACILITIES')->count();
+    $r=Employe::where('sexe','FEMININ')->where('departement','RETAIL')->count();
+    $s=Employe::where('sexe','FEMININ')->where('departement','AUDIT')->count();
 
 
     $data = Charts::multi('bar', 'c3')
@@ -44,10 +50,10 @@ class analysegnController extends Controller
     // You could always set them manually
     //->colors(['#2196F3', '#F44336', '#FFC107'])
     // Setup the diferent datasets (this is a multi chart)
-    ->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g])
-    ->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o])
+    ->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g,$h,$u,$v])
+    ->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o,$p,$r,$s])
     // Setup what the values mean
-    ->labels(['INFORMATIQUE', 'FINANCE', 'CREDIT','RESSOURCE HUMAINE','DMCC','CONTROL INTERNE','DIRECTION']);
+    ->labels(['INFORMATIQUE', 'FINANCE', 'CREDIT','RESSOURCES HUMAINES','DMCC','CONTROL INTERNE','DIRECTION GENERALE','FACILITIES','RETAIL','AUDIT']);
 
 /*
     $dot = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))->get();

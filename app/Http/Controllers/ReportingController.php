@@ -2,9 +2,12 @@
 namespace App\Exports;
 namespace App\Http\Controllers;
 
-
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
+
+//require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth\Request;
@@ -19,28 +22,6 @@ use App\Groupe;
 
 //use Excel;
 
-class EmployesExport implements FromCollection
-{
-    public function collection()
-    {
-/*
-           $date_debut=$request->get('date_debut');
-           $date_fin=$request->get('date_fin');
-           $nationnalite=$request->get('nationnalite');
-           $pays=$request->get('pays');
-           $sexe=$request->get('sexe');
-           $situation_matrimoniale=$request->get('situation_matrimoniale');
-*/
-
-//$pays=$request->get('pays');
-$pays="COTE D IVOIRE";
-//$nb_empl=DB::select("SELECT * FROM employes");
-      $nb_empl=Employe::where('entite','=',$pays)->take(2)->get();
-
-        return $nb_empl;
-    }
-
-}
 
 
 class ReportingController extends Controller
@@ -50,18 +31,119 @@ class ReportingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
       $employes=Employe::all();
        $departements= Departement::all();
-       $sites= Site::where('pays','<>','NULL')->get();
+       //$sites= Site::all();
+                  $sites= Site::where('pays','<>','NULL')->get();
+                  $type_filtre=$request->get('type_filtre');
+                  $date_debut=$request->get('date_debut');
+                  $date_fin=$request->get('date_fin');
+                  $nationnalite=$request->get('nationnalite');
+                  $entite=$request->get('entite');
+                  $sexe=$request->get('sexe');
+                  $situation_matrimoniale=$request->get('situation_matrimoniale');
+                  $departement=$request->get('departement');
+                  $secteur=$request->get('secteur');
+                  $type_contrat=$request->get('type_contrat');
+                  $categorie=$request->get('categorie');
 
+                  //$niveau_etude=$request->get('niveau_etude');
+                  //$experience=$request->get('experience');
 
-        return view('reportings/index',[
-        'sites' => $sites,
-        '$departements' => $departements,
-        'employes' => $employes,
-      ]);
+//$query ="select * from employes emp, contrats c where emp.id=c.employe_id and emp.departement='$departement' and emp.nationnalite='$nationnalite' and emp.entite='$entite' and emp.sexe='$sexe' and emp.categorie = '$categorie' and emp.secteur = '$secteur' and c.type_contrat='$type_contrat'";
+//$query ="select * from employes emp, contrats c where emp.id=c.employe_id";
+if($type_filtre=="Liste")
+{
+  $query ="select emp.id as IDENTIFIANT,matricule as MATRICULE,numero_sss AS NUM_SECU_SOCIAL,nom as NOM,prenom as PRENOMS,email as EMAIL_PROFFESSIONNEL,date_naissance as DATE_NAISSANCE,mail_perso as MAIL_PERSONNEL,tel_pro as TEL_PROFESSIONNEL,tel_perso as TEL_PERSONNEL,contact_urgent as CONTACT_URGENT,entite as ENTITE,sexe as SEXE,civilite as CIVILITE,situation_matrimoniale as SITUATION_MATRIMONIALE,nbre_enfant as NBRE_ENFANT,nationnalite as NATIONNALITE,origine as ORIGINE,secteur as SECTEUR,categorie AS CATEGORIE, departement as DEPARTEMENT, pays AS PAYS,type_contrat as TYPE_DE_CONTRAT,date_debut as DATE_DEBUT,date_fin as DATE_FIN from employes emp, contrats c where emp.id=c.employe_id";
+
+}else{
+
+  $query ="select count(emp.id) as NBRE_EMPLOYE from employes emp, contrats c where emp.id=c.employe_id";
+
+}
+/*
+if(isset($nationnalite) && trim($nationnalite)!="" ){
+
+	$query=$query.' '."and emp.nationnalite ='$nationnalite'";
+}*/
+
+if(isset($nationnalite) && trim($nationnalite)!="" ){
+
+	$query=$query.' '."and emp.nationnalite ='$nationnalite'";
+}
+if(isset($departement) && trim($departement)!="" ){
+
+	$query=$query.' '."and emp.departement='$departement'";
+}
+if(isset($entite) && trim($entite)!="" ){
+
+	$query=$query.' '."and emp.entite='$entite'";
+}
+if(isset($sexe) && trim($sexe)!="" ){
+
+	$query=$query.' '."and emp.sexe='$sexe'";
+}
+if(isset($categorie) && trim($categorie)!="" ){
+
+	$query=$query.' '." and emp.categorie = '$categorie'";
+}
+if(isset($secteur) && trim($secteur)!="" ){
+
+	$query=$query.' '."and emp.secteur = '$secteur'";
+}
+if(isset($type_contrat) && trim($type_contrat)!="" ){
+
+	$query=$query.' '."and c.type_contrat='$type_contrat'";
+}
+
+$query=DB::select($query);
+$query= (array) $query;
+//dd(array_keys($query));
+
+$spreadsheet = new Spreadsheet();
+//$sheet = $spreadsheet->getActiveSheet();
+//$sheet->setCellValue('A1',array_keys($query));
+if(isset($query[0])) {
+
+$rowArray = array_keys((array) $query[0]);
+
+$spreadsheet->getActiveSheet()
+    ->fromArray(
+        $rowArray,   // The data to set
+        NULL,           // Array values with this value will not be set
+        'A1'            // Top left coordinate of the worksheet range where
+                        //    we want to set these values (default is A1)
+    );
+  }
+    $i=2;
+foreach ($query as $key) {
+$rowArray = (array) $key;
+  $spreadsheet->getActiveSheet()
+      ->fromArray(
+          $rowArray,   // The data to set
+          NULL,           // Array values with this value will not be set
+          'A'.$i            // Top left coordinate of the worksheet range where
+                          //    we want to set these values (default is A1)
+      );
+        $i++;
+}
+  //dd($query);
+       $writer = new Xlsx($spreadsheet);
+
+       // redirect output to client browser
+       header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+       header('Content-Disposition: attachment;filename="cofiquicik-reporting.xlsx"');
+       header('Cache-Control: max-age=0');
+
+       $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+       $writer->save('php://output');
+
+      // $writer->save('hello wores.xlsx');
+
+        return view('reportings/index',['sites' => $sites,'departements' => $departements,'employes' => $employes,]);
     }
 
 
@@ -69,20 +151,20 @@ class ReportingController extends Controller
 
        public function export(Request $request)
        {
-/*
-                    $date_debut=$request->get('date_debut');
-                    $date_fin=$request->get('date_fin');
-                    $nationnalite=$request->get('nationnalite');
-                    $pays=$request->get('pays');
-                    $sexe=$request->get('sexe');
-                    $situation_matrimoniale=$request->get('situation_matrimoniale');*/
 
-           return Excel::download(new EmployesExport, 'employes.xlsx');
+         $employes=Employe::all();
+          $departements= Departement::all();
+          //$sites= Site::all();
+          $sites= Site::where('entite','<>','')->get();
+          $nationnalites= Site::where('nationnalite','<>','')->get();
 
-
-
-       }
-
+         return view('reportings/index',[
+         'sites' => $sites,
+         'nationnalites' => $nationnalites,
+         'departements' => $departements,
+         'employes' => $employes,
+         ]);
+         }
 
 
 

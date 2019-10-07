@@ -25,7 +25,7 @@
                                           <center><label for="inputIsValid" align="center"><strong>PARAMETRE ENTITE</strong></label></center>
                                           <!-- DATA TABLE-->
                                           <div class="table-responsive table m-b-40">
-                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-page-length='50' style="width:100%">
+                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-order='[[ 0, "desc" ]]' data-page-length='50' style="width:100%">
                                                   <thead>
                                                       <tr>
                                                           <th><center>ID</center></th>
@@ -33,7 +33,7 @@
                                                           <th><center>ENTITE</center></th>
                                                           <th><center>NATIONNALITE</center></th>
                                                           <th><center>DRAPEAU</center></th>
-                                                          <!--th> <center>ACTIONS</center></th-->
+                                                          <th> <center>ACTION</center></th>
                                                       </tr>
                                                   </thead>
                                                   <tbody>
@@ -44,10 +44,10 @@
                                                           <td align="center">{{ $site->entite }}</td>
                                                           <td align="center">{{ $site->nationnalite }}</td>
                                                           <td align="center"> <img class="rounded-circle mx-auto d-block" src="/images/drapeau/{{ $site->lien }}" width="50" height="50"></td>
-                                                          <!--td align="center"><a class="btn btn-xs btn-primary" href="{{ route('sites.edit',$site->id) }}"><span class="fas fa-edit"></span></a>
-                                                            <form action="{{ route('sites.destroy', $site->id) }}" method="post"><button class="btn btn-danger" type="submit">
+                                                          <td align="center"><a class="btn btn-xs btn-primary" href="{{ route('sites.edit',$site->id) }}"><span class="fas fa-edit"></span></a>
+                                                            <form action="{{ route('sites.destroy', $site->id) }}" method="post" onsubmit = 'ConfirmDelete()'><button class="btn btn-danger" type="submit">
                                                               <span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form>
-                                                        </td-->
+                                                        </td>
                                                       </tr>
                                                     @endforeach
 

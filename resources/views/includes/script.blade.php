@@ -52,7 +52,7 @@ $('#myTable').DataTable( {
 
 $(document).ready( function () {
     $('#examplccsddze').DataTable( {
-        "order": [[ 1, "asc" ]]
+        "order": [[ 1, "desc" ]]
     } );
 } );
 
@@ -84,7 +84,14 @@ $('#example').DataTable( {
 } );
 
 
-
+function ConfirmDelete()
+ {
+ var x = confirm("Voulez-vous vraiment supprimer cet enregitrement?");
+ if (x)
+   return true;
+ else
+   return false;
+ }
 
 function afficherAutre() {
   var a = document.getElementById("autre");

@@ -25,7 +25,7 @@
                                           <center><label for="inputIsValid" align="center"><strong>PARAMETRE DEPARTEMENT</strong></label></center>
                                           <!-- DATA TABLE-->
                                           <div class="table-responsive table m-b-40">
-                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-page-length='50' style="width:100%">
+                                              <table class="table table-borderless table-striped table-earning" id="example" class="display" data-order='[[ 0, "desc" ]]' data-page-length='100' style="width:100%">
                                                   <thead>
                                                       <tr>
                                                           <th><center>ID</center></th>
@@ -39,7 +39,7 @@
                                                           <td align="center">{{ $departement->id }}</td>
                                                           <td align="center">{{ $departement->libelle }}</td>
                                                           <td align="center"><a class="btn btn-xs btn-primary" href="{{ route('departements.edit',$departement->id) }}"><span class="fas fa-edit"></span></a>
-                                                            <form action="{{ route('departements.destroy', $departement->id) }}" method="post"><button class="btn btn-danger" type="submit">
+                                                            <form action="{{ route('departements.destroy', $departement->id) }}" method="post" onsubmit = 'ConfirmDelete()'><button class="btn btn-danger" type="submit">
                                                               <span class="fas fa-archive"></span></button>@csrf @method('DELETE')</form>
                                                         </td>
                                                       </tr>
