@@ -14,7 +14,6 @@
 
   <!--includehh('includes.contenu')-->
 
-
   @yield('main')
   @yield('creation_employe')
   @include('flash::message')
@@ -41,6 +40,7 @@
   @yield('analyse_employe')
   @yield('analyse_genre')
   @yield('analyse_contrat')
+  @yield('analyse_indicateur')
 
 
   @yield('liste_contrat')
@@ -49,6 +49,17 @@
 
 
   @yield('modify_formation')
+
+  @yield('modify_performance')
+  @yield('performance_staff')
+  @yield('index_performances')
+
+
+  @yield('modify_edit_sanction')
+  @yield('index_sanction')
+
+  @yield('modify_edit_depart')
+  @yield('index_depart')
 
   @yield('modify_experience')
   @yield('modify_poste')

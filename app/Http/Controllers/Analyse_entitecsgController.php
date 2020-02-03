@@ -16,94 +16,93 @@ class Analyse_entitecsgController extends Controller
 
   public function entite(Request $request)
   {
-      $employes=DB::select("select entite, count(*) as NBRE_STAFF from employes group by entite");
+    $employes=DB::select("select entite, count(*) as NBRE_STAFF from employes where statut='ACTIVE' group by entite");
 
-      $hommes=DB::select("select entite, count(*) as NBRE_STAFF from employes where sexe='MASCULIN' group by entite");
-      $femmes=DB::select("select entite, count(*) as NBRE_STAFF from employes where sexe='FEMININ' group by entite");
+    $hommes=DB::select("select entite, count(*) as NBRE_STAFF from employes where sexe='MASCULIN' and statut='ACTIVE' group by entite");
+    $femmes=DB::select("select entite, count(*) as NBRE_STAFF from employes where sexe='FEMININ' and statut='ACTIVE' group by entite");
 
-      $total_employes=Employe::all();
-      $total_hommes=Employe::all()->where('sexe','MASCULIN');
-      $total_femmes=Employe::all()->where('sexe','FEMININ');
+    $total_employes=Employe::all()->where('statut','ACTIVE');
+    $total_hommes=Employe::all()->where('sexe','MASCULIN')->where('statut','ACTIVE');
+    $total_femmes=Employe::all()->where('sexe','FEMININ')->where('statut','ACTIVE');
 
 
 //**************
-      $area = Charts::database(Employe::all(), 'bar', 'highcharts')
+    $area = Charts::database(Employe::all()->where('statut','ACTIVE'), 'bar', 'highcharts')
 
-          ->title("Employes")
+        ->title("Employes")
 
-          ->elementLabel("EMPLOYES")
+        ->elementLabel("EMPLOYES")
 
-          ->dimensions(1000, 500)
+        ->dimensions(1000, 500)
 
-          ->responsive(true)
+        ->responsive(true)
 
-          ->colors(['#00FF00', '#25FDE9', '#8EA2C6','#FF0000','#791CF8','#2C75FF'])
+        ->colors(['#00FF00', '#25FDE9', '#8EA2C6','#FF0000','#791CF8','#2C75FF','#009999','#000080','#FF00FF','#800000'])
 
-          ->groupBy('entite');
+        ->groupBy('entite');
 
 
 //****************************
-          $users = Employe::all();
-          $chart = Charts::database($users, 'donut', 'highcharts')
+        $users = Employe::all()->where('statut','ACTIVE');
+        $chart = Charts::database($users, 'donut', 'highcharts')
 
-              ->title("Employes")
+            ->title("Employes")
 
-              ->elementLabel("Repartition par sexe du staff")
+            ->elementLabel("Repartition par sexe du staff")
 
-              ->dimensions(1000, 500)
+            ->dimensions(1000, 500)
 
-              ->colors(['#2C75FF', '#FF0000'])
+            ->colors(['#2C75FF', '#FF0000'])
 
-              ->responsive(true)
+            ->responsive(true)
 
-              ->groupBy('sexe');
+            ->groupBy('sexe');
 
-              //*************************************************
-              $a=Employe::where('sexe','MASCULIN')->where('entite','CTI')->count();
-              $b=Employe::where('sexe','MASCULIN')->where('entite','CSG')->count();
-              $c=Employe::where('sexe','MASCULIN')->where('entite','COFINA GN')->count();
-              $d=Employe::where('sexe','MASCULIN')->where('entite','COFINA SN')->count();
-              $e=Employe::where('sexe','MASCULIN')->where('entite','COFINA ML')->count();
-              $f=Employe::where('sexe','MASCULIN')->where('entite','COFINA CG')->count();
-              $g=Employe::where('sexe','MASCULIN')->where('entite','CAC')->count();
-              $h=Employe::where('sexe','MASCULIN')->where('entite','COFINA BF')->count();
-              $v=Employe::where('sexe','MASCULIN')->where('entite','CPS SN')->count();
-              $w=Employe::where('sexe','MASCULIN')->where('entite','CPS ML')->count();
-              $x=Employe::where('sexe','MASCULIN')->where('entite','CPS CI')->count();
-              $y=Employe::where('sexe','MASCULIN')->where('entite','COFINA SERVICE FRANCE')->count();
-
-
-              $i=Employe::where('sexe','FEMININ')->where('entite','CTI')->count();
-              $j=Employe::where('sexe','FEMININ')->where('entite','CSG')->count();
-              $k=Employe::where('sexe','FEMININ')->where('entite','COFINA GN')->count();
-              $l=Employe::where('sexe','FEMININ')->where('entite','COFINA SN')->count();
-              $m=Employe::where('sexe','FEMININ')->where('entite','COFINA ML')->count();
-              $n=Employe::where('sexe','FEMININ')->where('entite','COFINA CG')->count();
-              $o=Employe::where('sexe','FEMININ')->where('entite','CAC')->count();
-              $p=Employe::where('sexe','FEMININ')->where('entite','COFINA BF')->count();
-              $q=Employe::where('sexe','FEMININ')->where('entite','CPS SN')->count();
-              $r=Employe::where('sexe','FEMININ')->where('entite','CPS ML')->count();
-              $s=Employe::where('sexe','FEMININ')->where('entite','CPS CI')->count();
-              $t=Employe::where('sexe','FEMININ')->where('entite','COFINA SERVICE FRANCE')->count();
+            //*************************************************
+            $a=Employe::where('sexe','MASCULIN')->where('entite','CTI')->where('statut','ACTIVE')->count();
+            $b=Employe::where('sexe','MASCULIN')->where('entite','CSG')->where('statut','ACTIVE')->count();
+            $c=Employe::where('sexe','MASCULIN')->where('entite','COFINA GN')->where('statut','ACTIVE')->count();
+            $d=Employe::where('sexe','MASCULIN')->where('entite','COFINA SN')->where('statut','ACTIVE')->count();
+            $e=Employe::where('sexe','MASCULIN')->where('entite','COFINA ML')->where('statut','ACTIVE')->count();
+            $f=Employe::where('sexe','MASCULIN')->where('entite','COFINA CG')->where('statut','ACTIVE')->count();
+            $g=Employe::where('sexe','MASCULIN')->where('entite','CAC')->where('statut','ACTIVE')->count();
+            $h=Employe::where('sexe','MASCULIN')->where('entite','COFINA BF')->where('statut','ACTIVE')->count();
+            $v=Employe::where('sexe','MASCULIN')->where('entite','CPS SN')->where('statut','ACTIVE')->count();
+            $w=Employe::where('sexe','MASCULIN')->where('entite','CPS ML')->where('statut','ACTIVE')->count();
+            $x=Employe::where('sexe','MASCULIN')->where('entite','CPS CI')->where('statut','ACTIVE')->count();
+            $y=Employe::where('sexe','MASCULIN')->where('entite','COFINA SERVICES FRANCE')->where('statut','ACTIVE')->count();
 
 
+            $i=Employe::where('sexe','FEMININ')->where('entite','CTI')->where('statut','ACTIVE')->count();
+            $j=Employe::where('sexe','FEMININ')->where('entite','CSG')->where('statut','ACTIVE')->count();
+            $k=Employe::where('sexe','FEMININ')->where('entite','COFINA GN')->where('statut','ACTIVE')->count();
+            $l=Employe::where('sexe','FEMININ')->where('entite','COFINA SN')->where('statut','ACTIVE')->count();
+            $m=Employe::where('sexe','FEMININ')->where('entite','COFINA ML')->where('statut','ACTIVE')->count();
+            $n=Employe::where('sexe','FEMININ')->where('entite','COFINA CG')->where('statut','ACTIVE')->count();
+            $o=Employe::where('sexe','FEMININ')->where('entite','CAC')->where('statut','ACTIVE')->count();
+            $p=Employe::where('sexe','FEMININ')->where('entite','COFINA BF')->where('statut','ACTIVE')->count();
+            $q=Employe::where('sexe','FEMININ')->where('entite','CPS SN')->where('statut','ACTIVE')->count();
+            $r=Employe::where('sexe','FEMININ')->where('entite','CPS ML')->where('statut','ACTIVE')->count();
+            $s=Employe::where('sexe','FEMININ')->where('entite','CPS CI')->where('statut','ACTIVE')->count();
+            $t=Employe::where('sexe','FEMININ')->where('entite','COFINA SERVICES FRANCE')->where('statut','ACTIVE')->count();
 
-              $data = Charts::multi('bar', 'c3')
-              // Setup the chart settings
-              ->title("Repartition des staffs par sexe et par entité")
-              // A dimension of 0 means it will take 100% of the space
-              ->dimensions(0, 400) // Width x Height
-              // This defines a preset of colors already done:)
-              ->template("c3")
-              // You could always set them manually
-              //->colors(['#2196F3', '#F44336', '#FFC107'])
-              ->colors(['#2C75FF', '#FF0000'])
-              // Setup the diferent datasets (this is a multi chart)
-              ->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g,$h,$v,$w,$x,$y])
-              ->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o,$p,$q,$r,$s,$t])
-              // Setup what the values mean
-              ->labels(['CTI', 'CSG', 'COFINA GN','COFINA SN','COFINA ML','COFINA CG','CAC','COFINA BF','CPS SN','CPS ML','CPS CI','COFINA SERVICE FRANCE']);
 
+
+            $data = Charts::multi('bar', 'c3')
+            // Setup the chart settings
+            ->title("Repartition des staffs par sexe et par entité")
+            // A dimension of 0 means it will take 100% of the space
+            ->dimensions(0, 400) // Width x Height
+            // This defines a preset of colors already done:)
+            ->template("c3")
+            // You could always set them manually
+            //->colors(['#2196F3', '#F44336', '#FFC107'])
+            ->colors(['#2C75FF', '#FF0000'])
+            // Setup the diferent datasets (this is a multi chart)
+            ->dataset('Hommes', [$a,$b,$c,$d,$e,$f,$g,$h,$v,$w,$x,$y])
+            ->dataset('Femmes', [$i,$j,$k,$l,$m,$n,$o,$p,$q,$r,$s,$t])
+            // Setup what the values mean
+            ->labels(['CTI', 'CSG', 'COFINA GN','COFINA SN','COFINA ML','COFINA CG','CAC','COFINA BF','CPS SN','CPS ML','CPS CI','COFINA SERVICES FRANCE']);
 
 //************************************************
 

@@ -31,7 +31,7 @@
                                                           <th><center>ID</center></th>
                                                           <th><center>PAYS</center></th>
                                                           <th><center>ENTITE</center></th>
-                                                          <th><center>NATIONNALITE</center></th>
+                                                          <th><center>NATIONALITE</center></th>
                                                           <th><center>DRAPEAU</center></th>
                                                           <th> <center>ACTION</center></th>
                                                       </tr>

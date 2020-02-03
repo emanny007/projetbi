@@ -73,10 +73,11 @@
                               <label for="inputIsValid" class=" form-control-label">TYPE DE CONGE</label>
                               <select name="type_conge" id="selectLg" class="is-valid form-control-success form-control">
                                 <option></option>
-                                <option value="CONGE ANNUEL">CONGE ANNUEL</option>
-                                <option value="CONGE MALADIE">CONGE MALADIE</option>
-                                <option value="MATERNITE">MATERNITE</option>
-                                <option value="AUTRE CONGE">AUTRE</option>
+                                <option value="CONGES ANNUELS">CONGES ANNUELS</option>
+                                <option value="CONGES MALADIES">CONGES MALADIES</option>
+                                <option value="CONGES DE MATERNITE">CONGES DE MATERNITE</option>
+                                <option value="TRAVAIL A DISTANCE">TRAVAIL A DISTANCE</option>
+                                <option value="AUTRES">AUTRES</option>
                               </select>
                           </div>
                               @if($errors->has('type_conge'))

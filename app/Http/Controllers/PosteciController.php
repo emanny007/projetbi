@@ -30,10 +30,9 @@ class PosteciController extends Controller
 
 
 
-
-
   public function update(Request $request, $id)
   {
+      $today = date("Y-m-d H:i:s");
     DB::table('postes')->updateOrInsert(['employe_id' => $request->get('id_empl')],
     [
       'intitule' => strtoupper($request->get('intitule')),
@@ -45,11 +44,11 @@ class PosteciController extends Controller
       'date_entree' => $request->get('date_entree'),
       'anciennete' => $request->get('anciennete'),
       'employe_id' => $request->get('id_empl'),
-      //'created_at' => Carbon::today()->get(),
-      //'updated_at' => Carbon::today()->get()
+      'created_at'=>$today,
+      'updated_at'=>$today,
     ]);
 
- flash("L employé a bien été modifié")->success();
+ flash("L'employé a bien été modifié")->success();
  return redirect()->back();
   }
 

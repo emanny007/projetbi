@@ -4,16 +4,14 @@
 <!-- MAIN CONTENT--><br />
 <div class="uker">
   <div class="section__content section__content--p30">
-  <!--div class="row m-t-30">
-        <h2 class="title-1">TABLEAU DE BOARD</h2>
-  </div  onchange="form.submit()"-->
-      <div class="container-fluid"><center>
+  <div class="container-fluid">
+      <center>
         <div class="col-sm-3 col-lg-3">
         <form class="form-horizontal" method="Post" action="{{ route('accueil') }}">
         {{ csrf_field() }}
         <div class="has-success form-group">
           <label for="inputIsValid"><strong>CHOISIR UNE FILIALE</strong></label>
-            <select name="choisir_entite" id="selectLg" onChange="this.form.submit();"  class="form-control is-valid form-control-success form-control">
+            <select name="choisir_entite" id="selectLg" onChange="this.form.submit();" class="form-control is-valid form-control-success form-control">
               <option></option>
               <option>ALL STAFF</option>
               @foreach($sites as $site)

@@ -7,16 +7,7 @@
           <div class="container-fluid">
             <br />
             <div class="col-sm-6 col-lg-12">
-              <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span>Experience &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
-            </center>
+                @include('includes.sous-menu-cti-checker')
           </div>
 
                         <div class="row well m-t-30">
@@ -98,13 +89,14 @@
                           <select name="niveau_etude" id="selectLg" class="is-valid form-control-success form-control">
                           <!--input type="text" id="inputIsValid" name="niveau_etude" class="is-valid form-control-success form-control"-->
                           <option></option>
+                          <option value="BAC +6">BAC +6</option>
                           <option value="BAC +5">BAC +5</option>
                           <option value="BAC +4">BAC +4</option>
                           <option value="BAC +3">BAC +3</option>
                           <option value="BAC +2">BAC +2</option>
                           <option value="BAC +1">BAC +1</option>
                           <option value="BAC">BAC</option>
-                          <option value="AUTRE">AUTRE</option>
+                          <option value="SANS BAC">SANS BAC</option>
                         </select>
                           </div>
                           @if($errors->has('niveau_etude'))
@@ -132,7 +124,14 @@
                           <option value="13">13 ANS</option>
                           <option value="14">14 ANS</option>
                           <option value="15">15 ANS</option>
-                          <option value="AUTRE"> >15 ANS</option>
+                          <option value="16">16 ANS</option>
+                          <option value="17">17 ANS</option>
+                          <option value="18">18 ANS</option>
+                          <option value="19">19 ANS</option>
+                          <option value="20">20 ANS</option>
+                          <option value="21">21 ANS</option>
+                          <option value="22">22 ANS</option>
+                          <option value="SUPERIEUR 22"> >22 ANS</option>
                           </select>
 
                           </div>
@@ -149,7 +148,7 @@
                         @endif
                         <div class="col-4 has-success form-group">
                         <label id="autre" class=" form-control-label">DATE FIN</label>
-                        <input type="date" id="date_fin" name="date_fin"  class="is-valid form-control-success form-control">
+                        <input type="date" id="date_fin" name="date_fin" class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('date_fin'))
                         <p> {{ $errors->first('date_fin') }} </p>

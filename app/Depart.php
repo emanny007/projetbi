@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Depart extends Model
 {
-      protected $fillable = ['libelle','date_depart','motif'];
+      protected $fillable = ['date_depart','type_depart','motif','statut','employe_id'];
 
 
       public function employes()
       {
-        return $this->belongsToMany('App/Employe');
+        return $this->belongsTo('App/Employe');
       }
 
 }

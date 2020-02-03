@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sanction extends Model
 {
-    protected $fillable = ['liste'];
+    protected $fillable = ['date_sanction','type_sanction','commentaire','employe_id'];
 
     public function employes()
     {
-      return $this->belongsToMany('App/Employe');
+      return $this->belongsTo('App/Employe');
     }
 
 }

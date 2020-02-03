@@ -19,7 +19,7 @@ class FormationciController extends Controller
     public function edit($id)
     {
       $formation = new Formation();
-      $formation = Formation::where('employe_id', $id)->get();
+      $formation = Formation::where('employe_id', $id)->orderby('id','desc')->get();
       //  $formation=Formation::all($id);
       $employe = Employe::findOrFail($id);
        return view('cote-d-ivoire.formations.edit', compact('employe','formation'));
@@ -45,6 +45,7 @@ class FormationciController extends Controller
 
   public function update(Request $request, $id)
   {
+    $today = date("Y-m-d H:i:s");
     DB::table('formations')->Insert(['employe_id' => $request->get('id_empl')],
     [
       'libelle' => strtoupper($request->get('libelle')),
@@ -52,10 +53,12 @@ class FormationciController extends Controller
       'cout' => str_replace($request->get('cout')),
       'date_debut' => $request->get('date_debut'),
       'date_fin' => $request->get('date_fin'),
-      'employe_id' => $request->get('id_empl')
+      'employe_id' => $request->get('id_empl'),
+      'created_at'=>$today,
+      'updated_at'=>$today,
 
     ]);
- //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
+    flash("Successfull !!!")->success();
 return redirect()->back()->with('status','Les informations renseignées ont bien été ajoutés');
   }
 

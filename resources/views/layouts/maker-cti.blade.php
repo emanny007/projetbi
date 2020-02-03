@@ -9,6 +9,7 @@
   <div class="page-wrapper">
   @include('includes.headerdesktop-maker-cti')
 
+  @include('flash::message')
   @yield('accueil_maker')
   @include('flash::message')
   @yield('index-employe')
@@ -25,6 +26,17 @@
   @yield('creation_employe_maker')
   @yield('accueil_maker_groupe')
 
+
+    @yield('modify_performance')
+    @yield('performance_staff')
+    @yield('index_performance')
+
+
+    @yield('modify_edit_sanction')
+    @yield('index_sanction')
+
+    @yield('modify_edit_depart')
+    @yield('index_depart')
 
 <!-- pied de page -->
   @include('includes.footerchecker')

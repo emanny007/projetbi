@@ -33,7 +33,7 @@
                     </div>
                     <div class="row">
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
+                        <label for="inputIsValid" class=" form-control-label">NATIONALITE</label>
                         <input type="text" id="inputIsValid" name="nationnalite" value="{{ old('nationnalite') }}"class="is-valid form-control-success form-control">
                       </div>
                       @if($errors->has('nationnalite'))
@@ -63,6 +63,7 @@
 
               </div>
            </div>
+
         </div>
       </div>
     </div>

@@ -7,7 +7,31 @@
         <div class="container-fluid">
           <div class="row m-t-30">
               <div class="col-md-12">
+                <div class="row">
+                <div class="col-4 has-success form-group">
+                <a class="btn btn-xs btn-success" href="{{ route('create') }}"><span class="glyphicon glyphicon-eye-open"></span>Ajouter</a>
 
+                </div>
+
+                  <!--div class="col-3 has-success form-group">
+                  <form class="form-horizontal" method="Post" action="{{ route('main') }}">
+                  {{ csrf_field() }}
+                  <div class="has-success form-group">
+                  <!--center>  <label for="inputIsValid"><strong>CHOISIR UNE FILIALE</strong></label></center-->
+                      <!--select name="choisir_entite" id="selectLg" onChange="this.form.submit();" class="form-control is-valid form-control-success form-control">
+                        <option></option>
+                        <option>ALL STAFF</option>
+                        @foreach($sites as $site)
+                        <option value="{{ $site->entite }}">{{ $site->entite }}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                  @if($errors->has('choisir_entite'))
+                  <p> {{ $errors->first('choisir_entite') }} </p>
+                  @endif
+                </form>
+              </div-->
+              </div>
                       @if(session()->get('success'))
                       <div class="alert alert-success">
                         {{ session()->get('success') }}
@@ -20,8 +44,7 @@
                         </div>
                         @endif
 
-                      <a class="btn btn-xs btn-success" href="{{ route('create') }}"><span class="glyphicon glyphicon-eye-open"></span>Ajouter</a>
-                                          <br /><br />
+                                          <br />
                                           <center><label for="inputIsValid" align="center"><strong>GESTION DES EMPLOYES</strong></label></center>
                                           <!-- DATA TABLE-->
                                           <div class="table-responsive table m-b-40">
@@ -33,6 +56,8 @@
                                                           <th>NOM</th>
                                                           <th>PRENOM</th>
                                                           <th>EMAIL</th>
+                                                          <th>DEPARTEMENT</th>
+                                                          <th>NATIONALITE</th>
                                                           <th>ENTITE</th>
                                                           <th>ACTIONS</th>
                                                       </tr>
@@ -45,6 +70,8 @@
                                                           <td>{{ $employe->nom }}</td>
                                                           <td>{{ $employe->prenom }}</td>
                                                           <td>{{ $employe->email }}</td>
+                                                          <td>{{ $employe->departement }}</td>
+                                                          <td>{{ $employe->nationnalite }}</td>
                                                           <td>{{ $employe->entite }}</td>
                                                           <td><a class="btn btn-xs btn-info" href="{{ route('show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
                                                             <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-edit"></span></a>

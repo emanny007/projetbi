@@ -5,16 +5,7 @@
   <div class="uker">
       <div class="section__content section__content--p30">
           <div class="container-fluid"><br />
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-            </center>
+              @include('includes.sous-menu-snck')
 
                         <div class="row well m-t-30">
                               <div class="col-md-12">
@@ -103,23 +94,30 @@
                             @else
                             <option></option>
                             @endif
-                            <option value="1 AN">1 AN</option>
-                            <option value="2 ANS">2 ANS</option>
-                            <option value="3 ANS">3 ANS</option>
-                            <option value="4 ANS">4 ANS</option>
-                            <option value="5 ANS">5 ANS</option>
-                            <option value="6 ANS">6 ANS</option>
-                            <option value="7 ANS">7 ANS</option>
-                            <option value="8 ANS">8 ANS</option>
-                            <option value="9 ANS">9 ANS</option>
-                            <option value="10 ANS">10 ANS</option>
-                            <option value="11 ANS">11 ANS</option>
-                            <option value="12 ANS">12 ANS</option>
-                            <option value="13 ANS">13 ANS</option>
-                            <option value="14 ANS">14 ANS</option>
-                            <option value="15 ANS">15 ANS</option>
-                            <option value="AUTRE"> >15 ANS</option>
-
+                            <option value="-1"> -1 AN</option>
+                            <option value="1">1 AN</option>
+                            <option value="2">2 ANS</option>
+                            <option value="3">3 ANS</option>
+                            <option value="4">4 ANS</option>
+                            <option value="5">5 ANS</option>
+                            <option value="6">6 ANS</option>
+                            <option value="7">7 ANS</option>
+                            <option value="8">8 ANS</option>
+                            <option value="9">9 ANS</option>
+                            <option value="10">10 ANS</option>
+                            <option value="11">11 ANS</option>
+                            <option value="12">12 ANS</option>
+                            <option value="13">13 ANS</option>
+                            <option value="14">14 ANS</option>
+                            <option value="15">15 ANS</option>
+                            <option value="16">16 ANS</option>
+                            <option value="17">17 ANS</option>
+                            <option value="18">18 ANS</option>
+                            <option value="19">19 ANS</option>
+                            <option value="20">20 ANS</option>
+                            <option value="21">21 ANS</option>
+                            <option value="22">22 ANS</option>
+                            <option value="SUPERIEUR 22"> >22 ANS</option>
                             </select>
                             </div>
 

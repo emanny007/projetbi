@@ -38,7 +38,8 @@ class Employe extends Model implements AuthContract
       'categorie',
       'departement',
       'statut',
-      'pays'
+      'pays',
+      'age',
     ];
 
     public function getAuthPassword()
@@ -90,7 +91,7 @@ class Employe extends Model implements AuthContract
 
     public function performances()
     {
-      return $this->belongsToMany('App/Performance');
+      return $this->hasMany('App/Performance');
     }
 
     public function postes()
@@ -100,12 +101,16 @@ class Employe extends Model implements AuthContract
 
     public function promotions()
     {
-      return $this->belongsToMany('App/Promotion');
+      return $this->hasMany('App/Promotion');
     }
 
     public function sanctions()
     {
-      return $this->belongsToMany('App/Sanction');
+      return $this->hasMany('App/Sanction');
+    }
+    public function departs()
+    {
+      return $this->hasMany('App/Depart');
     }
 
 }

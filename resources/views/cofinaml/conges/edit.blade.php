@@ -63,7 +63,7 @@
                         <div class="row">
                           <div class="col-2 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">DATE DE LA DEMANDE</label>
-                          <input type="date" id="inputIsValid" name="date_demande" class="is-valid form-control-success form-control">
+                          <input type="date" id="inputIsValid" name="date_demande" class="is-valid form-control-success form-control" required>
                           <input type="hidden" value="{{ $employe->id }}" name="id_empl"/>
                           </div>
                           @if($errors->has('date_demande'))
@@ -74,9 +74,11 @@
                               <label for="inputIsValid" class=" form-control-label">TYPE DE CONGE</label>
                               <select name="type_conge" id="selectLg" class="is-valid form-control-success form-control">
                                 <option></option>
-                                <option value="CONGE PAYE">CONGE PAYE</option>
-                                <option value="CONGE MALADIE">CONGE MALADIE</option>
-                                <option value="CONGE PARENTAL">CONGE PARENTAL</option>
+                                <option value="CONGES ANNUELS">CONGES ANNUELS</option>
+                                <option value="CONGES MALADIES">CONGES MALADIES</option>
+                                <option value="CONGES DE MATERNITE">CONGES DE MATERNITE</option>
+                                <option value="TRAVAIL A DISTANCE">TRAVAIL A DISTANCE</option>
+                                <option value="AUTRES">AUTRES</option>
                               </select>
                           </div>
                               @if($errors->has('type_conge'))

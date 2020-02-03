@@ -17,8 +17,8 @@ class CreateEmployePromotionTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employe_id');
             $table->unsignedBigInteger('promotion_id');
-            $table->foreign('employe_id')->references('id')->on('employes');
-            $table->foreign('promotion_id')->references('id')->on('promotions');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
+            $table->foreign('promotion_id')->references('id');
             $table->timestamps();
         });
     }

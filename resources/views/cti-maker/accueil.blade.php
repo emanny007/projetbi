@@ -5,9 +5,7 @@
 <!-- MAIN CONTENT--><br />
 <div class="uker">
   <div class="section__content section__content--p30">
-  <!--div class="row m-t-30">
-        <h2 class="title-1">TABLEAU DE BOARD</h2>
-  </div  onchange="form.submit()"-->
+
       <div class="container-fluid"><center>
         <div class="col-sm-3 col-lg-3">
         <form class="form-horizontal" method="Post" action="{{ route('cti.accueil') }}">
@@ -161,14 +159,7 @@
         </div>
   </div>
 
-  <!--div class="col-lg-6">
-        <div class="au-card m-b-30">
-          <div class="au-card-inner">
-              <h3 class="title-2 m-b-40">FILIALES </h3>
 
-          </div>
-      </div>
-</div-->
 </div>
 
 </div>

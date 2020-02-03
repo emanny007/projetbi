@@ -10,6 +10,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
+use DateTime;
 
 use App\Departement;
 use Image;
@@ -25,12 +26,38 @@ class EmployeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
 
-      $employes=Employe::all();
+      $choisir_entite = $request->input('choisir_entite');
 
-         return view('employes.index', compact('employes'));
+
+      if(!empty($choisir_entite)){
+
+            $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite'");
+
+            if($choisir_entite=="ALL STAFF"){
+
+                $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id");
+
+            }
+
+       }else{
+
+            $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id");
+       }
+
+
+
+     $employes=Employe::all();
+
+
+          $sites= Site::where('entite','<>','')->get();
+         return view('/employes/index',[
+         'sites' => $sites,
+         'employes' => $employes,
+
+       ]);
 
     }
 
@@ -134,6 +161,17 @@ class EmployeController extends Controller
           $employe->photo = $filename;
         }
 
+        $aujourd = date("Y-m-d");
+        $date_naissance = $request->get('date_naissance');
+
+        $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+        $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+        $age=$date_naissance->diff($aujourd);
+        $age=$age->format('%y');
+        //dd($age);
+        $employe->age = $age;
+
+
         $employe->save();
 
         Contrat::create([
@@ -172,9 +210,7 @@ class EmployeController extends Controller
     public function edit($id)
     {
       $contrat = new Contrat();
-      //$contrat_empls= DB::table('contrats')->where(['employe_id','=','6'])->get();
       $contrat= Contrat::find($id);
-
       $departements= Departement::all();
       $employe = Employe::findOrFail($id);
       //$sites= Site::orderby('id','asc')->paginate(20);
@@ -265,6 +301,23 @@ class EmployeController extends Controller
                 $employe->pays = $request->get('pays');
                 $employe->updated_at=$today;
 
+                $aujourd = date("Y-m-d");
+                $date_naissance = $request->get('date_naissance');
+
+                $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+                $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+                $age=$date_naissance->diff($aujourd);
+                $age=$age->format('%y');
+
+                $employe->age = $age;
+
+                //$date_naissance = $age;
+                /*
+                $annee = date("Y");
+                $date_naissance = $request->get('date_naissance');
+                $annee = date("Y",$date_naissance);
+                dd($annee);
+                */
 
                 if($request->hasFile('photo')){
                   $photo = $request->file('photo');

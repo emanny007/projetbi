@@ -49,11 +49,27 @@
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="{{ url('/cac/conges/index') }}">
+                    <li class="has-sub">
+                        <a href="#">
                             <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/cac/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cac/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cac/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cac/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
+                        </ul>
                     </li>
+
+
                     <li>
                         <a href="{{ url('/cac/reportings/index') }}">
                             <i class="fas fa-upload"></i>

@@ -43,16 +43,34 @@
                             <li>
                                 <a href="{{ url('/cofinasn/analyse/contrat') }}"><i class="fas fa-folder-open"></i>Contrat</a>
                             </li>
+                            <li>
+                                <a href="{{ url('/cofinasn/analyse/indicateur') }}"><i class="fas fa-folder-open"></i>Indicateur</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="has-sub">
+                        <a href="#">
+                            <i class="fas fa-table"></i>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/cofinasn/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="{{ url('/cofinasn/conges/index') }}">
-                            <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
-                    </li>
-                    <li> <!-- url('/cofinasn/reportings/index') -->
-                        <a href="#">
+                          <a href="{{ url('/cofinasn/reportings/index') }}">
                             <i class="fas fa-upload"></i>
                             <span class="bot-line"></span>Extraction</a>
                     </li>

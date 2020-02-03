@@ -18,8 +18,8 @@ class ContratctiController extends Controller
   public function edit($id)
   {
       $contrat = new Contrat();
-      $contrat=DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')
-        ->join('contrats','employes.id','=','contrats.employe_id')->where('employe_id', '=', $id)->get()->first();
+      $contrat=DB::table('employes')->select('employe_id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin','contrats.montant_net','contrats.montant_brut')
+      ->join('contrats','employes.id','=','contrats.employe_id')->where('employe_id', '=', $id)->get()->first();
       $employe = Employe::findOrFail($id);
 
        return view('cti-maker.contrats.edit', compact('employe','contrat'));
@@ -29,22 +29,22 @@ class ContratctiController extends Controller
 
   public function update(Request $request, $id)
   {
-                    $today = date("Y-m-d H:i:s");
+    $today = date("Y-m-d H:i:s");
 
-//dd($request);
-                    DB::table('contrats')->updateOrInsert(['employe_id' => $request->get('id_empl')],
-                    [
-                      'type_contrat' => $request->get('type_contrat'),
-                      'date_debut' => $request->get('date_debut'),
-                      'date_fin' => $request->get('date_fin'),
-                      'employe_id' => $request->get('id_empl'),
-                      'updated_at'=>$today,
+    DB::table('contrats')->updateOrInsert(['employe_id' => $request->get('id_empl')],
+    [
+      'type_contrat' => $request->get('type_contrat'),
+      'date_debut' => $request->get('date_debut'),
+      'date_fin' => $request->get('date_fin'),
+      'montant_net' => $request->get('montant_net'),
+      'montant_brut' => $request->get('montant_brut'),
+      'employe_id' => $request->get('id_empl'),
+      'created_at'=>$today,
+      'updated_at'=>$today,
 
+    ]);
 
-              ]);
-
-           //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-           //flash("Successfull !!!")->success();
+           flash("update success!!!")->success();
           return redirect()->back()->with('status','L\'employé a bien été modifié');
   }
 

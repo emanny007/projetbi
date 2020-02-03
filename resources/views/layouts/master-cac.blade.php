@@ -54,6 +54,18 @@
   @yield('modify_experience')
   @yield('modify_poste')
 
+
+    @yield('modify_performance')
+    @yield('performance_staff')
+    @yield('index_performances')
+
+
+    @yield('modify_edit_sanction')
+    @yield('index_sanction')
+
+    @yield('modify_edit_depart')
+    @yield('index_depart')
+    
 <!-- pied de page -->
   @include('includes.footer')
 

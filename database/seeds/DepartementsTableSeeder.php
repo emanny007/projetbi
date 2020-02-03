@@ -14,7 +14,7 @@ class DepartementsTableSeeder extends Seeder
       DB::table('departements')->insert([
 
       [
-          'libelle' => 'RESSOURCE HUMAINE',
+          'libelle' => 'RESSOURCES HUMAINES',
       ],
       [
           'libelle' => 'INFORMATIQUE',
@@ -26,10 +26,7 @@ class DepartementsTableSeeder extends Seeder
           'libelle' => 'DMCC',
       ],
       [
-          'libelle' => 'DIRECTION',
-      ],
-      [
-          'libelle' => 'DEX',
+          'libelle' => 'OPERATIONS',
       ],
       [
           'libelle' => 'CREDIT',
@@ -38,16 +35,25 @@ class DepartementsTableSeeder extends Seeder
           'libelle' => 'AUDIT',
       ],
       [
-          'libelle' => 'CONTROL-INTERNE',
+          'libelle' => 'CONTROLE INTERNE',
       ],
       [
-          'libelle' => 'DIRECTION',
+          'libelle' => 'DIRECTION GENERALE',
       ],
       [
           'libelle' => 'RETAIL',
       ],
       [
+          'libelle' => 'EXPLOITATION',
+      ],
+      [
+          'libelle' => 'FACILITIES',
+      ],
+      [
           'libelle' => 'LEGAL',
+      ],
+      [
+          'libelle' => 'PHOENIX',
       ],
   ]);
     }

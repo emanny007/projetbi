@@ -52,7 +52,6 @@ class ExperienceController extends Controller
         'date_debut' => $request->get('date_debut'),
         'date_fin' => $request->get('date_fin'),
         'employe_id' => $request->get('id_empl')
-
       ]);
 
       $experience->save();
@@ -80,7 +79,7 @@ class ExperienceController extends Controller
     public function edit($id)
     {
       $experience = new Experience();
-      $experience = Experience::where('employe_id', $id)->get();
+      $experience = Experience::where('employe_id', $id)->orderby('id','desc')->get();
       $employe = Employe::findOrFail($id);
        return view('experiences.edit', compact('employe','experience'));
     }

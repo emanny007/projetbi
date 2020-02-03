@@ -22,7 +22,7 @@ class ContratController extends Controller
     public function index()
     {
               $empl = DB::table('employes')
-              ->join('contrats','employes.id','=','contrats.id')
+              ->join('contrats','employes.id','=','contrats.employe_id')
               ->select('employes.id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')->get();
 
               $employes = Employe::orderby('id','desc')->paginate(20);
@@ -58,7 +58,9 @@ class ContratController extends Controller
      */
     public function show($id)
     {
-      $employes=DB::table('employes')->select('employe_id','employes.matricule','employes.numero_sss','employes.id','employes.nom','employes.prenom','employes.password','employes.role','employes.civilite','employes.photo','employes.situation_matrimoniale','employes.origine','employes.nationnalite','employes.nbre_enfant','employes.contact_urgent','employes.sexe','employes.entite','employes.date_naissance','employes.tel_perso','employes.tel_pro','employes.mail_perso','employes.entite','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')->join('contrats','employes.id','=','contrats.id')->where('employe_id', '=', $id)->get()->first();
+      $employes=DB::table('employes')->select('employe_id','employes.matricule','employes.numero_sss','employes.id','employes.nom','employes.prenom','employes.password','employes.role','employes.civilite','employes.photo','employes.situation_matrimoniale','employes.origine','employes.nationnalite','employes.nbre_enfant','employes.contact_urgent','employes.sexe',
+      'employes.entite','employes.date_naissance','employes.tel_perso','employes.tel_pro','employes.mail_perso','employes.entite','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')
+      ->join('contrats','employes.id','=','contrats.id')->where('employe_id', '=', $id)->get()->first();
       return view('contrats.show',['employe' => $employes]);
     }
 
@@ -71,9 +73,8 @@ class ContratController extends Controller
     public function edit($id)
     {
         $contrat = new Contrat();
-       //$contrat = DB::table('contrats')->where('employe_id', '=', $id)->get();
-        //$contrat = Contrat::find($id);
-          $contrat=DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin')
+
+        $contrat=DB::table('employes')->select('employe_id','employes.nom','employes.prenom','employes.email','contrats.type_contrat','contrats.date_debut','contrats.date_fin','contrats.montant_net','contrats.montant_brut')
           ->join('contrats','employes.id','=','contrats.employe_id')->where('employe_id', '=', $id)->get()->first();
         $employe = Employe::findOrFail($id);
          return view('contrats.edit', compact('employe','contrat'));
@@ -88,8 +89,6 @@ class ContratController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
                 /*$contrat = new Contrat();
                 //[
                 $id_empl= $request->get('id_empl');
@@ -110,14 +109,16 @@ class ContratController extends Controller
                   'type_contrat' => $request->get('type_contrat'),
                   'date_debut' => $request->get('date_debut'),
                   'date_fin' => $request->get('date_fin'),
+                  'montant_net' => $request->get('montant_net'),
+                  'montant_brut' => $request->get('montant_brut'),
                   'employe_id' => $request->get('id_empl'),
                   'created_at'=>$today,
                   'updated_at'=>$today,
-                  //'updated_at' => Carbon::today()->get()
+
                 ]);
              //return redirect()->route('create',$employe)->with('statut','Successfull !!!');
-             flash("Successfull !!!")->success();
-            return redirect()->back()->with('status','L employé a bien été modifié');
+             flash("update success!!!")->success();
+            return redirect()->back()->with('status','update success!!!');
     }
 
     /**

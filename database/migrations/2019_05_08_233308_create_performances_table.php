@@ -22,6 +22,8 @@ class CreatePerformancesTable extends Migration
             $table->string('note_ef')->nullable();
             $table->string('position_ef')->nullable();
             $table->string('note_mdv')->nullable();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

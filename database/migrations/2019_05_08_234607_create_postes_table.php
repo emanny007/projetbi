@@ -20,12 +20,12 @@ class CreatePostesTable extends Migration
             $table->string('grade_local')->nullable();
             $table->string('grade_cofina')->nullable();
             $table->string('pays')->nullable();
-            $table->string('fonction_n1')->nullable();            
+            $table->string('fonction_n1')->nullable();
             $table->date('date_embauche')->nullable();
             $table->date('date_entree')->nullable();
             $table->string('anciennete')->nullable();
             $table->unsignedBigInteger('employe_id');
-            $table->foreign('employe_id')->references('id')->on('employes');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

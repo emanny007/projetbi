@@ -10,6 +10,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
+use DateTime;
 
 use App\Departement;
 use Image;
@@ -49,7 +50,9 @@ class EmployecsgController extends Controller
 
         return view('csg.employes.create',[
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements
       ]);
     }
@@ -62,7 +65,6 @@ class EmployecsgController extends Controller
      */
     public function store(Request $request)
     {
-
       $request->validate([
          'matricule' => 'between:2,20',
          'numero_sss' => 'bail|required|numeric',
@@ -88,10 +90,11 @@ class EmployecsgController extends Controller
          'departement'=>'required',
          'type_contrat'=>'required',
          'date_debut'=>'required|date',
-        // 'date_fin'=>'date'
-       ]
-      );
 
+       ]
+    );
+
+        $statut='ACTIVE';
         $today = date("Y-m-d H:i:s");
 
         $employe = new Employe([
@@ -115,11 +118,13 @@ class EmployecsgController extends Controller
           'nbre_enfant' => $request->get('nbre_enfant'),
           'nationnalite' => $request->get('nationnalite'),
           //'origine' => $request->get('origine'),
+          'statut' => $statut,
           'categorie' => $request->get('categorie'),
           'secteur' => $request->get('secteur'),
           'departement' => $request->get('departement'),
           'created_at'=>$today,
           'updated_at'=>$today,
+
         ]);
 
         if($request->hasFile('photo')){
@@ -129,6 +134,15 @@ class EmployecsgController extends Controller
           //$request->photo->storeAs('public/images',$filename);
           $employe->photo = $filename;
         }
+
+        $aujourd = date("Y-m-d");
+        $date_naissance = $request->get('date_naissance');
+        $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+        $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+        $age=$date_naissance->diff($aujourd);
+        $age=$age->format('%y');
+        $employe->age = $age;
+
 
         $employe->save();
 
@@ -140,9 +154,7 @@ class EmployecsgController extends Controller
         'created_at'=>$today,
         'updated_at'=>$today,
       ]);
-
        return redirect('/csg/employes')->with('success', 'L\'employé a été ajouté avec succes !');
-      //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
 
     /**
@@ -153,8 +165,6 @@ class EmployecsgController extends Controller
      */
     public function show($id)
     {
-       //print_r($request->input());
-
       $employes = Employe::find($id);
       return view('csg.employes.show',['employe' => $employes]);
     }
@@ -179,7 +189,9 @@ class EmployecsgController extends Controller
         return view('csg.employes.edit',[
           'employe' => $employe,
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements,
           'contrat' => $contrat,
       ]);
@@ -215,11 +227,11 @@ class EmployecsgController extends Controller
         'photo' => 'image',
         'civilite' => 'required',
         'situation_matrimoniale' => 'required',
-        'nbre_enfant' => 'required',
+        //'nbre_enfant' => 'required|numeric',
         'nationnalite' => 'required',
         'statut' => 'required'
       ]
- );
+  );
          $today = date("Y-m-d H:i:s");
 
          $employe = Employe::findOrFail($id);
@@ -245,6 +257,7 @@ class EmployecsgController extends Controller
          $employe->contact_urgent = $request->get('contact_urgent');
          $employe->entite = $request->get('entite');
          $employe->sexe = $request->get('sexe');
+         //$employe->photo = $request->get('photo');
          $employe->civilite = $request->get('civilite');
          $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
          $employe->nbre_enfant = $request->get('nbre_enfant');
@@ -256,6 +269,15 @@ class EmployecsgController extends Controller
          $employe->pays = $request->get('pays');
          $employe->updated_at=$today;
 
+         $aujourd = date("Y-m-d");
+         $date_naissance = $request->get('date_naissance');
+
+         $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+         $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+         $age=$date_naissance->diff($aujourd);
+         $age=$age->format('%y');
+
+         $employe->age = $age;
 
          if($request->hasFile('photo')){
            $photo = $request->file('photo');
@@ -268,7 +290,7 @@ class EmployecsgController extends Controller
          $employe->save();
 
       flash("L'employé a bien été modifié")->success();
-     return redirect()->back()->with('status','L employé a bien été modifié');
+     return redirect()->back()->with('status','L\'employé a bien été modifié');
  }
 
     /**

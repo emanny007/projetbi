@@ -6,16 +6,7 @@
       <div class="section__content section__content--p30">
           <div class="container-fluid">
             <br />
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-            </center>
+            @include('includes.sous-menu-ci')
           </div>
 
           <div class="row well m-t-30">
@@ -96,8 +87,24 @@
                                                     <td>{{ $employe->entite }}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td>DEPARTEMENT</td>
+                                                    <td>{{ $employe->departement }}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>SEXE</td>
                                                     <td>{{ $employe->sexe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AGE</td>
+                                                    <td>{{ $employe->age }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SECTEUR</td>
+                                                    <td>{{ $employe->secteur }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CATEGORIE</td>
+                                                    <td>{{ $employe->categorie }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>CIVILITE</td>
@@ -112,22 +119,18 @@
                                                     <td>{{ $employe->nbre_enfant }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>NATIONNALITE</td>
+                                                    <td>NATIONALITE</td>
                                                     <td>{{ $employe->nationnalite }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>ORIGINE</td>
-                                                    <td>{{ $employe->origine }}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>PAYS</td>
-                                                    <td>{{ $employe->pays }}</td>
+                                                    <td>STATUT</td>
+                                                    <td>{{ $employe->statut }}</td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
+
                                     <center><br /><br />
                                       <a class="btn btn-xs btn-danger" href="{{ route('index-employe') }}">RETOURNER</a>
                                     </center>

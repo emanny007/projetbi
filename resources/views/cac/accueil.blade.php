@@ -7,8 +7,25 @@
   <!--div class="row m-t-30">
         <h2 class="title-1">TABLEAU DE BOARD</h2>
   </div  onchange="form.submit()"-->
-      <div class="container-fluid">
-
+  <div class="container-fluid"><center>
+    <div class="col-sm-3 col-lg-3">
+    <form class="form-horizontal" method="Post" action="{{ route('cac.accueil') }}">
+    {{ csrf_field() }}
+    <div class="has-success form-group">
+      <label for="inputIsValid"><strong>CHOISIR UNE FILIALE</strong></label>
+        <select name="choisir_entite" id="selectLg" onChange="this.form.submit();"  class="form-control is-valid form-control-success form-control">
+          <option></option>
+          @foreach($sites as $site)
+          <option value="{{ $site->entite }}">{{ $site->entite }}</option>
+          @endforeach
+        </select>
+    </div>
+    @if($errors->has('choisir_entite'))
+    <p> {{ $errors->first('choisir_entite') }} </p>
+    @endif
+  </form>
+</div>
+</center>
     <div class="row m-t-25">
         <div class="col-sm-6 col-lg-3">
             <div class="overview-item overview-item--c1">

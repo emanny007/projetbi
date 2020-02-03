@@ -10,6 +10,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
+use DateTime;
 
 use App\Departement;
 use Image;
@@ -89,10 +90,10 @@ class EmployecacController extends Controller
          'departement'=>'required',
          'type_contrat'=>'required',
          'date_debut'=>'required|date',
-        // 'date_fin'=>'date'
+
        ]
-  );
-        //  Employe::create($request->all());
+);
+
         $statut='ACTIVE';
         $today = date("Y-m-d H:i:s");
 
@@ -134,6 +135,15 @@ class EmployecacController extends Controller
           $employe->photo = $filename;
         }
 
+        $aujourd = date("Y-m-d");
+        $date_naissance = $request->get('date_naissance');
+        $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+        $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+        $age=$date_naissance->diff($aujourd);
+        $age=$age->format('%y');
+        $employe->age = $age;
+
+
         $employe->save();
 
         Contrat::create([
@@ -146,7 +156,6 @@ class EmployecacController extends Controller
       ]);
 
        return redirect('/cac/employes')->with('success', 'L\'employé a été ajouté avec succes !');
-      //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
 
     /**
@@ -172,7 +181,6 @@ class EmployecacController extends Controller
     public function edit($id)
     {
       $contrat = new Contrat();
-
       $contrat= Contrat::find($id);
       $departements= Departement::all();
       $employe = Employe::findOrFail($id);
@@ -222,11 +230,11 @@ class EmployecacController extends Controller
        'photo' => 'image',
        'civilite' => 'required',
        'situation_matrimoniale' => 'required',
-       'nbre_enfant' => 'required',
+       //'nbre_enfant' => 'required|numeric',
        'nationnalite' => 'required',
        'statut' => 'required'
      ]
-);
+ );
         $today = date("Y-m-d H:i:s");
 
         $employe = Employe::findOrFail($id);
@@ -252,6 +260,7 @@ class EmployecacController extends Controller
         $employe->contact_urgent = $request->get('contact_urgent');
         $employe->entite = $request->get('entite');
         $employe->sexe = $request->get('sexe');
+        //$employe->photo = $request->get('photo');
         $employe->civilite = $request->get('civilite');
         $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
         $employe->nbre_enfant = $request->get('nbre_enfant');
@@ -263,6 +272,15 @@ class EmployecacController extends Controller
         $employe->pays = $request->get('pays');
         $employe->updated_at=$today;
 
+        $aujourd = date("Y-m-d");
+        $date_naissance = $request->get('date_naissance');
+
+        $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+        $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+        $age=$date_naissance->diff($aujourd);
+        $age=$age->format('%y');
+
+        $employe->age = $age;
 
         if($request->hasFile('photo')){
           $photo = $request->file('photo');
@@ -275,7 +293,7 @@ class EmployecacController extends Controller
         $employe->save();
 
      flash("L'employé a bien été modifié")->success();
-    return redirect()->back()->with('status','L employé a bien été modifié');
+    return redirect()->back()->with('status','L\'employé a bien été modifié');
 }
 
     /**

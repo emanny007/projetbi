@@ -6,21 +6,12 @@
       <div class="section__content section__content--p30">
           <div class="container-fluid">
             <br />
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-            </center>
+            @include('includes.sous-menu-snck')
                         <div class="row well m-t-30">
                               <div class="col-md-12">
                                 <div class="card">
                                   <div class="card-header">
-                                   <center><strong>EXPERIENCE PROFESSIONNELLE</strong></center>
+                                   <center><strong>experiences PROFESSIONNELLES</strong></center>
                                   </div>
 
                                   <div class="card-body card-block">
@@ -91,13 +82,14 @@
                           <select name="niveau_etude" id="selectLg" class="is-valid form-control-success form-control">
                           <!--input type="text" id="inputIsValid" name="niveau_etude" class="is-valid form-control-success form-control"-->
                           <option></option>
+                          <option value="BAC +6">BAC +6</option>
                           <option value="BAC +5">BAC +5</option>
                           <option value="BAC +4">BAC +4</option>
                           <option value="BAC +3">BAC +3</option>
                           <option value="BAC +2">BAC +2</option>
                           <option value="BAC +1">BAC +1</option>
                           <option value="BAC">BAC</option>
-                          <option value="AUTRE">AUTRE</option>
+                          <option value="SANS BAC">SANS BAC</option>
                         </select>
                           </div>
                           @if($errors->has('niveau_etude'))
@@ -125,9 +117,15 @@
                           <option value="13">13 ANS</option>
                           <option value="14">14 ANS</option>
                           <option value="15">15 ANS</option>
-                          <option value="AUTRE"> >15 ANS</option>
+                          <option value="16">16 ANS</option>
+                          <option value="17">17 ANS</option>
+                          <option value="18">18 ANS</option>
+                          <option value="19">19 ANS</option>
+                          <option value="20">20 ANS</option>
+                          <option value="21">21 ANS</option>
+                          <option value="22">22 ANS</option>
+                          <option value="SUPERIEUR 22"> >22 ANS</option>
                           </select>
-
                           </div>
                           @if($errors->has('nbre_annee_exp'))
                           <p> {{ $errors->first('nbre_annee_exp') }} </p>

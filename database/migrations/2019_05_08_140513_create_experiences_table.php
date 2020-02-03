@@ -21,8 +21,10 @@ class CreateExperiencesTable extends Migration
             $table->string('nbre_annee_exp')->nullable();
             $table->date('date_debut')->nullable();
             $table->date('date_fin')->nullable();
+            $table->string('diplome')->nullable();
+            $table->string('sigle')->nullable();
             $table->unsignedBigInteger('employe_id');
-            $table->foreign('employe_id')->references('id')->on('employes');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

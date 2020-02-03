@@ -15,9 +15,12 @@ class CreateDepartsTable extends Migration
     {
         Schema::create('departs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('libelle')->nullable();
             $table->date('date_depart')->nullable();
+            $table->string('type_depart')->nullable();
             $table->text('motif')->nullable();
+            $table->string('statut')->nullable();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -24,6 +24,10 @@ class GroupesTableSeeder extends Seeder
         'nom_groupe' => 'CONSULTATION',
         'commentaire' => NULL,
       ],
+      [
+        'nom_groupe' => 'GESTIONNAIRE CVTHEQUE',
+        'commentaire' => NULL,
+      ],
 
   ]);
     }

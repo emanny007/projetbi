@@ -6,16 +6,7 @@
       <div class="section__content section__content--p30">
           <div class="container-fluid"><br />
             <div class="col-sm-6 col-lg-12">
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
-          </center>
+              @include('includes.sous-menu-cti-checker')
             <div class="row well m-t-30">
                   <div class="col-md-12">
                     <div class="card">
@@ -24,7 +15,7 @@
                       </div>
 
                       <div class="card-body card-block">
-                      <form  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('update',$employe->id)}}">
+                      <form  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('update',$employe->id) }}">
 
                       {{ csrf_field() }}
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
@@ -208,7 +199,7 @@
                       @endif
 
                         <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
+                          <label for="inputIsValid" class=" form-control-label">NATIONALITE</label>
                           <select name="nationnalite" id="selectLg" class="form-control is-valid form-control-success form-control">
                             <option value="{{ $employe->nationnalite }}">{{ $employe->nationnalite }}</option>
                             @foreach($nationnalite as $nationnalites)
@@ -240,6 +231,7 @@
                                         <select name="secteur" id="selectLg" class="is-valid form-control-success form-control">
                                           <option value="{{ $employe->secteur }}">{{ $employe->secteur }}</option>
                                           <option value="SALES">SALES</option>
+                                          <option value="MIDDLES SALES">MIDDLES SALES</option>
                                           <option value="NON SALES">NON SALES</option>
                                         </select>
                                     </div>
@@ -284,6 +276,16 @@
                                     <p> {{ $errors->first('pays') }} </p>
                                     @endif
 
+                                  </div>
+
+                                    <div class="row">
+                                      <div class="col-3 has-success form-group">
+                                      <label for="inputIsValid" class=" form-control-label">AGE</label>
+                                      <input type="text" id="inputIsValid" name="age" value="{{ $employe->age }}" class="is-valid form-control-success form-control" readonly>
+                                    </div>
+                                    @if($errors->has('age'))
+                                    <p> {{ $errors->first('age') }} </p>
+                                    @endif
 
                                   </div>
 

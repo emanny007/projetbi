@@ -13,12 +13,13 @@ class Performance extends Model
       'note_mdv_mp',
       'note_ef',
       'position_ef',
-      'note_mdv'
+      'note_mdv',
+      'employe_id'
     ];
 
     public function employes()
     {
-      return $this->belongsToMany('App/Employe');
+      return $this->belongsTo('App/Employe');
     }
 
 }

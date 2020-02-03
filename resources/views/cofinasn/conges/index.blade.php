@@ -18,7 +18,7 @@
                       <br /><br />
                       <!-- DATA TABLE-->
                         <div class="table-responsive table--no-card m-b-30">
-                          <table class="table table-borderless table-striped table-earning"  id="example" class="display" data-order='[[ 1, "desc" ]]' data-page-length='50' style="width:100%">
+                          <table class="table table-borderless table-striped table-earning"  id="example" class="display" data-order='[[ 0, "desc" ]]' data-page-length='100' style="width:100%">
                           <thead>
                               <tr>
                                 <th>DATE DEMANDE</th>
@@ -86,9 +86,12 @@
               <div class="has-success form-group">
                 <label for="inputIsValid" class=" form-control-label">TYPE DE CONGE</label>
                 <select name="type_conge" id="selectLg" class="form-control-lg is-valid form-control-success form-control">
-                  <option></option>
-                  <option value="CONGE PAYE">CONGE PAYE</option>
-                  <option value="CONGE PARENTAL">CONGE PARENTAL</option>
+									<option></option>
+									<option value="CONGES ANNUELS">CONGES ANNUELS</option>
+									<option value="CONGES MALADIES">CONGES MALADIES</option>
+									<option value="CONGES DE MATERNITE">CONGES DE MATERNITE</option>
+									<option value="TRAVAIL A DISTANCE">TRAVAIL A DISTANCE</option>
+									<option value="AUTRES">AUTRES</option>
                 </select>
               </div>
               @if($errors->has('type_conge'))

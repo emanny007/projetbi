@@ -33,23 +33,23 @@ class ComptesnController extends Controller
    $choisir_entite = $request->input('choisir_entite');
 if(!empty($choisir_entite)){
    //$employes=DB::table('employes')->where('entite', '=',choisir_entite)->get();
-      $nb_empl=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite'");
-      $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
-      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
-      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
-      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION'");
-      $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
+      $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite' AND employes.statut='ACTIVE'");
+      $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI' AND employes.statut='ACTIVE'");
+      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD' AND employes.statut='ACTIVE'");
+      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE' AND employes.statut='ACTIVE'");
+      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION' AND employes.statut='ACTIVE'");
+      $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite' AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
 
  }else{
-      $nb_empl=DB::select("SELECT * FROM employes");
-      $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
-      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
-      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
-      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION'");
-      $employes=Employe::orderby('id','desc')->paginate(20);
+      $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE'");
+      $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI' AND employes.statut='ACTIVE'");
+      $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD' AND employes.statut='ACTIVE'");
+      $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE' AND employes.statut='ACTIVE'");
+      $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION' AND employes.statut='ACTIVE'");
+      $employes=DB::select("select distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
 
  }
-    $sites=Site::all();
+    $sites= Site::where('entite','<>','')->get();
     flash("Bienvenue dans votre plateforme d'analyse decisionnelle: cofiquick!!")->success();
        return view('/cofinasn/accueil',[
        'sites' => $sites,
@@ -105,22 +105,22 @@ public function senegal(Request $request)
  $choisir_entite = "COFINA SN";
 if(!empty($choisir_entite)){
  //$employes=DB::table('employes')->where('entite', '=',choisir_entite)->get();
-    $nb_empl=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite'");
-    $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
-    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
-    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
-    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION'");
-    $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
+    $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite' AND employes.statut='ACTIVE'");
+    $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI' AND employes.statut='ACTIVE'");
+    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD' AND employes.statut='ACTIVE'");
+    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE' AND employes.statut='ACTIVE'");
+    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='PRESTATION' AND employes.statut='ACTIVE'");
+    $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
 
 }else{
-    $nb_empl=DB::select("SELECT * FROM employes");
-    $employes=Employe::orderby('id','desc')->paginate(10);
-    $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
-    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
-    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
-    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION'");
+    $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE'");
+    $employes=DB::select("select distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
+    $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI' AND employes.statut='ACTIVE'");
+    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD' AND employes.statut='ACTIVE'");
+    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE' AND employes.statut='ACTIVE'");
+    $nb_prestation=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='PRESTATION' AND employes.statut='ACTIVE'");
 }
-  $sites=Site::all();
+  $sites= Site::where('entite','<>','')->get();
   flash("Vous êtes la bienvenue!!")->success();
      return view('/cofinasn/accueil',['sites' => $sites,'employes' => $employes,'geo' => $geo,'nb_empl' => $nb_empl,'nb_cdi' => $nb_cdi,'nb_cdd' => $nb_cdd,
      'nb_stage' => $nb_stage,'nb_prestation' => $nb_prestation,]);
@@ -146,30 +146,26 @@ public function accueil_checker(Request $request)
 
           ->responsive(false);
 
-//  $nb_empl=DB::select("SELECT count(*) FROM employes");
-  //$nb_empl=json_encode($nb_empl);
-  //dump($nb_empl);
- //$employes=Employe::orderby('id','desc')->paginate(10);
-
 
  $choisir_entite = $request->input('choisir_entite');
 if(!empty($choisir_entite)){
  //$employes=DB::table('employes')->where('entite', '=',choisir_entite)->get();
-    $nb_empl=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite'");
-    $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI'");
-    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD'");
-    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE'");
-    $employes=DB::select("SELECT * FROM employes WHERE entite='$choisir_entite' ORDER BY id DESC LIMIT 20");
+    $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite' AND employes.statut='ACTIVE'");
+    $nb_cdi=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDI' AND employes.statut='ACTIVE'");
+    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='CDD' AND employes.statut='ACTIVE'");
+    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND employes.entite='$choisir_entite' AND contrats.type_contrat='STAGE' AND employes.statut='ACTIVE'");
+    $employes=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND entite='$choisir_entite' AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
 
 }else{
-    $nb_empl=DB::select("SELECT * FROM employes");
-    $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'");
-    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'");
-    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'");
-    $employes=Employe::orderby('id','desc')->paginate(20);
+    $nb_empl=DB::select("SELECT distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE' AND employes.statut='ACTIVE'");
+    $nb_cdi=DB::select("select * from employes,contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDI'AND employes.statut='ACTIVE'");
+    $nb_cdd=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='CDD'AND employes.statut='ACTIVE'");
+    $nb_stage=DB::select("select * from employes, contrats where employes.id=contrats.employe_id AND contrats.type_contrat='STAGE'AND employes.statut='ACTIVE'");
+    $employes=DB::select("select distinct * from employes, contrats where employes.id=contrats.employe_id AND employes.statut='ACTIVE' ORDER BY employes.id DESC LIMIT 20");
 
 }
-  $sites=Site::all();
+  //$sites=Site::all();
+  $sites= Site::where('entite','<>','')->get();
   flash("Vous êtes la bienvenue!!")->success();
      return view('/cofinasn/accueil',[
      'sites' => $sites,

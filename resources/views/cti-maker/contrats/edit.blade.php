@@ -65,7 +65,7 @@
 
                         <div class="row">
                         <div class="col-4 has-success form-group">
-                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
+                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT *</label>
                               <select name="type_contrat" id="selectLg" onChange="afficherAutre()" class="is-valid form-control-success form-control">
 
                                 @if(!empty($contrat))
@@ -86,7 +86,7 @@
                             @endif
 
                         <div class="col-4 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
+                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT *</label>
                         @if(!empty($contrat))
                         <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control" required>
                         @else
@@ -109,16 +109,17 @@
                         <p> {{ $errors->first('date_fin') }} </p>
                         @endif
                         </div>
+
                         <br />
 
-                                              <div class="form-group"> <center>
-                        <a class="btn btn-xs btn-danger" href="{{ route('cti.index-employe') }}">RETOURNER</a>
-                    <button type="submit"  class="btn btn-success">VALIDER</button>
-                  </center>
-                  </div>
+                        <div class="form-group">
+                          <center>
+                            <a class="btn btn-xs btn-danger" href="{{ route('cti.index-employe') }}">RETOURNER</a>
+                            <button type="submit"  class="btn btn-success">VALIDER</button>
+                          </center>
+                        </div>
                 </form>
               </div>
-
 
           </div>
         </div>

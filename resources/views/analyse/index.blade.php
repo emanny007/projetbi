@@ -5,15 +5,34 @@
 <div class="uker">
     <div class="section__content section__content--p30">
         <div class="container-fluid"><br /><center><label for="inputIsValid" align="center"><h3 class="title-2 m-b-40">Analyse groupe des staffs par departement</h3></label></center>
+        <!--a target="_blank" href="{{route('DepartementExport')}}" class="btn btn-primary">Print PDF</a-->
+
           <div class="row m-t-30">
+
+            <div class="col-md-12">
+              <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
+                  <div class="au-card-inner">
+                    <center>
+                      <h3 class="title-2 m-b-40">Repartition des hommes et femmes par departement</h3>
+                      {!! $data->render() !!}
+                    </center>
+                  </div>
+              </div>
+            </div>
+
+
+
+
                 <div class="col-md-6">
                   <div class="overview-item overview-item--c1">
                       <div class="au-card-inner">
                         <h3 class="title-2 m-b-40">Tableau de Repartition des staffs par Departement</h3>
+
                         <div class="table-responsive">
                           <div class="overview-chart">
                               <canvas id="widgetChart1"></canvas>
                             </div>
+
                             <table class="table">
                               <thead>
                                 <tr>
@@ -85,16 +104,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-12">
-                  <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
-                      <div class="au-card-inner">
-                        <center>
-                          <h3 class="title-2 m-b-40">Repartition des hommes et femmes par departement</h3>
-                          {!! $data->render() !!}
-                        </center>
-                      </div>
-                  </div>
-                </div>
+
 
               </div>
             </div>

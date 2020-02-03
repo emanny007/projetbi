@@ -21,7 +21,7 @@ class CreateFormationsTable extends Migration
             $table->date('date_debut')->nullable();
             $table->date('date_fin')->nullable();
             $table->unsignedBigInteger('employe_id');
-            $table->foreign('employe_id')->references('id')->on('employes');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

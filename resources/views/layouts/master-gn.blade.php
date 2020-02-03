@@ -47,6 +47,16 @@
   @yield('modify_contrat')
   @yield('show_employe_contrat')
 
+  @yield('modify_performance')
+  @yield('performance_staff')
+  @yield('index_performances')
+
+
+  @yield('modify_edit_sanction')
+  @yield('index_sanction')
+
+  @yield('modify_edit_depart')
+  @yield('index_depart')
 
   @yield('modify_formation')
 

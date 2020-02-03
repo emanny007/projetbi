@@ -16,17 +16,16 @@
                       <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('store') }}">
                       {{ csrf_field() }}
                       <div class="row">
-
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">MATRICULE *</label>
-                        <input type="text" id="inputIsValid" name="matricule"  value="{{ old('matricule') }}" class="is-valid form-control-success form-control">
+                        <input type="text" id="inputIsValid" name="matricule"  value="{{ old('matricule') }}" class="is-valid form-control-success form-control"required>
                       @if($errors->has('matricule'))
                       <p> {{ $errors->first('matricule') }} </p>
                       @endif
                       </div>
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">NUMERO SECURITE SOCIALE *</label>
-                        <input type="text" id="inputIsValid" name="numero_sss" value="{{ old('numero_sss') }}" class="is-valid form-control-success form-control">
+                        <input type="text" id="inputIsValid" name="numero_sss" value="{{ old('numero_sss') }}" class="is-valid form-control-success form-control"required>
                       </div>
                       @if($errors->has('numero_sss'))
                       <p> {{ $errors->first('numero_sss') }} </p>
@@ -104,7 +103,7 @@
                       <div class="row">
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">ENTITE *</label>
-                          <select name="entite" id="selectLg" value="{{ old('entite') }}" class="is-valid form-control-success form-control">
+                          <select name="entite" id="selectLg" value="{{ old('entite') }}" class="is-valid form-control-success form-control" required>
                             <option></option>
                             @foreach($sites as $site)
                             <option value="{{$site->entite}}">{{ $site->entite }}</option>
@@ -116,7 +115,7 @@
                       @endif
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class="form-control-label">SEXE *</label>
-                          <select name="sexe" id="selectLg" class="is-valid form-control-success form-control">
+                          <select name="sexe" id="selectLg" class="is-valid form-control-success form-control" required>
                             <option></option>
                             <option value="MASCULIN">MASCULIN</option>
                             <option value="FEMININ">FEMININ</option>
@@ -129,7 +128,7 @@
                       <div class="row">
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class="form-control-label">CIVILITE *</label>
-                          <select name="civilite" id="selectLg" class="is-valid form-control-success form-control">
+                          <select name="civilite" id="selectLg" class="is-valid form-control-success form-control" required>
                             <option></option>
                             <option value="MONSIEUR">Monsieur</option>
                             <option value="MADAME">Madame</option>
@@ -141,7 +140,7 @@
                       @endif
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class="form-control-label">SITUATION MATRIMONIALE *</label>
-                          <select name="situation_matrimoniale" id="selectLg" class="is-valid form-control-success form-control">
+                          <select name="situation_matrimoniale" id="selectLg" class="is-valid form-control-success form-control" required>
                             <option></option>
                             <option value="CELIBATAIRE">CELIBATAIRE</option>
                             <option value="MARIEE">MARIEE</option>
@@ -156,7 +155,7 @@
                       <div class="row">
                       <div class="col-6 has-success form-group">
                         <label for="inputIsValid" class="form-control-label">JOINDRE UNE PHOTO *</label>
-                        <input type="file" id="inputIsValid" name="photo" value="{{ old('photo') }}" class="is-valid form-control-success form-control">
+                        <input type="file" id="inputIsValid" name="photo" value="{{ old('photo') }}" class="is-valid form-control-success form-control" required>
                       </div>
                       @if($errors->has('photo'))
                       <p> {{ $errors->first('photo') }} </p>
@@ -165,7 +164,7 @@
 
                       <div class="col-6 has-success form-group">
                       <label for="inputIsValid" class="form-control-label">NOMBRE D'ENFANTS</label>
-                      <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control">
+                      <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control" required>
                       <option></option>
                       <option value="0">0</option>
                       <option value="01">01</option>
@@ -189,8 +188,8 @@
                       </div>
                       <div class="row">
                       <div class="col-6 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">NATIONNALITE *</label>
-                          <select name="nationnalite" id="selectLg" class="is-valid form-control-success form-control">
+                        <label for="inputIsValid" class=" form-control-label">NATIONALITE *</label>
+                          <select name="nationnalite" id="selectLg" class="is-valid form-control-success form-control" required>
                             <option></option>
                             @foreach($nationnalite as $nationnalites)
                             <option value="{{$nationnalites->nationnalite}}">{{$nationnalites->nationnalite}}</option>
@@ -207,7 +206,7 @@
 
                     <div class="col-6 has-success form-group">
                       <label for="inputIsValid" class="form-control-label">PAYS *</label>
-                      <select name="pays" id="selectLg" class="form-control is-valid form-control-success form-control">
+                      <select name="pays" id="selectLg" class="form-control is-valid form-control-success form-control" required>
                         <option></option>
                         @foreach($pays as $pays)
                         <option value="{{$pays->pays}}">{{$pays->pays}}</option>
@@ -222,7 +221,7 @@
                     <div class="row">
                     <div class="col-6 has-success form-group">
                       <label for="inputIsValid" class=" form-control-label">DEPARTEMENT *</label>
-                        <select name="departement" id="selectLg" class="is-valid form-control-success form-control">
+                        <select name="departement" id="selectLg" class="is-valid form-control-success form-control" required>
                           <option></option>
                           @foreach($departements as $departement)
                           <option value="{{$departement->libelle}}">{{$departement->libelle}}</option>
@@ -234,9 +233,10 @@
                     @endif
                     <div class="col-6 has-success form-group">
                       <label for="inputIsValid" class=" form-control-label">SECTEUR *</label>
-                        <select name="secteur" id="selectLg" class="is-valid form-control-success form-control">
+                        <select name="secteur" id="selectLg" class="is-valid form-control-success form-control" required>
                           <option></option>
                           <option value="SALES">SALES</option>
+                          <option value="MIDDLES SALES">MIDDLES SALES</option>
                           <option value="NON SALES">NON SALES</option>
                         </select>
                     </div>
@@ -248,7 +248,7 @@
                   <div class="row">
                   <div class="col-6 has-success form-group">
                     <label for="inputIsValid" class=" form-control-label">CATEGORIE *</label>
-                      <select name="categorie" id="selectLg" class="is-valid form-control-success form-control">
+                      <select name="categorie" id="selectLg" class="is-valid form-control-success form-control" required>
                         <option></option>
                         <option value="CADRE">CADRE</option>
                         <option value="NON CADRE">NON CADRE</option>

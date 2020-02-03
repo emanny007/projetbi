@@ -7,16 +7,7 @@
           <div class="container-fluid">
             <br />
 
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-          </center>
+            @include('includes.sous-menu-ci')
                         <div class="row well m-t-30">
                               <div class="col-md-12">
                                 <div class="card">
@@ -73,7 +64,7 @@
                         {{ csrf_field() }}
                         <div class="row">
                         <div class="col-4 has-success form-group">
-                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
+                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT *</label>
                               <select name="type_contrat" id="selectLg" onChange="afficherAutre()" class="is-valid form-control-success form-control">
 
                                 @if(!empty($contrat))
@@ -94,9 +85,9 @@
                             @endif
 
                         <div class="col-4 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
+                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT *</label>
                         @if(!empty($contrat))
-                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control">
+                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control" required>
                         @else
                         <input type="date" id="inputIsValid" name="date_debut" class="is-valid form-control-success form-control">
                         @endif
@@ -117,7 +108,9 @@
                         <p> {{ $errors->first('date_fin') }} </p>
                         @endif
                         </div>
+
                         <br />
+
                       <div class="form-group"> <center>
                         <a class="btn btn-xs btn-danger" href="{{ route('index-employe') }}">RETOURNER</a>
                     <button type="submit"  class="btn btn-success">VALIDER</button>

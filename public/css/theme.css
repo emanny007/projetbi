@@ -106,7 +106,7 @@ p {
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 1.625;
     color: #0c0b0b;
     -webkit-font-smoothing: antialiased;
@@ -926,7 +926,7 @@ section {
 
 .rs-select2--dark .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .rs-select2--dark .select2-container .select2-selection--single .select2-selection__rendered {
@@ -951,7 +951,7 @@ section {
 .rs-select2--trans .select2-container--open .select2-dropdown,
 .rs-select2--light .select2-container--open .select2-dropdown,
 .rs-select2--trans .select2-container--open .select2-dropdown {
-    font-size: 14px;
+    font-size: 12px;
     box-shadow: 0px 2px 15px 3px rgba(0,0,0,0.1);
     border-radius: 4px;
     border-top-left-radius: 4px;
@@ -1021,7 +1021,7 @@ section {
 
 .rs-select2--light .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #808080;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .rs-select2--light .select2-container .select2-selection--single .select2-selection__rendered {
@@ -1043,7 +1043,7 @@ section {
 }
 
 .rs-select2--light v .select2-container--open .select2-dropdown {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .rs-select2--border .select2-container--default .select2-selection--single {
@@ -1070,12 +1070,12 @@ section {
 
 .rs-select2--trans .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #808080;
-    font-size: 14px;
+    font-size: 12px;
     padding-left: 0;
 }
 
 .rs-select2--trans .select2-container--open .select2-dropdown {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .au-checkbox {

@@ -42,6 +42,16 @@
   @yield('analyse_genre')
   @yield('analyse_contrat')
 
+  @yield('modify_performance')
+  @yield('performance_staff')
+  @yield('index_performances')
+
+
+  @yield('modify_edit_sanction')
+  @yield('index_sanction')
+
+  @yield('modify_edit_depart')
+  @yield('index_depart')
 
   @yield('liste_contrat')
   @yield('modify_contrat')

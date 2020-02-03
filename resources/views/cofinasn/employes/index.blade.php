@@ -32,6 +32,8 @@
                                                           <th>NOM</th>
                                                           <th>PRENOM</th>
                                                           <th>EMAIL</th>
+                                                          <th>DEPARTEMENT</th>
+                                                          <th>NATIONALITE</th>
                                                           <th>ENTITE</th>
                                                           <th>ACTIONS</th>
                                                       </tr>
@@ -44,6 +46,8 @@
                                                           <td>{{ $employe->nom }}</td>
                                                           <td>{{ $employe->prenom }}</td>
                                                           <td>{{ $employe->email }}</td>
+                                                          <td>{{ $employe->departement }}</td>
+                                                          <td>{{ $employe->nationnalite }}</td>
                                                           <td>{{ $employe->entite }}</td>
                                                           <td><a class="btn btn-xs btn-info" href="{{ route('sn.show',$employe->id) }}"><span class="fas fa-eye"></span></a>&nbsp;
                                                             <a class="btn btn-xs btn-primary" href="{{ route('sn.edit',$employe->id) }}"><span class="fas fa-edit"></span></a>

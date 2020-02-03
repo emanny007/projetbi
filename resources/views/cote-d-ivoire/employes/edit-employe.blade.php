@@ -5,17 +5,7 @@
   <div class="uker">
       <div class="section__content section__content--p30">
           <div class="container-fluid"><br />
-
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('ci.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-            </center>
+            @include('includes.sous-menu-ci')
             <div class="row well m-t-30">
                   <div class="col-md-12">
                     <div class="card">
@@ -58,10 +48,8 @@
                       @if($errors->has('prenom'))
                       <p> {{ $errors->first('prenom') }} </p>
                       @endif
-                    </div>
-                  </div>
-
-
+                      </div>
+                      </div>
                       <div class="row">
                       <div class="col-3 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>
@@ -97,7 +85,7 @@
                       @if($errors->has('role'))
                       <p> {{ $errors->first('role') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">EMAIL PERSONNEL</label>
@@ -128,7 +116,7 @@
                       @if($errors->has('contact_urgent'))
                       <p> {{ $errors->first('contact_urgent') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">ENTITE</label>
@@ -178,7 +166,7 @@
                       @if($errors->has('situation_matrimoniale'))
                       <p> {{ $errors->first('situation_matrimoniale') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
@@ -189,19 +177,32 @@
                       @endif
 
                       <div class="col-3 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
-                        <input type="text" id="inputIsValid" name="nbre_enfant" value="{{ $employe->nbre_enfant }}" class="is-valid form-control-success form-control">
+                      <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
+                      <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control">
+                      <option value="{{ $employe->nbre_enfant }}">{{ $employe->nbre_enfant }}</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                      </select>
                       </div>
+
                       @if($errors->has('nbre_enfant'))
                       <p> {{ $errors->first('nbre_enfant') }} </p>
                       @endif
 
                         <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
+                          <label for="inputIsValid" class=" form-control-label">NATIONALITE</label>
                           <select name="nationnalite" id="selectLg" class="form-control is-valid form-control-success form-control">
                             <option value="{{ $employe->nationnalite }}">{{ $employe->nationnalite }}</option>
-                            @foreach($sites as $site)
-                            <option value="{{$site->nationnalite}}">{{$site->nationnalite}}</option>
+                            @foreach($nationnalite as $nationnalites)
+                            <option value="{{$nationnalites->nationnalite}}">{{$nationnalites->nationnalite}}</option>
                             @endforeach
                           </select>
                       </div>
@@ -211,12 +212,12 @@
 
 
                       <div class="col-3 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">ORIGINE</label>
-                        <select name="origine" id="selectLg" class="form-control is-valid form-control-success form-control">
-                          <option value="{{ $employe->origine }}">{{ $employe->origine }}</option>
-                          @foreach($sites as $site)
-                          <option value="{{$site->pays}}">{{$site->pays}}</option>
-                          @endforeach
+                        <label for="inputIsValid" class=" form-control-label">STATUT</label>
+                        <select name="statut" id="selectLg" class="form-control is-valid form-control-success form-control">
+                          <option value="{{ $employe->statut }}">{{ $employe->statut }}</option>
+                          <option value="ACTIVE">ACTIVE</option>
+                          <option value="DESACTIVE">DESACTIVE</option>
+
                         </select>
                       </div>
                       @if($errors->has('origine'))
@@ -229,6 +230,7 @@
                                         <select name="secteur" id="selectLg" class="is-valid form-control-success form-control">
                                           <option value="{{ $employe->secteur }}">{{ $employe->secteur }}</option>
                                           <option value="SALES">SALES</option>
+                                          <option value="MIDDLES SALES">MIDDLES SALES</option>
                                           <option value="NON SALES">NON SALES</option>
                                         </select>
                                     </div>
@@ -264,16 +266,28 @@
                                       <label for="inputIsValid" class=" form-control-label">PAYS</label>
                                         <select name="pays" id="selectLg" class="is-valid form-control-success form-control">
                                           <option value="{{ $employe->pays }}">{{ $employe->pays }}</option>
-                                          @foreach($sites as $site)
-                                          <option value="{{$site->pays}}">{{$site->pays}}</option>
+                                          @foreach($pays as $pays)
+                                          <option value="{{$pays->pays}}">{{$pays->pays}}</option>
                                           @endforeach
                                         </select>
                                     </div>
                                     @if($errors->has('pays'))
                                     <p> {{ $errors->first('pays') }} </p>
                                     @endif
+
                                   </div>
-                              </div>
+
+                                    <div class="row">
+                                      <div class="col-3 has-success form-group">
+                                      <label for="inputIsValid" class=" form-control-label">AGE</label>
+                                      <input type="text" id="inputIsValid" name="age" value="{{ $employe->age }}" class="is-valid form-control-success form-control" readonly>
+                                    </div>
+                                    @if($errors->has('age'))
+                                    <p> {{ $errors->first('age') }} </p>
+                                    @endif
+
+                                  </div>
+                            </div>
 
                       <br />
                     <div class="form-group"> <center>

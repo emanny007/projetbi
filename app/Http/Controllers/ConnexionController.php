@@ -151,13 +151,13 @@ class ConnexionController extends Controller
                  if(($user->role=="MAKER")&&($user->entite=="COFINA BF"))
                  {
 
-                   return redirect('/cti-maker/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
+                   return redirect('/cofinabf/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.'); //Et le compact('role')
 
                  }
                  else if(($user->role=="CHECKER")&&($user->entite =="COFINA BF"))
                   {
 
-                    return redirect('/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
+                    return redirect('/cofinabf/accueil')->with(compact('role'), 'success', 'Vous êtes à présent connecté.');
 
                  }
 

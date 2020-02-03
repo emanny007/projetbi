@@ -6,16 +6,7 @@
       <div class="section__content section__content--p30">
           <div class="container-fluid"><br />
             <div class="col-sm-6 col-lg-12">
-              <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
-              </center>
+              @include('includes.sous-menu-cac')
             <div class="row well m-t-30">
                   <div class="col-md-12">
                     <div class="card">
@@ -58,8 +49,8 @@
                         @if($errors->has('prenom'))
                         <p> {{ $errors->first('prenom') }} </p>
                         @endif
-                      </div>
-                    </div>
+                        </div>
+                        </div>
                         <div class="row">
                         <div class="col-3 has-success form-group">
                            <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>
@@ -95,7 +86,7 @@
                         @if($errors->has('role'))
                         <p> {{ $errors->first('role') }} </p>
                         @endif
-                      </div>
+                        </div>
                         <div class="row">
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">EMAIL PERSONNEL</label>
@@ -126,7 +117,7 @@
                         @if($errors->has('contact_urgent'))
                         <p> {{ $errors->first('contact_urgent') }} </p>
                         @endif
-                      </div>
+                        </div>
                         <div class="row">
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">ENTITE</label>
@@ -176,7 +167,7 @@
                         @if($errors->has('situation_matrimoniale'))
                         <p> {{ $errors->first('situation_matrimoniale') }} </p>
                         @endif
-                      </div>
+                        </div>
                         <div class="row">
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
@@ -186,7 +177,7 @@
                         <p> {{ $errors->first('photo') }} </p>
                         @endif
 
-                      <div class="col-3 has-success form-group">
+                        <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
                         <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control">
                         <option value="{{ $employe->nbre_enfant }}">{{ $employe->nbre_enfant }}</option>
@@ -208,7 +199,7 @@
                         @endif
 
                           <div class="col-3 has-success form-group">
-                            <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
+                            <label for="inputIsValid" class=" form-control-label">NATIONALITE</label>
                             <select name="nationnalite" id="selectLg" class="form-control is-valid form-control-success form-control">
                               <option value="{{ $employe->nationnalite }}">{{ $employe->nationnalite }}</option>
                               @foreach($nationnalite as $nationnalites)
@@ -219,7 +210,6 @@
                         @if($errors->has('nationnalite'))
                         <p> {{ $errors->first('nationnalite') }} </p>
                         @endif
-
 
                         <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">STATUT</label>
@@ -240,6 +230,7 @@
                                           <select name="secteur" id="selectLg" class="is-valid form-control-success form-control">
                                             <option value="{{ $employe->secteur }}">{{ $employe->secteur }}</option>
                                             <option value="SALES">SALES</option>
+                                            <option value="MIDDLES SALES">MIDDLES SALES</option>
                                             <option value="NON SALES">NON SALES</option>
                                           </select>
                                       </div>
@@ -284,49 +275,23 @@
                                       <p> {{ $errors->first('pays') }} </p>
                                       @endif
 
+                                    </div>
+
+                                      <div class="row">
+                                        <div class="col-3 has-success form-group">
+                                        <label for="inputIsValid" class=" form-control-label">AGE</label>
+                                        <input type="text" id="inputIsValid" name="age" value="{{ $employe->age }}" class="is-valid form-control-success form-control" readonly>
+                                      </div>
+                                      @if($errors->has('age'))
+                                      <p> {{ $errors->first('age') }} </p>
+                                      @endif
 
                                     </div>
 
+                                </div>
 
-                        <!--div class="card-header">
-                         <strong>GESTION DU CONTRAT</strong>
-                        </div>
-                        <div class="row">
-                        <div class="col-3 has-success form-group">
-                                              <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
-                                                <select name="type_contrat" id="selectLg" class="is-valid form-control-success form-control">
+                              <br />
 
-                                                  <option value="$contrat->type_contrat ">$contrat->type_contrat </option>
-
-                                                  <option value="STAGE">STAGE</option>
-                                                  <option value="PRESTATION">PRESTATION</option>
-                                                  <option value="CDD">CDD</option>
-                                                  <option value="CDI">CDI</option>
-                                                </select>
-                                                <input type="hidden" value="{{ $employe->id }}" name="id_empl" />
-                                            </div>
-                                            @if($errors->has('type_contrat'))
-                                            <p> {{ $errors->first('type_contrat') }} </p>
-                                            @endif
-
-                                              <div class="col-3 has-success form-group">
-                                                <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
-                                                <input type="date" id="inputIsValid" name="date_debut" value=" $contrat->date_debut " class="is-valid form-control-success form-control">
-                                              </div>
-                                              @if($errors->has('date_debut'))
-                                              <p> {{ $errors->first('date_debut') }} </p>
-                                              @endif
-                                            <div class="col-3 has-success form-group">
-                                              <label for="inputIsValid" class=" form-control-label">DATE FIN</label>
-                                              <input type="date" id="inputIsValid" name="date_fin" value="$contrat->date_fin " class="is-valid form-control-success form-control">
-                                            </div>
-                                            @if($errors->has('date_fin'))
-                                            <p> {{ $errors->first('date_fin') }} </p>
-                                            @endif
-                                          </div-->
-                                            </div>
-
-                      <br />
                     <div class="form-group"> <center>
                       <a class="btn btn-xs btn-danger" href="{{ route('cac.main') }}">RETOURNER</a>
                   <button type="submit"  class="btn btn-success">MODIFIER</button>

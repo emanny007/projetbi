@@ -28,44 +28,26 @@
                           </li>
                       </ul>
                   </li>
-                    <li>
-                        <a href="{{ url('cote-d-ivoire/conges/index') }}">
+                    <li class="has-sub">
+                        <a href="#">
                             <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/cote-d-ivoire/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cote-d-ivoire/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cote-d-ivoire/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cote-d-ivoire/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
+                        </ul>
                     </li>
-                    <!--li class="has-sub">
-                        <a href="#">
-                            <i class="fas fa-copy"></i>
-                            <span class="bot-line"></span>Pages</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="forget-pass.html">Forget Password</a>
-                            </li>
-                        </ul>
-                    </li-->
-                    <!--li class="has-sub">
-                        <a href="#">
-                            <i class="fas fa-desktop"></i>
-                            <span class="bot-line"></span>UI Elements</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="button.html">Button</a>
-                            </li>
-                            <li>
-                                <a href="badge.html">Badges</a>
-                            </li>
-                            <li>
-                                <a href="tab.html">Tabs</a>
-                            </li>
 
-                        </ul>
-                    </li-->
                     <li class="has-sub"><a href="#"> <img src="{{ url('images/icon/ci.png') }}" alt="Groupe Cofina" width="50" height="50"/></a></li>
                 </ul>
             </div>

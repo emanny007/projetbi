@@ -46,11 +46,27 @@
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="{{ url('/cofinagn/conges/index') }}">
+                    <li class="has-sub">
+                        <a href="#">
                             <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/cofinagn/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinagn/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinagn/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinagn/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
+                        </ul>
                     </li>
+
+
                     <li> <!-- url('/cofinasn/reportings/index') -->
                         <a href="#">
                             <i class="fas fa-upload"></i>

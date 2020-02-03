@@ -2,6 +2,7 @@
 
 @section('analyse_contrat')
 <!-- MAIN CONTENT-->
+<!-- MAIN CONTENT-->
 <div class="uker">
     <div class="section__content section__content--p30">
         <div class="container-fluid"><br /><center><label for="inputIsValid" align="center"><h3 class="title-2 m-b-40">Analyse groupe des contrats</h3></label></center>

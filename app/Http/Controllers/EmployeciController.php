@@ -10,7 +10,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
-
+use DateTime;
 use App\Departement;
 use Image;
 use App\Groupe;
@@ -48,7 +48,9 @@ class EmployeciController extends Controller
 
         return view('/cote-d-ivoire/employes/create-employe',[
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements
       ]);
     }
@@ -87,19 +89,23 @@ class EmployeciController extends Controller
          'departement'=>'required',
          'type_contrat'=>'required',
          'date_debut'=>'required|date',
-        // 'date_fin'=>'date'
+
        ]
-  );
+);
+
+        $statut='ACTIVE';
+        $today = date("Y-m-d H:i:s");
+
         $employe = new Employe([
           'matricule' => $request->get('matricule'),
           'numero_sss' => $request->get('numero_sss'),
-          'nom' => $request->get('nom'),
-          'prenom' => $request->get('prenom'),
+          'nom' =>  strtoupper($request->get('nom')),
+          'prenom' =>  strtoupper($request->get('prenom')),
           //'password' => Hash::make($request->input('password')),
           //'role' => $request->get('role'),
-          'email' => $request->get('email'),
+          'email' => strtolower($request->get('email')),
           'date_naissance' => $request->get('date_naissance'),
-          'mail_perso' => $request->get('mail_perso'),
+          'mail_perso' => strtolower($request->get('mail_perso')),
           'tel_pro' => $request->get('tel_pro'),
           'tel_perso' => $request->get('tel_perso'),
           'contact_urgent' => $request->get('contact_urgent'),
@@ -107,13 +113,16 @@ class EmployeciController extends Controller
           'sexe' => $request->get('sexe'),
           'civilite' => $request->get('civilite'),
           'pays' => $request->get('pays'),
-          'nationnalite' => $request->get('nationnalite'),
           'situation_matrimoniale' => $request->get('situation_matrimoniale'),
           'nbre_enfant' => $request->get('nbre_enfant'),
-          'origine' => $request->get('origine'),
+          'nationnalite' => $request->get('nationnalite'),
+          //'origine' => $request->get('origine'),
+          'statut' => $statut,
           'categorie' => $request->get('categorie'),
           'secteur' => $request->get('secteur'),
           'departement' => $request->get('departement'),
+          'created_at'=>$today,
+          'updated_at'=>$today,
 
         ]);
 
@@ -125,10 +134,24 @@ class EmployeciController extends Controller
           $employe->photo = $filename;
         }
 
+        $aujourd = date("Y-m-d");
+        $date_naissance = $request->get('date_naissance');
+        $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+        $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+        $age=$date_naissance->diff($aujourd);
+        $age=$age->format('%y');
+        $employe->age = $age;
         $employe->save();
 
+        Contrat::create([
+        'type_contrat' => $request->get('type_contrat'),
+        'date_debut' => $request->get('date_debut'),
+        'date_fin' => $request->get('date_fin'),
+        'employe_id' => $employe->id,
+        'created_at'=>$today,
+        'updated_at'=>$today,
+      ]);
        return redirect('/cote-d-ivoire/employes')->with('success', 'L\'employé a été ajouté avec succes !');
-      //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
 
     /**
@@ -139,7 +162,6 @@ class EmployeciController extends Controller
      */
     public function show($id)
     {
-       //print_r($request->input());
 
       $employes = Employe::find($id);
       return view('/cote-d-ivoire/employes/show-employe',['employe' => $employes]);
@@ -165,7 +187,9 @@ class EmployeciController extends Controller
         return view('/cote-d-ivoire/employes/edit-employe',[
           'employe' => $employe,
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements,
           'contrat' => $contrat,
       ]);
@@ -201,11 +225,11 @@ class EmployeciController extends Controller
         'photo' => 'image',
         'civilite' => 'required',
         'situation_matrimoniale' => 'required',
-        'nbre_enfant' => 'required',
+        //'nbre_enfant' => 'required|numeric',
         'nationnalite' => 'required',
         'statut' => 'required'
       ]
- );
+);
          $today = date("Y-m-d H:i:s");
 
          $employe = Employe::findOrFail($id);
@@ -231,6 +255,7 @@ class EmployeciController extends Controller
          $employe->contact_urgent = $request->get('contact_urgent');
          $employe->entite = $request->get('entite');
          $employe->sexe = $request->get('sexe');
+         //$employe->photo = $request->get('photo');
          $employe->civilite = $request->get('civilite');
          $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
          $employe->nbre_enfant = $request->get('nbre_enfant');
@@ -242,6 +267,15 @@ class EmployeciController extends Controller
          $employe->pays = $request->get('pays');
          $employe->updated_at=$today;
 
+         $aujourd = date("Y-m-d");
+         $date_naissance = $request->get('date_naissance');
+
+         $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+         $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+         $age=$date_naissance->diff($aujourd);
+         $age=$age->format('%y');
+
+         $employe->age = $age;
 
          if($request->hasFile('photo')){
            $photo = $request->file('photo');
@@ -254,8 +288,8 @@ class EmployeciController extends Controller
          $employe->save();
 
       flash("L'employé a bien été modifié")->success();
-     return redirect()->back()->with('status','L employé a bien été modifié');
- }
+     return redirect()->back()->with('status','L\'employé a bien été modifié');
+  }
 
     /**
      * Remove the specified resource from storage.

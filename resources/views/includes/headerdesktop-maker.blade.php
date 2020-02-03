@@ -46,14 +46,34 @@
                             <li>
                                 <a href="{{ url('/analyse/indicateur') }}"><i class="fas fa-folder-open"></i>Indicateur</a>
                             </li>
+                            <li>
+                                <a href="{{ url('/analyse/indicateur-new-rapport') }}"><i class="fas fa-folder-open"></i>Rapport Groupe</a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="{{ url('/conges/index') }}">
+                    <li class="has-sub">
+                        <a href="#">
                             <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
+                        </ul>
                     </li>
+
+
+
                     <li>
                         <a href="{{ url('/reportings/index') }}">
                             <i class="fas fa-upload"></i>
@@ -64,6 +84,9 @@
                             <i class="zmdi zmdi-settings"></i>
                             <span class="bot-line"></span>Parametres</a>
                         <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/parametres/etablissements') }}"><i class="fas fa-folder-open"></i>Etablissement</a>
+                            </li>
                             <li>
                                 <a href="{{ url('/parametres/departements') }}"><i class="fas fa-folder-open"></i>Departement</a>
                             </li>
@@ -158,7 +181,7 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="{{ url('images/emanny.png') }}" alt="Emanny Uker" />
+                            <img src="{{ url('images/emanny.png') }}" alt="Mon Profil" />
                         </div>
 
                         <div class="content">

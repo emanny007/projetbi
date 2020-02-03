@@ -65,7 +65,7 @@
                         {{ csrf_field() }}
                         <div class="row">
                         <div class="col-4 has-success form-group">
-                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT</label>
+                            <label for="inputIsValid" class=" form-control-label">TYPE DE CONTRAT *</label>
                               <select name="type_contrat" id="selectLg" onChange="afficherAutre()" class="is-valid form-control-success form-control">
 
                                 @if(!empty($contrat))
@@ -77,6 +77,7 @@
                                   <option value="PRESTATION">PRESTATION</option>
                                   <option value="CDD">CDD</option>
                                   <option value="CDI">CDI</option>
+
                               </select>
                               <input type="hidden" value="{{ $employe->id }}" name="id_empl"/>
                         </div>
@@ -85,9 +86,9 @@
                             @endif
 
                         <div class="col-4 has-success form-group">
-                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT</label>
+                        <label for="inputIsValid" class=" form-control-label">DATE DEBUT *</label>
                         @if(!empty($contrat))
-                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control">
+                        <input type="date" id="inputIsValid" name="date_debut" value="{{ $contrat->date_debut }}" class="is-valid form-control-success form-control" required>
                         @else
                         <input type="date" id="inputIsValid" name="date_debut" class="is-valid form-control-success form-control">
                         @endif
@@ -108,8 +109,35 @@
                         <p> {{ $errors->first('date_fin') }} </p>
                         @endif
                         </div>
+
+
+                        <div class="row">
+                        <div class="col-4 has-success form-group">
+                        <label for="inputIsValid" class=" form-control-label">MONTANT NET</label>
+                        @if(!empty($contrat))
+                        <input type="text" id="inputIsValid" name="montant_net" value="{{ $contrat->montant_net }}" class="is-valid form-control-success form-control">
+                        @else
+                        <input type="text" id="inputIsValid" name="montant_net" class="is-valid form-control-success form-control">
+                        @endif
+                        </div>
+                        @if($errors->has('montant_net'))
+                        <p> {{ $errors->first('montant_net') }} </p>
+                        @endif
+
+                        <div class="col-4 has-success form-group">
+                        <label id="autre" class=" form-control-label">MONTANT BRUT</label>
+                        @if(!empty($contrat))
+                        <input type="text" id="date_fin" name="montant_brut" value="{{ $contrat->montant_brut }}" class="is-valid form-control-success form-control">
+                        @else
+                        <input type="text" id="date_fin" name="montant_brut" class="is-valid form-control-success form-control">
+                        @endif
+                        </div>
+                        @if($errors->has('montant_brut'))
+                        <p> {{ $errors->first('montant_brut') }} </p>
+                        @endif
+                        </div>
                         <br />
-                      <div class="form-group"> <center>
+                          <div class="form-group"> <center>
                         <a class="btn btn-xs btn-danger" href="{{ route('ml.main') }}">RETOURNER</a>
                     <button type="submit"  class="btn btn-success">MODIFIER</button>
                   </center>

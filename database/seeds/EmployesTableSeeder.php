@@ -21,7 +21,7 @@ class EmployesTableSeeder extends Seeder
           'password' => Hash::make('123456789'),
           'date_naissance' => '2019-05-01',
           'email' => 'emanny.kitsoukou@cofinacorp.com',
-          'role' => 'MAKER',
+          'role' => 'CHECKER',
           'mail_perso' => 'emanny_uker@hotmail.com',
           'tel_pro' => '22547639495',
           'tel_perso' => '22578860519',
@@ -29,7 +29,7 @@ class EmployesTableSeeder extends Seeder
           'entite' => 'CTI',
           'sexe' => 'MASCULIN',
           'photo' => 'photo.jpg',
-          'civilite' => 'MONSIEUR',
+          'civilite' => 'MONSIEURS',
           'situation_matrimoniale' => 'MARIEE',
           'nbre_enfant' => '0',
           'nationnalite' => 'CONGOLAISE',
@@ -247,7 +247,7 @@ class EmployesTableSeeder extends Seeder
           'origine' => 'COTE D IVOIRE',
           'secteur' => 'SALES',
           'categorie' => 'CADRE',
-          'departement' => 'RESSOURCE HUMAINE',
+          'departement' => 'RESSOURCES HUMAINES',
           'pays' => 'COTE D IVOIRE'
 
       ],
@@ -326,7 +326,7 @@ class EmployesTableSeeder extends Seeder
           'origine' => 'COTE D IVOIRE',
           'secteur' => 'SALES',
           'categorie' => 'CADRE',
-          'departement' => 'CONTROL-INTERNE',
+          'departement' => 'CONTROLE INTERNE',
           'pays' => 'COTE D IVOIRE',
       ],
       [
@@ -357,7 +357,7 @@ class EmployesTableSeeder extends Seeder
       ],
       [
           'matricule' => 'CFN877001',
-          'numero_sss' => '1023',
+          'numero_sss' => '1024',
           'nom' => 'MENSHAH',
           'prenom' => 'ANDRE',
           'password' => Hash::make('123456789'),

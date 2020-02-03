@@ -7,16 +7,7 @@
           <div class="container-fluid">
             <br />
             <div class="col-sm-6 col-lg-12">
-              <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('cac.conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
-              </center>
+              @include('includes.sous-menu-cac')
           </div>
                         <div class="row well m-t-30">
                               <div class="col-md-12">
@@ -81,9 +72,11 @@
                               <label for="inputIsValid" class=" form-control-label">TYPE DE CONGE</label>
                               <select name="type_conge" id="selectLg" class="is-valid form-control-success form-control">
                                 <option></option>
-                                <option value="CONGE PAYE">CONGE PAYE</option>
-                                <option value="CONGE MALADIE">CONGE MALADIE</option>
-                                <option value="CONGE PARENTAL">CONGE PARENTAL</option>
+                                <option value="CONGES ANNUELS">CONGES ANNUELS</option>
+                                <option value="CONGES MALADIES">CONGES MALADIES</option>
+                                <option value="CONGES DE MATERNITE">CONGES DE MATERNITE</option>
+                                <option value="TRAVAIL A DISTANCE">TRAVAIL A DISTANCE</option>
+                                <option value="AUTRES">AUTRES</option>
                               </select>
                           </div>
                               @if($errors->has('type_conge'))

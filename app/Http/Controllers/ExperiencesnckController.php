@@ -21,7 +21,7 @@ class ExperiencesnckController extends Controller
   public function edit($id)
   {
     $experience = new Experience();
-    $experience = Experience::where('employe_id', $id)->get();
+    $experience = Experience::where('employe_id', $id)->orderby('id','desc')->get();
     $employe = Employe::findOrFail($id);
      return view('cofinasn-checker.experiences.edit', compact('employe','experience'));
   }

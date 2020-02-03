@@ -40,6 +40,7 @@ class CreateEmployesTable extends Migration
             $table->string('departement')->nullable();
             $table->string('statut')->nullable();
             $table->string('pays')->nullable();
+            $table->string('age')->nullable();
             $table->timestamps();
         });
     }

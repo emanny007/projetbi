@@ -26,7 +26,7 @@ class CreateCongesTable extends Migration
             $table->longText('commentaire')->nullable();
             $table->string('validation')->nullable();
             $table->unsignedBigInteger('employe_id');
-            $table->foreign('employe_id')->references('id')->on('employes');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

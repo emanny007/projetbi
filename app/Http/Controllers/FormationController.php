@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
 use App\Formation;
-
+use App\Etablissement;
 use App\Departement;
 use Image;
 use App\Groupe;
@@ -78,14 +78,16 @@ class FormationController extends Controller
      */
     public function edit($id)
     {
+
       $formation = new Formation();
-    /*  $formation = DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','formations.libelle','formations.nbre_heure','formations.cout','formations.date_debut','formations.date_fin')
-        ->join('formations','employes.id','=','formations.id')->where('employe_id', '=', $id)->get()->first();
-*/
-      $formation = Formation::where('employe_id', $id)->get();
-      //  $formation=Formation::all($id);
+      /*$formation = DB::table('employes')->select('employe_id','employes.id','employes.nom','employes.prenom','employes.email','formations.libelle','formations.nbre_heure','formations.cout','formations.date_debut','formations.date_fin','formations.employe_id')
+        ->join('formations','employes.id','=','formations.employe_id')->where('employe_id', '=', $id)->get()->first();
+        */
+      $etablissements=Etablissement::all();
+      $formation = Formation::where('employe_id', $id)->orderby('id','desc')->get();
       $employe = Employe::findOrFail($id);
-       return view('formations.edit', compact('employe','formation'));
+
+       return view('formations.edit', compact('employe','formation','etablissements'));
     }
 
     /**

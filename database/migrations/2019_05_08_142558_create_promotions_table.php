@@ -19,6 +19,8 @@ class CreatePromotionsTable extends Migration
             $table->string('salaire_actuel')->nullable();
             $table->string('salaire_debut')->nullable();
             $table->string('anciennete')->nullable();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->timestamps();
         });
     }

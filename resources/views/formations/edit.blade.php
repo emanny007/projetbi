@@ -7,16 +7,7 @@
           <div class="container-fluid">
             <br />
             <div class="col-sm-6 col-lg-12">
-              <center>
-                <a class="btn btn-xs btn-primary" href="{{ route('main') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('show',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('edit',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span>Experience &nbsp;</a>
-                <a class="btn btn-xs btn-primary" href="{{ route('conges.edit',$employe->id) }}"><span class="fas fa-table"></span>Conge &nbsp;</a>
-            </center>
+                @include('includes.sous-menu-cti-checker')
 
           </div>
 
@@ -47,8 +38,7 @@
 
                                                     <td>Action</td>
                                                 </tr>
-
-                                                @foreach ($formation as $formation)
+                                                @foreach($formation as $formation)
                                                 <tr>
                                                     <td>Formation: {{ $formation->libelle }}</td>
                                                     <td>Ets: {{ $formation->nbre_heure }}</td>
@@ -85,6 +75,7 @@
                           <div class="col-3 has-success form-group">
                           <label for="inputIsValid" class=" form-control-label">ETABLISSEMENT</label>
                           <input type="text" id="inputIsValid" name="nbre_heure" class="is-valid form-control-success form-control">
+
                           </div>
                           @if($errors->has('nbre_heure'))
                           <p> {{ $errors->first('nbre_heure') }} </p>
@@ -107,7 +98,7 @@
                         @endif
                         <div class="col-2 has-success form-group">
                         <label id="autre" class=" form-control-label">DATE FIN</label>
-                        <input type="date" id="date_fin" name="date_fin"  class="is-valid form-control-success form-control">
+                        <input type="date" id="date_fin" name="date_fin" class="is-valid form-control-success form-control">
                         </div>
                         @if($errors->has('date_fin'))
                         <p> {{ $errors->first('date_fin') }} </p>

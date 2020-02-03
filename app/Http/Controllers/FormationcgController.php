@@ -19,7 +19,7 @@ class FormationcgController extends Controller
     public function edit($id)
     {
       $formation = new Formation();
-      $formation = Formation::where('employe_id', $id)->get();
+      $formation = Formation::where('employe_id', $id)->orderby('id','desc')->get();
       //  $formation=Formation::all($id);
       $employe = Employe::findOrFail($id);
        return view('cofinacg.formations.edit', compact('employe','formation'));

@@ -15,8 +15,13 @@ class CreateSanctionsTable extends Migration
     {
         Schema::create('sanctions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('liste')->nullable();
-            //$table->timestamps();
+            $table->date('date_sanction')->nullable();
+            $table->string('type_sanction')->nullable();
+            $table->longText('commentaire')->nullable();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('employes')
+                  ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

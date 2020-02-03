@@ -19,7 +19,7 @@ class CongesnController extends Controller
   public function index()
   {
     //$conges=Conge::all();
-    $conges=DB::select("select * from employes,conges where employes.id=conges.employe_id and employes.entite='COFINA SN'");
+    $conges=DB::select("select * from employes,conges where employes.id=conges.employe_id and employes.entite='COFINA SN' and employes.statut='ACTIVE'");
        return view('cofinasn.conges.index', compact('conges'));
   }
 

@@ -20,7 +20,10 @@
   @include('flash::message')
   @yield('modify_employe')
   @yield('show_employe')
+<!--Gestion des parametres-->
 
+  @yield('creation_etablissement')
+  @yield('etablissement')
   @yield('departement')
   @yield('creation_departement')
   @include('flash::message')
@@ -42,12 +45,17 @@
   @yield('index_conge')
   @yield('reporting_excel')
   @yield('reporting_exportdata')
+  @yield('reporting_preview')
 
   @yield('analyse_entite')
   @yield('analyse_employe')
   @yield('analyse_genre')
   @yield('analyse_contrat')
   @yield('analyse_indicateur')
+  @yield('analyse_indicateur-new-rapport')
+  @yield('analyse_exportdpt')
+  @yield('traitement_export')
+  @yield('traitement_expt')
 
 
   @yield('liste_contrat')
@@ -57,7 +65,19 @@
 
   @yield('modify_formation')
 
+  @yield('modify_performance')
+  @yield('performance_staff')
+  @yield('index_performance')
+
+
+  @yield('modify_edit_sanction')
+  @yield('index_sanction')
+
+  @yield('modify_edit_depart')
+  @yield('index_depart')
+
   @yield('modify_experience')
+
   @yield('modify_poste')
 
 <!-- pied de page -->

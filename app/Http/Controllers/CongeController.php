@@ -24,7 +24,7 @@ class CongeController extends Controller
     public function index()
     {
       //$conges=Conge::all();
-      $conges=DB::select("select * from employes,conges where employes.id=conges.employe_id");
+      $conges=DB::select("select * from employes,conges where employes.id=conges.employe_id and employes.statut='ACTIVE'");
          return view('conges.index', compact('conges'));
     }
 
@@ -59,7 +59,7 @@ class CongeController extends Controller
 
           $conge->save();
 
-          return redirect()->back()->with('success', 'Les informations renseignées ont bien été ajoutés');
+          return redirect()->back()->with('success', 'Vos informations ont été ajoutées avec succès!!!');
         }
     /**
      * Display the specified resource.
@@ -112,6 +112,6 @@ class CongeController extends Controller
     {
       $conge = Conge::findOrFail($id);
       $conge->delete();
-      return redirect()->back()->with('success', 'Experience deleted !');
+      return redirect()->back()->with('success', 'Congé deleted !');
     }
 }

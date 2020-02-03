@@ -36,22 +36,10 @@
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="top-campaign">
-                      <div class="au-card-inner">
-                        <center>
-                          <h3 class="title-2 m-b-40">Representation Graphique des staffs par entite</h3>
-                        </center>
-                           {!! $data->render() !!}
-
-                      </div>
-                  </div>
-                </div>
-
                 <div class="col-md-3">
                   <div class="top-campaign">
                       <div class="au-card-inner">
-                        <h3 class="title-2 m-b-40">Nombre d'hommes / entite</h3>
+                        <h3 class="title-3 m-b-40">Nbre d'hommes / entite</h3>
                         <div class="table-responsive">
                             <table class="table">
                               <thead>
@@ -83,7 +71,7 @@
                 <div class="col-md-3">
                   <div class="top-campaign">
                     <div class="au-card-inner">
-                      <h3 class="title-2 m-b-40">Nombre de femmes / entite</h3>
+                      <h4 class="title-3 m-b-40">Nbre de femmes / entite</h4>
 
                     <div class="table-responsive">
                             <table class="table">
@@ -112,6 +100,20 @@
                       </div>
                   </div>
                 </div>
+
+
+                <div class="col-md-6">
+                  <div class="top-campaign">
+                      <div class="au-card-inner">
+                        <center>
+                          <h3 class="title-2 m-b-40">Representation Graphique des staffs par entite</h3>
+                        </center>
+                           {!! $data->render() !!}
+
+                      </div>
+                  </div>
+                </div>
+
 
 
                 <div class="col-md-6">

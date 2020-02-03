@@ -17,8 +17,8 @@
 
                       <div class="card-body card-block">
                       <form  enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ route('cti.update-employe',$employe->id)}}">
-
                       {{ csrf_field() }}
+
                       <input type="hidden" id="inputIsValid" name="_method" value="PUT">
                       <div class="row">
                       <div class="col-3 has-success form-group">
@@ -50,8 +50,8 @@
                       @if($errors->has('prenom'))
                       <p> {{ $errors->first('prenom') }} </p>
                       @endif
-                    </div>
-                  </div>
+                      </div>
+                      </div>
                       <div class="row">
                       <div class="col-3 has-success form-group">
                          <label for="inputIsValid" class=" form-control-label">MOT DE PASSE</label>
@@ -87,7 +87,7 @@
                       @if($errors->has('role'))
                       <p> {{ $errors->first('role') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">EMAIL PERSONNEL</label>
@@ -118,7 +118,7 @@
                       @if($errors->has('contact_urgent'))
                       <p> {{ $errors->first('contact_urgent') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">ENTITE</label>
@@ -168,7 +168,7 @@
                       @if($errors->has('situation_matrimoniale'))
                       <p> {{ $errors->first('situation_matrimoniale') }} </p>
                       @endif
-                    </div>
+                      </div>
                       <div class="row">
                         <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">JOINDRE UNE PHOTO</label>
@@ -178,7 +178,7 @@
                       <p> {{ $errors->first('photo') }} </p>
                       @endif
 
-                    <div class="col-3 has-success form-group">
+                      <div class="col-3 has-success form-group">
                       <label for="inputIsValid" class=" form-control-label">NOMBRE D'ENFANTS</label>
                       <select name="nbre_enfant" id="selectLg" class="is-valid form-control-success form-control">
                       <option value="{{ $employe->nbre_enfant }}">{{ $employe->nbre_enfant }}</option>
@@ -200,7 +200,7 @@
                       @endif
 
                         <div class="col-3 has-success form-group">
-                          <label for="inputIsValid" class=" form-control-label">NATIONNALITE</label>
+                          <label for="inputIsValid" class=" form-control-label">NATIONALITE</label>
                           <select name="nationnalite" id="selectLg" class="form-control is-valid form-control-success form-control">
                             <option value="{{ $employe->nationnalite }}">{{ $employe->nationnalite }}</option>
                             @foreach($nationnalite as $nationnalites)
@@ -212,26 +212,25 @@
                       <p> {{ $errors->first('nationnalite') }} </p>
                       @endif
 
-
                       <div class="col-3 has-success form-group">
                         <label for="inputIsValid" class=" form-control-label">STATUT</label>
                         <select name="statut" id="selectLg" class="form-control is-valid form-control-success form-control">
                           <option value="{{ $employe->statut }}">{{ $employe->statut }}</option>
                           <option value="ACTIVE">ACTIVE</option>
                           <option value="DESACTIVE">DESACTIVE</option>
-
                         </select>
                       </div>
                       @if($errors->has('origine'))
                         <p> {{ $errors->first('origine') }} </p>
                       @endif
                       </div>
-                                    <div class="row">
-                                    <div class="col-3 has-success form-group">
-                                      <label for="inputIsValid" class=" form-control-label">SECTEUR</label>
+                          <div class="row">
+                            <div class="col-3 has-success form-group">
+                                <label for="inputIsValid" class=" form-control-label">SECTEUR</label>
                                         <select name="secteur" id="selectLg" class="is-valid form-control-success form-control">
                                           <option value="{{ $employe->secteur }}">{{ $employe->secteur }}</option>
                                           <option value="SALES">SALES</option>
+                                          <option value="MIDDLES SALES">MIDDLES SALES</option>
                                           <option value="NON SALES">NON SALES</option>
                                         </select>
                                     </div>
@@ -275,13 +274,23 @@
                                     @if($errors->has('pays'))
                                     <p> {{ $errors->first('pays') }} </p>
                                     @endif
-
                                   </div>
 
-                            </div>
+                                    <div class="row">
+                                      <div class="col-3 has-success form-group">
+                                      <label for="inputIsValid" class=" form-control-label">AGE</label>
+                                      <input type="text" id="inputIsValid" name="age" value="{{ $employe->age }}" class="is-valid form-control-success form-control" readonly>
+                                    </div>
+                                    @if($errors->has('age'))
+                                    <p> {{ $errors->first('age') }} </p>
+                                    @endif
 
-                      <br />
-                    <div class="form-group"> <center>
+                                  </div>
+                              </div>
+
+                            <br />
+
+                      <div class="form-group"> <center>
                       <a class="btn btn-xs btn-danger" href="{{ route('cti.index-employe') }}">RETOURNER</a>
                   <button type="submit"  class="btn btn-success">MODIFIER</button>
                 </center>

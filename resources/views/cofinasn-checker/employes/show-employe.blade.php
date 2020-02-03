@@ -6,18 +6,8 @@
       <div class="section__content section__content--p30">
           <div class="container-fluid">
             <br />
-            <center>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.index-employe') }}"><span class="fas fa-user"></span> Employes &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.show-employe',$employe->id) }}"><span class="fas fa-info"></span> Afficher &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.edit-employe',$employe->id) }}"><span class="fas fa-user"></span> Modifier &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.contrats.edit',$employe->id) }}"><span class="fas fa-edit"></span> Contrat &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.postes.edit',$employe->id) }}"><span class="fas fa-male"></span> Poste &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.formations.edit',$employe->id) }}"><span class="fas fa-suitcase"></span> Formation &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.experiences.edit',$employe->id) }}"><span class="fas fa-tasks"></span> Experience &nbsp;</a>
-              <a class="btn btn-xs btn-primary" href="{{ route('snck.conges.edit',$employe->id) }}"><span class="fas fa-table"></span> Conge &nbsp;</a>
-            </center>
+            @include('includes.sous-menu-snck')
           </div>
-
           <div class="row well m-t-30">
            <div class="col-md-12">
                <div class="card">
@@ -27,11 +17,10 @@
                    </div>
                    <div class="card-body">
                        <div class="mx-auto d-block">
-                           <img class="rounded-circle mx-auto d-block" src="/images/{{ $employe->photo }}" width="150" height="150" alt="{{ $employe->prenom }}  {{ $employe->nom }}">
+                           <img class="rounded-circle mx-auto d-block" src="/images/{{ $employe->photo }}" width="150" height="150" alt="Card image cap">
                            <h5 class="text-sm-center mt-2 mb-1">{{ $employe->prenom }}  {{ $employe->nom }}</h5>
                            <div class="location text-sm-center">
-                               <i class="fa fa-map-marker"></i>{{ $employe->entite }}
-                            </div>
+                               <i class="fa fa-map-marker"></i>{{ $employe->entite }}</div>
                        </div>
                        <hr>
                        <!--div class="card-text text-sm-center">
@@ -96,8 +85,24 @@
                                                     <td>{{ $employe->entite }}</td>
                                                 </tr>
                                                 <tr>
+                                                    <td>DEPARTEMENT</td>
+                                                    <td>{{ $employe->departement }}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>SEXE</td>
                                                     <td>{{ $employe->sexe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AGE</td>
+                                                    <td>{{ $employe->age }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SECTEUR</td>
+                                                    <td>{{ $employe->secteur }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CATEGORIE</td>
+                                                    <td>{{ $employe->categorie }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>CIVILITE</td>
@@ -112,32 +117,26 @@
                                                     <td>{{ $employe->nbre_enfant }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>NATIONNALITE</td>
+                                                    <td>NATIONALITE</td>
                                                     <td>{{ $employe->nationnalite }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>ORIGINE</td>
-                                                    <td>{{ $employe->origine }}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>PAYS</td>
-                                                    <td>{{ $employe->pays }}</td>
+                                                    <td>STATUT</td>
+                                                    <td>{{ $employe->statut }}</td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
+
                                     <center><br /><br />
                                       <a class="btn btn-xs btn-danger" href="{{ route('snck.index-employe') }}">RETOURNER</a>
                                     </center>
                                 </div>
                                 <!--  END TOP CAMPAIGN-->
-
                    </div>
                </div>
            </div>
-
 
         </div>
       </div>

@@ -10,6 +10,7 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Contrat;
+use DateTime;
 
 use App\Departement;
 use Image;
@@ -50,6 +51,8 @@ class EmployemlController extends Controller
         return view('cofinaml.employes.create',[
           'sites' => $sites,
           'groupes' => $groupes,
+          'pays' => $pays,
+          'nationnalite' => $nationnalite,
           'departements' => $departements
       ]);
     }
@@ -63,87 +66,95 @@ class EmployemlController extends Controller
     public function store(Request $request)
     {
 
-      $request->validate([
-         'matricule' => 'between:2,20',
-         'numero_sss' => 'bail|required|numeric',
-         'nom' => 'required|max:100',
-         'prenom' => 'required',
-         //'password' => 'min:5',
-         'date_naissance' => 'required|date',
-         'email' => 'bail|required|email',
-         'mail_perso' => 'bail|email',
-         'tel_pro' => 'numeric',
-         'tel_perso' => 'required|numeric',
-         'contact_urgent' => 'required|numeric',
-         'entite' => 'required',
-         'sexe' => 'required|alpha',
-         'photo' => 'required|image',
-         'civilite' => 'required',
-         'situation_matrimoniale' => 'required',
-         //'nbre_enfant' => 'required|numeric',
-         'nationnalite' => 'required',
-         //'origine' => 'required',
-         'categorie' => 'required',
-         'secteur' => 'required',
-         'departement'=>'required',
-         'type_contrat'=>'required',
-         'date_debut'=>'required|date',
-        // 'date_fin'=>'date'
-       ]
-      );
+            $request->validate([
+               'matricule' => 'between:2,20',
+               'numero_sss' => 'bail|required|numeric',
+               'nom' => 'required|max:100',
+               'prenom' => 'required',
+               //'password' => 'min:5',
+               'date_naissance' => 'required|date',
+               'email' => 'bail|required|email',
+               'mail_perso' => 'bail|email',
+               'tel_pro' => 'numeric',
+               'tel_perso' => 'required|numeric',
+               'contact_urgent' => 'required|numeric',
+               'entite' => 'required',
+               'sexe' => 'required|alpha',
+               'photo' => 'required|image',
+               'civilite' => 'required',
+               'situation_matrimoniale' => 'required',
+               //'nbre_enfant' => 'required|numeric',
+               'nationnalite' => 'required',
+               //'origine' => 'required',
+               'categorie' => 'required',
+               'secteur' => 'required',
+               'departement'=>'required',
+               'type_contrat'=>'required',
+               'date_debut'=>'required|date',
 
-        //  Employe::create($request->all());
+             ]
+        );
 
-        $today = date("Y-m-d H:i:s");
+              $statut='ACTIVE';
+              $today = date("Y-m-d H:i:s");
 
-        $employe = new Employe([
-          'matricule' => $request->get('matricule'),
-          'numero_sss' => $request->get('numero_sss'),
-          'nom' =>  strtoupper($request->get('nom')),
-          'prenom' =>  strtoupper($request->get('prenom')),
-          //'password' => Hash::make($request->input('password')),
-          //'role' => $request->get('role'),
-          'email' => strtolower($request->get('email')),
-          'date_naissance' => $request->get('date_naissance'),
-          'mail_perso' => strtolower($request->get('mail_perso')),
-          'tel_pro' => $request->get('tel_pro'),
-          'tel_perso' => $request->get('tel_perso'),
-          'contact_urgent' => $request->get('contact_urgent'),
-          'entite' => $request->get('entite'),
-          'sexe' => $request->get('sexe'),
-          'civilite' => $request->get('civilite'),
-          'pays' => $request->get('pays'),
-          'situation_matrimoniale' => $request->get('situation_matrimoniale'),
-          'nbre_enfant' => $request->get('nbre_enfant'),
-          'nationnalite' => $request->get('nationnalite'),
-          //'origine' => $request->get('origine'),
-          'categorie' => $request->get('categorie'),
-          'secteur' => $request->get('secteur'),
-          'departement' => $request->get('departement'),
-          'created_at'=>$today,
-          'updated_at'=>$today,
+              $employe = new Employe([
+                'matricule' => $request->get('matricule'),
+                'numero_sss' => $request->get('numero_sss'),
+                'nom' =>  strtoupper($request->get('nom')),
+                'prenom' =>  strtoupper($request->get('prenom')),
+                //'password' => Hash::make($request->input('password')),
+                //'role' => $request->get('role'),
+                'email' => strtolower($request->get('email')),
+                'date_naissance' => $request->get('date_naissance'),
+                'mail_perso' => strtolower($request->get('mail_perso')),
+                'tel_pro' => $request->get('tel_pro'),
+                'tel_perso' => $request->get('tel_perso'),
+                'contact_urgent' => $request->get('contact_urgent'),
+                'entite' => $request->get('entite'),
+                'sexe' => $request->get('sexe'),
+                'civilite' => $request->get('civilite'),
+                'pays' => $request->get('pays'),
+                'situation_matrimoniale' => $request->get('situation_matrimoniale'),
+                'nbre_enfant' => $request->get('nbre_enfant'),
+                'nationnalite' => $request->get('nationnalite'),
+                //'origine' => $request->get('origine'),
+                'statut' => $statut,
+                'categorie' => $request->get('categorie'),
+                'secteur' => $request->get('secteur'),
+                'departement' => $request->get('departement'),
+                'created_at'=>$today,
+                'updated_at'=>$today,
 
-        ]);
+              ]);
 
-        if($request->hasFile('photo')){
-          $photo = $request->file('photo');
-          $filename= $request->photo->getClientOriginalName();
-          Image::make($photo)->save(public_path('/images/'.$filename));
-          //$request->photo->storeAs('public/images',$filename);
-          $employe->photo = $filename;
-        }
+              if($request->hasFile('photo')){
+                $photo = $request->file('photo');
+                $filename= $request->photo->getClientOriginalName();
+                Image::make($photo)->save(public_path('/images/'.$filename));
+                //$request->photo->storeAs('public/images',$filename);
+                $employe->photo = $filename;
+              }
 
-        $employe->save();
+              $aujourd = date("Y-m-d");
+              $date_naissance = $request->get('date_naissance');
+              $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+              $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+              $age=$date_naissance->diff($aujourd);
+              $age=$age->format('%y');
+              $employe->age = $age;
 
-        Contrat::create([
-        'type_contrat' => $request->get('type_contrat'),
-        'date_debut' => $request->get('date_debut'),
-        'date_fin' => $request->get('date_fin'),
-        'employe_id' => $employe->id,
-        'created_at'=>$today,
-        'updated_at'=>$today,
-      ]);
 
+              $employe->save();
+
+              Contrat::create([
+              'type_contrat' => $request->get('type_contrat'),
+              'date_debut' => $request->get('date_debut'),
+              'date_fin' => $request->get('date_fin'),
+              'employe_id' => $employe->id,
+              'created_at'=>$today,
+              'updated_at'=>$today,
+            ]);
        return redirect('/cofinaml/employes')->with('success', 'L\'employé a été ajouté avec succes !');
       //return redirect()->back()->with('status','L employé a été bien ajouté');
     }
@@ -182,7 +193,9 @@ class EmployemlController extends Controller
         return view('cofinaml.employes.edit',[
           'employe' => $employe,
           'sites' => $sites,
+          'pays' => $pays,
           'groupes' => $groupes,
+          'nationnalite' => $nationnalite,
           'departements' => $departements,
           'contrat' => $contrat,
       ]);
@@ -218,11 +231,11 @@ class EmployemlController extends Controller
         'photo' => 'image',
         'civilite' => 'required',
         'situation_matrimoniale' => 'required',
-        'nbre_enfant' => 'required',
+        //'nbre_enfant' => 'required|numeric',
         'nationnalite' => 'required',
         'statut' => 'required'
       ]
- );
+  );
          $today = date("Y-m-d H:i:s");
 
          $employe = Employe::findOrFail($id);
@@ -248,6 +261,7 @@ class EmployemlController extends Controller
          $employe->contact_urgent = $request->get('contact_urgent');
          $employe->entite = $request->get('entite');
          $employe->sexe = $request->get('sexe');
+         //$employe->photo = $request->get('photo');
          $employe->civilite = $request->get('civilite');
          $employe->situation_matrimoniale = $request->get('situation_matrimoniale');
          $employe->nbre_enfant = $request->get('nbre_enfant');
@@ -259,6 +273,15 @@ class EmployemlController extends Controller
          $employe->pays = $request->get('pays');
          $employe->updated_at=$today;
 
+         $aujourd = date("Y-m-d");
+         $date_naissance = $request->get('date_naissance');
+
+         $aujourd  = DateTime::createFromFormat('Y-m-d', $aujourd);
+         $date_naissance= DateTime::createFromFormat('Y-m-d', $date_naissance );
+         $age=$date_naissance->diff($aujourd);
+         $age=$age->format('%y');
+
+         $employe->age = $age;
 
          if($request->hasFile('photo')){
            $photo = $request->file('photo');
@@ -271,7 +294,8 @@ class EmployemlController extends Controller
          $employe->save();
 
       flash("L'employé a bien été modifié")->success();
-     return redirect()->back()->with('status','L employé a bien été modifié');
+     return redirect()->back()->with('status','L\'employé a bien été modifié');
+
  }
 
 

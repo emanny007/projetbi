@@ -28,27 +28,28 @@
                           </li>
                       </ul>
                   </li>
-                    <li>
-                        <a href="{{ url('/cti-maker/conges/index') }}">
-                            <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
-                    </li>
-                    <!--li class="has-sub">
+
+                    <li class="has-sub">
                         <a href="#">
-                            <i class="fas fa-copy"></i>
-                            <span class="bot-line"></span>Pages</a>
+                            <i class="fas fa-table"></i>
+                            <span class="bot-line"></span>Listes</a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="login.html">Login</a>
+                              <a href="{{ url('/cti-maker/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
                             </li>
                             <li>
-                                <a href="register.html">Register</a>
+                                <a href="{{ url('/cti-maker/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
                             </li>
                             <li>
-                                <a href="forget-pass.html">Forget Password</a>
+                                <a href="{{ url('/cti-maker/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cti-maker/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
                             </li>
                         </ul>
-                    </li-->
+                    </li>
+
+
                     <!--li class="has-sub">
                         <a href="#">
                             <i class="fas fa-desktop"></i>
@@ -148,7 +149,7 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="{{ url('images/emanny.png') }}" alt="Emanny Uker" width="200" height="200" />
+                            <img src="{{ url('images/emanny.png') }}" alt="Mon profil" width="200" height="200" />
                         </div>
                         <div class="content">
                             <a class="js-acc-btn" href="#">Compte</a>

@@ -28,44 +28,28 @@
                           </li>
                       </ul>
                   </li>
-                    <li>
-                        <a href="{{ url('/cofinasn-checker/conges/index') }}">
-                            <i class="fas fa-table"></i>
-                            <span class="bot-line"></span>Congés</a>
-                    </li>
-                    <!--li class="has-sub">
-                        <a href="#">
-                            <i class="fas fa-copy"></i>
-                            <span class="bot-line"></span>Pages</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="forget-pass.html">Forget Password</a>
-                            </li>
-                        </ul>
-                    </li-->
-                    <!--li class="has-sub">
-                        <a href="#">
-                            <i class="fas fa-desktop"></i>
-                            <span class="bot-line"></span>UI Elements</a>
-                        <ul class="header3-sub-list list-unstyled">
-                            <li>
-                                <a href="button.html">Button</a>
-                            </li>
-                            <li>
-                                <a href="badge.html">Badges</a>
-                            </li>
-                            <li>
-                                <a href="tab.html">Tabs</a>
-                            </li>
 
+                    <li class="has-sub">
+                        <a href="#">
+                            <i class="fas fa-table"></i>
+                            <span class="bot-line"></span>Listes</a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li>
+                              <a href="{{ url('/cofinasn-checker/conges/index') }}"><i class="fas fa-folder-open"></i>Congés</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn-checker/performances/index') }}"><i class="fas fa-folder-open"></i>Performances</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn-checker/sanctions/index') }}"><i class="fas fa-folder-open"></i>Sanctions</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/cofinasn-checker/departs/index') }}"><i class="fas fa-folder-open"></i>Departs</a>
+                            </li>
                         </ul>
-                    </li-->
+                    </li>
+
+                    
                     <li class="has-sub"><a href="#"> <img src="{{ url('images/drapeau/senegal.jpg') }}" alt="Groupe Cofina" width="50" height="50"/></a></li>
                 </ul>
             </div>
